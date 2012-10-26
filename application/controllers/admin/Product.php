@@ -4,12 +4,12 @@ class Product extends MY_Controller{
     public function __construct(){
         parent::__construct('admin');
         $this->load->model('ProductModel');
+        $this->load->model('PhotoModel');
         $this->load->model('BrandModel');
     }	
     
     //main product browsing controller
     public function index(){
-
     	$data = array();
     	
     	//brand
@@ -34,13 +34,43 @@ class Product extends MY_Controller{
     	$filter['sort_dir'] 		= $data['sort_dir'];   
     	$filter['page_index']		= $data['page']; 	
     	$data['products']			= $this->ProductModel->getProductList($filter);
-//var_dump($data['products']);	
+
     	$this::loadViewProductBrowsing($data);
     }
     
     //view product controller
     public function view($sku){
+    	$data = array();
     	
+    	$product = $this->ProductModel->getProduct($sku);
+    	$data['product'] = $product;
+    	
+    	$photos = $this->PhotoModel->getPhotoList($sku, -1);
+    	$data['photos']  = $photos;
+    	
+    	$this::loadViewProduct($data);
+    }
+    
+    /*
+     * for ajax call to make a given sku online
+     */
+    public function ajaxMakeOnline($sku){
+    	$param = array();
+    	$param['is_online'] = 1;
+    	$product = $this->ProductModel->getProduct($sku);  	
+    	if ($product->date_first_online == NULL){				//make first time online, stamp date :)
+    		$param['date_first_online'] = date('Y-m-d H:i:s');
+    	}
+    	$this->ProductModel->updateProduct($sku, $param);
+    	echo('OK');
+    }
+    
+    /*
+     * for ajax call to make a given sku offline
+     */
+    public function ajaxMakeOffline($sku){
+    	$this->ProductModel->updateProduct($sku, array('is_online' => 0));
+    	echo('OK');
     }
     
     
@@ -54,6 +84,7 @@ class Product extends MY_Controller{
     
     
     /*
+     * this is for view product browsing in the admin page
      * $data can have 
      *   - brands 		    = list of brand
      *   - brands_selected  = the list of selected brand
@@ -73,6 +104,18 @@ class Product extends MY_Controller{
     	$data['footer'] = $this->load->view('admin/footer', '', TRUE);
     	    	 
     	$this->load->view('admin/product_browsing', $data);
+    }
+    
+    /*
+     * this is for view/edit a given product sku
+     * $data can have
+     *  - product			= object of product
+     *  - ??
+     *  
+     */
+    private function loadViewProduct($data){
+    	$data['head'] = $this->load->view('admin/head', '', TRUE);
+    	$this->load->view('admin/product', $data);
     }
     
     /*

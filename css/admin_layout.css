@@ -85,7 +85,43 @@ a:hover{
 	background: #ffffff;
 }
 
+.price-normal{
+	
+}
 
+.price-discount{
+	color: red;
+}
+
+.more-detail{
+	
+}
+
+#photo-list-left{
+	padding: 5px;
+	float:left;
+	width: 210px;
+}
+
+.photo-list-box{
+	padding-top:5px;
+}
+
+#product-detail-right{
+	width: 670px;
+	float:right;
+	text-aligh:left;
+}
+
+#overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1000000;
+  background: url('/store/images/ajax-loader-large.gif');
+  background-repeat:no-repeat;
+  background-position:center; 
+}
 
 
 .red{

@@ -4,7 +4,7 @@ class ProductModel extends CI_Model{
 	var $baseProductSql = 'select p.sku, p.product_name, p.description, p.price_init, 
 							p.date_first_online, p.is_online,
 							r.product_name as product_name_raw, r.description as description_raw, 
-							r.url, r.original_url, r.image_url, r.price as price_now, IF( p.price_init > r.price, p.price_init - r.price, 0 ) as price_saving, 
+							r.url, r.original_url, r.image_url, p.price_init, r.price as price_now, IF( p.price_init > r.price, p.price_init - r.price, 0 ) as price_saving, 
 							r.delivery_cost, r.currency_code, r.brand, r.colour, r.gender, r.size, 
 							r.date_created, r.date_modified
 							from product p inner join product_raw r on p.sku = r.sku where 0 = 0 ';
@@ -19,10 +19,10 @@ class ProductModel extends CI_Model{
 	/*
 	 * return product_raw (object) matched with input $sku
 	 */
-	public function getProductRaw($productSKU){
+	public function getProductRaw($sku){
     	$result = NULL;
 
-    	$query = $this->db->get_where('product_raw', array('sku' => $productSKU));
+    	$query = $this->db->get_where('product_raw', array('sku' => $sku));
     	if ($query->num_rows() > 0){
            $row = $query->row(); 
            $result = $row;
@@ -66,20 +66,20 @@ class ProductModel extends CI_Model{
 		$this->db->update('product_raw', $param);
 	}
 	
+	/*
+	 * update existing product
+	 */
+	public function updateProduct($productSKU, $param = array()){
+		$this->db->where('sku', $productSKU);
+		$this->db->update('product', $param);
+	}
+	
 	/* 
 	 * return product (object) matched with input $sku
-	 *   by default, get online product ($is_online = -1 mean any online/offline status)
-	 *					1 = online only
-	 *					0 = offline only
-	 *				   -1 = any status
 	 */
-	public function getProduct($productSKU, $is_online = 1){
-		$result = NULL;
-	
+	public function getProduct($productSKU){
+		$result = NULL;	
 		$sql = $this->baseProductSql.' and p.sku = ? ';
-		if ($is_online >= 0){
-			$sql = $sql.' and p.is_online = '.$is_online;
-		}
 	
 		$query = $this->db->query($sql, array($productSKU));
 		if ($query->num_rows() > 0){
@@ -123,7 +123,7 @@ class ProductModel extends CI_Model{
 		if (!isset($filter['page_index'])){$filter['page_index'] = 0;}
 		if (!isset($filter['page_size'])){$filter['page_size'] = $this->default_page_size;}
 		$sql = $sql.' limit '.($filter['page_index'] * $filter['page_size']).', '.$filter['page_size'];
-echo $sql;
+
 		//execute query
 		$query = $this->db->query($sql);
 		$data = $query->result_array();

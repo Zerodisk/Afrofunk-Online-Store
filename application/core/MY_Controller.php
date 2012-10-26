@@ -6,6 +6,7 @@ class MY_Controller extends CI_Controller{
 
 	public function __construct($section = NULL){
         parent::__construct();
+        date_default_timezone_set('Australia/NSW');
         
         switch ($section){
         	case 'admin':
