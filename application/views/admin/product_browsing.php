@@ -5,13 +5,19 @@
 			function fnViewProduct(sku){
 				window.open('product/view/' + sku, sku,'width=910,height=700');
 			}
+
+			function fnGoPage(page){
+				document.frmMain.page.value = page;
+				document.frmMain.submit();
+			}
 		</script>
 	</head>
 	<body>
 		<div id="container">
 		    <?php echo $header;?>
 			<div id="content">
-				<form name="" id="" method="get">
+				<form name="frmMain" method="get">
+				    <input type="hidden" name="page" value="<?=$page?>">
 					<div id="filter">
 						<input type="submit" value="filter"><br><br>
 						
@@ -25,6 +31,20 @@
 					</div>
 				
 					<div id="main">
+						<div style="text-align:right">
+						    <?php 						   
+					    	if ($page > 0){
+								echo '<input type="button" value="previous" onclick="fnGoPage('.($page - 1).')">';
+							}
+						    ?>
+							page: <?=$page+1?>
+							<?php 
+							if (count($products) >= $page_size){
+								echo '<input type="button" value="next" onclick="fnGoPage('.($page + 1).')">';
+							}
+							?>
+						</div>
+					
 						<?php foreach($products as $product) {?>
 						<div class="product-box">
 							<h3><?php echo $product['product_name'];?></h3><br>

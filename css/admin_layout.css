@@ -123,6 +123,13 @@ a:hover{
   background-position:center; 
 }
 
+.button {
+    width:150px;
+    height:40px;
+    font-size: 16px;
+    padding: 2px 8px;
+}
+
 
 .red{
 	color: red;

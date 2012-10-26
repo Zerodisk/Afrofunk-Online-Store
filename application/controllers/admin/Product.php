@@ -23,6 +23,7 @@ class Product extends MY_Controller{
    	
     	//page, sort, sort_dir
     	$data['page']				= ($this->input->get('page')==FALSE)?'0':$this->input->get('page');
+    	$data['page_size']			= $this->ProductModel->getDefaultPageSize();
     	$data['sort']				= ($this->input->get('sort')==FALSE)?'date_modified':$this->input->get('sort');
     	$data['sort_dir']			= ($this->input->get('sort_dir')==FALSE)?'desc':$this->input->get('sort_dir');
     	
@@ -51,8 +52,8 @@ class Product extends MY_Controller{
     	$this::loadViewProduct($data);
     }
     
+    //for update product (name, description, price)
     public function update(){
-    	//get input value
     	$sku = $this->input->post('sku');
     	
     	//update db
@@ -61,6 +62,16 @@ class Product extends MY_Controller{
     	$param['description']  = $this->input->post('description');
     	$param['price_init']   = $this->input->post('price_init');
     	$this->ProductModel->updateProduct($sku, $param);        
+    	
+    	//view page
+    	$this::view($sku);
+    }
+    
+    //for adding new photo
+    public function addPhoto(){
+    	$sku = $this->input->post('sku');
+    	$url = $this->input->post('photoUrl');
+    	$this->PhotoModel->addPhoto($sku, $url, 0);
     	
     	//view page
     	$this::view($sku);

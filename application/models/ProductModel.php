@@ -8,12 +8,16 @@ class ProductModel extends CI_Model{
 							r.delivery_cost, r.currency_code, r.brand, r.colour, r.gender, r.size, 
 							r.date_created, r.date_modified
 							from product p inner join product_raw r on p.sku = r.sku where 0 = 0 ';
-	var $default_page_size = 50;
+	var $default_page_size = 100;
 	
     function __construct(){
         // Call the Model constructor
         parent::__construct();
         date_default_timezone_set('Australia/NSW');
+    }
+    
+    public function getDefaultPageSize(){
+    	return $this->default_page_size;
     }
 
 	/*

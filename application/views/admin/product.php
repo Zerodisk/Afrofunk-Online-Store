@@ -88,6 +88,16 @@
 			            "html"  
 			        );
 			}
+
+			function fnAddNewPhoto(){
+				var url = document.frmMain.photoUrl.value;
+				if (url.length < 10){
+					alert('Please enter the correct URL and try again');
+					return false;
+				}
+				document.frmMain.action = '<?=base_url().'admin/product/addPhoto'?>';
+				document.frmMain.submit();
+			}
 			
 		</script>
 	</head>
@@ -166,9 +176,14 @@
 		  		<td>currency</td>
 		  		<td><?php echo $product->currency_code;?></td>
 		  	</tr>
-		  </table>
+		  </table><br>
+		  		  
+		  <input type="submit" value="save" class="button"><br><br><br>
 		  
-		  <input type="submit" value="save">
+		  add new photo URL:<br>
+		  <input type="text" name="photoUrl" size="80">
+		  <input type="button" value="add new photo" class="button" onClick="fnAddNewPhoto()"><br><br><br><br>
+		  
 		</div>
 				
 		</form>
