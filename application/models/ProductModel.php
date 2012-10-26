@@ -52,6 +52,7 @@ class ProductModel extends CI_Model{
 		}
 		$product['price_init']   	= $param['price'];
 		$product['is_online']	 	= 0;
+		$product['date_modified']   = date('Y-m-d H:i:s');
 		$this->db->insert('product', $product);
 
     	return $this->db->insert_id();
@@ -69,8 +70,9 @@ class ProductModel extends CI_Model{
 	/*
 	 * update existing product
 	 */
-	public function updateProduct($productSKU, $param = array()){
-		$this->db->where('sku', $productSKU);
+	public function updateProduct($sku, $param = array()){
+		$param['date_modified'] = date('Y-m-d H:i:s');
+		$this->db->where('sku', $sku);
 		$this->db->update('product', $param);
 	}
 	

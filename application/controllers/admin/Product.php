@@ -51,10 +51,26 @@ class Product extends MY_Controller{
     	$this::loadViewProduct($data);
     }
     
+    public function update(){
+    	//get input value
+    	$sku = $this->input->post('sku');
+    	
+    	//update db
+    	$param = array();
+    	$param['product_name'] = $this->input->post('product_name');
+    	$param['description']  = $this->input->post('description');
+    	$param['price_init']   = $this->input->post('price_init');
+    	$this->ProductModel->updateProduct($sku, $param);        
+    	
+    	//view page
+    	$this::view($sku);
+    }
+    
     /*
      * for ajax call to make a given sku online
      */
-    public function ajaxMakeOnline($sku){
+    public function ajaxMakeOnline(){
+    	$sku = $this->input->get('sku');
     	$param = array();
     	$param['is_online'] = 1;
     	$product = $this->ProductModel->getProduct($sku);  	
@@ -68,7 +84,8 @@ class Product extends MY_Controller{
     /*
      * for ajax call to make a given sku offline
      */
-    public function ajaxMakeOffline($sku){
+    public function ajaxMakeOffline(){
+    	$sku = $this->input->get('sku');
     	$this->ProductModel->updateProduct($sku, array('is_online' => 0));
     	echo('OK');
     }

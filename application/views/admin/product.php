@@ -15,7 +15,10 @@
 			        if($('.checkbox',parent).attr('ctype')=='photo'){
 						var photoId = $('.checkbox',parent).attr('name').replace('photo_', '');
 						ajaxUpdatePhotoStatus(photoId, 1);
-						alert('set photo id: ' + photoId + ' to enabled');
+						//alert('set photo id: ' + photoId + ' to enabled');
+			        }
+			        else{
+			        	ajazUpdateProductStatus('<?=$product->sku?>', 1);
 			        }
 			    });
 			    $(".cb-disable").click(function(){
@@ -27,7 +30,10 @@
 			        if($('.checkbox',parent).attr('ctype')=='photo'){
 						var photoId = $('.checkbox',parent).attr('name').replace('photo_', '');
 						ajaxUpdatePhotoStatus(photoId, 0);
-						alert('set photo id: ' + photoId + ' to disabled');
+						//alert('set photo id: ' + photoId + ' to disabled');
+			        }
+			        else{
+			        	ajazUpdateProductStatus('<?=$product->sku?>', 0);
 			        }
 			    });
 
@@ -43,18 +49,51 @@
 				//block the whole screen - show waiting
 				overlay = $('<div></div>').prependTo('body').attr('id', 'overlay');
 				//submit ajax call
+				$.get(  
+			            '<?=base_url()?>admin/photo/ajaxSetPhotoStatus',  
+			            {'id': photoId, 'is_active': is_active},  
+			            function(responseText){  
+			                if(responseText == 'OK'){
+			                	overlay.remove();	
+			                }
+			                else{
+								alert('update photo status failed !!, please close this window and try again');
+			                }
+			            },  
+			            "html"  
+			        ); 	
+			}
 
-				//if return ok, then un-block screen
-				//   else, show error message asking to close this window	
+			//make ajax call to set product status
+			function ajazUpdateProductStatus(sku, is_online){
+				var url = '';
+				if (is_online == 1){
+					url = '<?=base_url()?>admin/product/ajaxMakeOnline';
+				}
+				else{
+					url = '<?=base_url()?>admin/product/ajaxMakeOffline';
+				}
 
-				//remove overlay
-				//overlay.remove();			
+				$.get(  
+			            url,  
+			            {'sku': sku},  
+			            function(responseText){  
+			                if(responseText == 'OK'){
+			                	overlay.remove();	
+			                }
+			                else{
+								alert('update product status failed !!, please close this window and try again');
+			                }
+			            },  
+			            "html"  
+			        );
 			}
 			
 		</script>
 	</head>
 	<body>
-		<form name="frmMain" action="" method="get">
+		<form name="frmMain" action="<?=base_url().'admin/product/update'?>" method="post">
+		<input type="hidden" name="sku" value="<?=$product->sku?>"/>
 		<div id="photo-list-left">
 			<div class="photo-list-box">
 		  		<a href="<?php echo $product->image_url;?>" target="_blank"><img src="<?php echo $product->image_url;?>" width="200" border="1" /></a><br>
@@ -87,9 +126,7 @@
 		  $<input type="text" name="price_init" size="6" value="<?php echo $product->price_init;?>"/> - price (now): $<?php echo $product->price_now;?><br><br>
 		  
 		  description:<br>
-		  <textarea name="description" cols="77" rows="12">
-		  	<?php echo $product->description;?>
-		  </textarea><br><br>
+		  <textarea name="description" cols="77" rows="12"><?php echo $product->description;?></textarea><br><br>
 		  
 		  other attribute:<br>
 		  <table width="95%" border="1" cellpadding="3" cellspacing="0">
