@@ -18,7 +18,7 @@
 						//alert('set photo id: ' + photoId + ' to enabled');
 			        }
 			        else{
-			        	ajazUpdateProductStatus('<?=$product->sku?>', 1);
+			        	ajaxUpdateProductStatus('<?=$product->sku?>', 1);
 			        }
 			    });
 			    $(".cb-disable").click(function(){
@@ -33,7 +33,7 @@
 						//alert('set photo id: ' + photoId + ' to disabled');
 			        }
 			        else{
-			        	ajazUpdateProductStatus('<?=$product->sku?>', 0);
+			        	ajaxUpdateProductStatus('<?=$product->sku?>', 0);
 			        }
 			    });
 
@@ -65,7 +65,7 @@
 			}
 
 			//make ajax call to set product status
-			function ajazUpdateProductStatus(sku, is_online){
+			function ajaxUpdateProductStatus(sku, is_online){
 				var url = '';
 				if (is_online == 1){
 					url = '<?=base_url()?>admin/product/ajaxMakeOnline';
@@ -127,7 +127,12 @@
 			    <label class="cb-enable"><span>On</span></label>
 			    <label class="cb-disable selected"><span>Off</span></label>
 			    <input type="checkbox" id="checkbox" class="checkbox" ctype="product" name="is_online" value="1" <?php if($product->is_online == 1){echo('checked="true"');}?>/>
-			</div><br><br><br>
+			</div>
+			<div style="float:right">
+				<input type="submit" value="save" class="button">&nbsp;&nbsp;
+			</div>
+			
+			<br><br><br>
 		  
 		  name:<br>
 		  <input type="text" name="product_name" size="100" maxlength="199" value="<?php echo $product->product_name;?>" /><br><br>

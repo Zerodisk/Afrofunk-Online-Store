@@ -82,6 +82,8 @@ class Product extends MY_Controller{
      */
     public function ajaxMakeOnline(){
     	$sku = $this->input->get('sku');
+    	if ($sku == false){echo('sku is missing');return;}
+    	
     	$param = array();
     	$param['is_online'] = 1;
     	$product = $this->ProductModel->getProduct($sku);  	
@@ -97,6 +99,8 @@ class Product extends MY_Controller{
      */
     public function ajaxMakeOffline(){
     	$sku = $this->input->get('sku');
+    	if ($sku == false){echo('sku is missing');return;}
+    	
     	$this->ProductModel->updateProduct($sku, array('is_online' => 0));
     	echo('OK');
     }

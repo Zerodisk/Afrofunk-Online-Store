@@ -6,10 +6,30 @@
 				window.open('product/view/' + sku, sku,'width=910,height=700');
 			}
 
+			function fnFiterSubmit(){
+				document.frmMain.page.value = 0;
+				document.frmMain.submit();
+			}
+
 			function fnGoPage(page){
 				document.frmMain.page.value = page;
 				document.frmMain.submit();
 			}
+
+			function renderPrice(priceInit, priceNow, priceSaving){
+				if (priceSaving == 0){
+					document.write('<div class="price-normal">');
+					document.write('$' + priceNow.toFixed(2));
+				}
+				else{
+					document.write('<div class="price-discount">');
+					document.write('<span class="price-strike">was $' + priceInit.toFixed(2) + '</span>  now is $' + priceNow.toFixed(2));
+				}
+
+				document.write('</div>');
+				
+			}
+
 		</script>
 	</head>
 	<body>
@@ -19,7 +39,7 @@
 				<form name="frmMain" method="get">
 				    <input type="hidden" name="page" value="<?=$page?>">
 					<div id="filter">
-						<input type="submit" value="filter"><br><br>
+						<input type="button" value="filter" onClick="fnFiterSubmit()"><br><br>
 						
 						status<br>
 						<?php echo $status_selectbox;?><br>
@@ -27,7 +47,7 @@
 						brand:<br>
 						<?php echo $brands_selectbox;?><br>
 						
-						<input type="submit" value="filter">
+						<input type="button" value="filter" onClick="fnFiterSubmit()">
 					</div>
 				
 					<div id="main">
@@ -47,13 +67,19 @@
 					
 						<?php foreach($products as $product) {?>
 						<div class="product-box">
-							<h3><?php echo $product['product_name'];?></h3><br>
+							
+							<div class="product-name"><?php echo $product['product_name'];?></div><br>
+							
 							<div class="sku">SKU: <?php echo $product['sku'];?></div><br>
-							<img src="<?php echo $product['image_url'];?>" border="1" width="180" /><br>
-							<div class="<?php if($product['price_saving'] == 0){echo('price-normal');}else{echo('price-discount');} ?>">
-								$<?php echo $product['price_now'];?>
-								<?php if($product['price_saving'] != 0){echo(' - (was $'.$product['price_init'].')');}?>
-							</div><br>
+							
+							<center>
+							<a href="javascript:fnViewProduct('<?php echo $product['sku'];?>')">
+								<img src="<?php echo $product['image_url'];?>" border="1" width="180" />
+							</a>
+							</center><br>
+													
+							<script>renderPrice(<?=$product['price_init']?>, <?=$product['price_now']?>, <?=$product['price_saving']?>);</script><br>
+							
 							<div class="more-detail"><a href="javascript:fnViewProduct('<?php echo $product['sku'];?>')">more</a></div>
 							
 						</div>

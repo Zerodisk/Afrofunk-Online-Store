@@ -79,10 +79,17 @@ a:hover{
 
 .product-box{
 	width:196px;
+	height:410px;
 	float:left;
 	margin: 1px;
 	padding: 1px;
 	background: #ffffff;
+}
+
+.product-name{
+	height:50px;
+	font-weight:bold;
+	margin-top:7px
 }
 
 .price-normal{
@@ -91,6 +98,10 @@ a:hover{
 
 .price-discount{
 	color: red;
+}
+
+.price-strike{
+	text-decoration:line-through;
 }
 
 .more-detail{

@@ -14,6 +14,8 @@ class Photo extends MY_Controller{
     
     public function ajaxSetPhotoStatus(){
     	$id   = $this->input->get('id');
+    	if ($id == false){echo('photo is missing');return;}
+    	
     	$is_active = $this->input->get('is_active'); 
     	
     	$param = array();
