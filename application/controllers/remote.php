@@ -35,6 +35,7 @@ class Remote extends MY_Controller {
      *   - SKU list separate by comma 
      */
     public function getOnlineProductList($separation = ','){
+    	$separation = urldecode($separation);
     	$result = '';
     	$list = $this->RemoteModel->getOnlineProductList();
  
@@ -50,6 +51,7 @@ class Remote extends MY_Controller {
      * return list of all brand
      */
     public function getBrandList($separation = ','){
+    	$separation = urldecode($separation);
     	$result = '';
     	$list = $this->BrandModel->getBrandList();
     	
