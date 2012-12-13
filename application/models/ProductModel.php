@@ -65,9 +65,9 @@ class ProductModel extends CI_Model{
 	/*
 	 * update existing product_raw
 	 */
-	public function updateProductRaw($productSKU, $param){
+	public function updateProductRaw($sku, $param){
 		$param['date_modified'] = date('Y-m-d H:i:s');
-		$this->db->where('sku', $productSKU);
+		$this->db->where('sku', $sku);
 		$this->db->update('product_raw', $param);
 	}
 	
@@ -83,11 +83,11 @@ class ProductModel extends CI_Model{
 	/* 
 	 * return product (object) matched with input $sku
 	 */
-	public function getProduct($productSKU){
+	public function getProduct($sku){
 		$result = NULL;	
 		$sql = $this->baseProductSql.' and p.sku = ? ';
 	
-		$query = $this->db->query($sql, array($productSKU));
+		$query = $this->db->query($sql, array($sku));
 		if ($query->num_rows() > 0){
 			$row = $query->row();
 			$result = $row;
@@ -113,7 +113,7 @@ class ProductModel extends CI_Model{
 		//filter#2 is_online
 		if (isset($filter['is_online'])){
 			if ($filter['is_online'] >= 0){			
-				$sql = $sql." and p.is_online = ".$filter['is_online'];
+				$sql = $sql.' and p.is_online = '.$filter['is_online'];
 			}
 		}
 		
