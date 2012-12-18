@@ -3,6 +3,7 @@ class Product extends MY_Controller{
 
     public function __construct(){
         parent::__construct('admin');
+        $this->load->model('CategoryModel');
         $this->load->model('ProductModel');
         $this->load->model('PhotoModel');
         $this->load->model('BrandModel');
@@ -49,6 +50,11 @@ class Product extends MY_Controller{
     	$photos = $this->PhotoModel->getPhotoList($sku, -1);
     	$data['photos']  = $photos;
     	
+    	//category
+    	$data['cat_main'] 	  	 = $this->CategoryModel->getCategoryTopLevel();
+    	$data['cat_clothing'] 	 = $this->CategoryModel->getClothingList();
+    	$data['cat_accessories'] = $this->CategoryModel->getAccessoriesList();
+    	
     	$this::loadViewProduct($data);
     }
     
@@ -61,6 +67,7 @@ class Product extends MY_Controller{
     	$param['product_name'] = $this->input->post('product_name');
     	$param['description']  = $this->input->post('description');
     	$param['price_init']   = $this->input->post('price_init');
+    	$param['cat_id']       = $this->input->post('cat_id');
     	$this->ProductModel->updateProduct($sku, $param);        
     	
     	//view page

@@ -6,13 +6,17 @@ class ProductModel extends CI_Model{
 							r.product_name as product_name_raw, r.description as description_raw, 
 							r.url, r.original_url, r.image_url, p.price_init, r.price as price_now, IF( p.price_init > r.price, p.price_init - r.price, 0 ) as price_saving, 
 							r.delivery_cost, r.currency_code, r.brand, r.colour, r.gender, r.size, 
-							r.date_created, r.date_modified
-							from product p inner join product_raw r on p.sku = r.sku where 0 = 0 ';
+							r.date_created, r.date_modified, c.cat_id, c.category_name, c.parent_id
+							from product p inner join product_raw r on p.sku = r.sku
+							left join category c on p.cat_id = c.cat_id 
+							where 0 = 0 ';
 	var $default_page_size = 100;
 	
     function __construct(){
         // Call the Model constructor
         parent::__construct();
+        
+        $this->load->model('CategoryModel');
         date_default_timezone_set('Australia/NSW');
     }
     
@@ -99,8 +103,11 @@ class ProductModel extends CI_Model{
 	
 	/*
 	 * return list of product, filter available are
-	 * - brands    (array of brand)
-	 * - is_online (1 = online only, 0 = offline, negative = all)
+	 * 1. brands    		(array of brand)
+	 * 2. is_online 		(1 = online only, 0 = offline, negative = all = this value NotSet)
+	 * 3. cat_id    		(category id, Not Set = no category fillter)
+	 * 4. is_fullprice 		(TRUE = item with full price, FALSE = item with discount, NotSet = no filter by price at all) 
+	 * 
 	 * - sort and sort_dir (both need to come together, e.g. sort = product_name, sort_dir = desc)
 	 * - page_size 
 	 * - page_index (start from 0)
@@ -114,6 +121,29 @@ class ProductModel extends CI_Model{
 		if (isset($filter['is_online'])){
 			if ($filter['is_online'] >= 0){			
 				$sql = $sql.' and p.is_online = '.$filter['is_online'];
+			}
+		}
+		//filter#3 cat_id
+		if (isset($filter['cat_id'])){
+			switch ($filter['cat_id']){
+				case 1:
+					$sql = $sql.' and c.cat_id in ('.$this->CategoryModel->getClothingCatIdList().')';
+					break;
+				case 2:
+					$sql = $sql.' and c.cat_id in ('.$this->CategoryModel->getAccessoriesCatIdList().')';
+					break;
+				default:
+					$sql = $sql.' and c.cat_id = '.$filter['cat_id'];
+					break;
+			}
+		}
+		//filter#4 is_fullprice
+		if (isset($filter['is_fullprice'])){
+			if ($filter['is_fullprice']){
+				$sql = $sql.' and p.prict_init = r.price';
+			}
+			else{
+				$sql = $sql.' and p.prict_init > r.price';
 			}
 		}
 		
@@ -142,16 +172,7 @@ class ProductModel extends CI_Model{
 	 * function return array list to string list with quote and comma separation
 	 */
 	private function arrayListToStringList($arrayList){
-		$arrayLength = count($arrayList);	
-		$result = '';
-		for($i = 0; $i<$arrayLength; $i++){
-			$result = $result."'".$arrayList[$i]."'";
-			if ($i < ($arrayLength-1)){
-				$result = $result.',';
-			}
-		}
-		if($result == ''){$result = "''";}
-		return $result;
+		return "'".implode("','",$arrayList)."'";
 	}
 	
 }

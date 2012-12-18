@@ -42,6 +42,8 @@
 				    												 	    	$(".cb-enable",parent).addClass("selected");
 				    												 	    	$(".cb-disable",parent).removeClass("selected");	    
 				    												 });
+
+			    $("#cat_id").val('<?=$product->cat_id?>');
 			});
 
 			//make ajax call to set photo's active status
@@ -104,6 +106,7 @@
 	<body>
 		<form name="frmMain" action="<?=base_url().'admin/product/update'?>" method="post">
 		<input type="hidden" name="sku" value="<?=$product->sku?>"/>
+	
 		<div id="photo-list-left">
 			<div class="photo-list-box">
 		  		<a href="<?php echo $product->image_url;?>" target="_blank"><img src="<?php echo $product->image_url;?>" width="200" border="1" /></a><br>
@@ -139,6 +142,23 @@
 		  
 		  price (initial)<br>
 		  $<input type="text" name="price_init" size="6" value="<?php echo $product->price_init;?>"/> - price (now): $<?php echo $product->price_now;?><br><br>
+
+		  category:<br>
+		  <select name="cat_id" id="cat_id">		
+		    <?php if ($product->cat_id == NULL){	//only show 'select one' on new product?>  	 
+		  	  <option value="0">select one</option>
+		    <?php }?>
+		  	  <optgroup label="<?=$cat_main[0]['category_name']?>">
+			  	<?php foreach ($cat_clothing as $cat){?>
+			  	<option value="<?=$cat['cat_id']?>"><?=$cat['category_name']?></option>
+			  	<?php }?>
+		  	  </optgroup>
+			  <optgroup label="<?=$cat_main[1]['category_name']?>">
+			  	<?php foreach ($cat_accessories as $cat){?>
+			  	<option value="<?=$cat['cat_id']?>"><?=$cat['category_name']?></option>
+			  	<?php }?>
+		  	  </optgroup>
+		  </select><br><br>
 		  
 		  description:<br>
 		  <textarea name="description" cols="77" rows="12"><?php echo $product->description;?></textarea><br><br>
