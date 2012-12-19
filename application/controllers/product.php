@@ -5,6 +5,7 @@ class Product extends MY_Controller {
 	public function __construct(){
         parent::__construct();
         $this->load->model('ProductModel');
+        $this->load->model('CategoryModel');
     }	
 
 	public function index()
@@ -23,22 +24,71 @@ class Product extends MY_Controller {
 		$product = $this->ProductModel->getProduct($productSku, 1);
 		var_dump($product);
 	}
+
 	
-	public function all(){
-		
-	}
-
 	/*
-	 *	for finding brand page by brand keyword 
-	 *	- this happen in case of we can't update the routing table (routes.php)
+	 *  browse for a given category
+	 *    NULL mean regardless of category
 	 */
-	/*
-	public function brandFindByKeyword($brandKeyword = ''){
-		echo('find brand by keyword of: '.$brandKeyword);
-
-		$this::writeSegment();
+	public function browsingByCat($cat_id = NULL){
+		$filter = array();
+		$filter['is_online'] = 1;
+		$filter['cat_id'] = $cat_id;
+		
+		$products = $this->ProductModel->getProductList($filter);
+		var_dump($products);
 	}
-	*/
+
+	/*
+	 * browse for new arrival
+	 *   new arrival is always order by date_first_online desc
+	 *   so the result will be exactly the same as "browsingByCat" anyway !!
+	 */
+	public function browsingByNewArrival($cat_id = NULL){
+		$filter = array();
+		$filter['is_online'] = 1;
+		$filter['cat_id'] = $cat_id;
+		
+		$filter['page_size'] = 20;
+		$filter['page_index'] = 0;
+		
+		$products = $this->ProductModel->getProductList($filter);
+		var_dump($products);
+	}
+	
+	/*
+	 *  browse for the same item (price name is cheaper than price initial
+	 *    $filter['is_fullprice'] = FALSE;
+	 */
+	public function browsingBySale($cat_id = NULL){
+		$filter = array();
+		$filter['is_online'] = 1;
+		$filter['cat_id'] = $cat_id;
+		$filter['is_fullprice'] = FALSE;
+		
+		$products = $this->ProductModel->getProductList($filter);
+		var_dump($products);
+	}
+	
+	/*
+	 *  browse by brand name
+	 *    for a given brand
+	 *    if no input, then show everything ???
+	 */
+	public function browsingByBrand($brand = NULL){
+		$filter = array();
+		$filter['is_online'] = 1;
+		if ($brand != NULL){
+			$filter['brands'] = array($brand);
+		}
+		$products = $this->ProductModel->getProductList($filter);
+		var_dump($products);
+	}
+	
+	
+	
+	
+
 
 }
 

@@ -34,6 +34,19 @@ class CategoryModel extends CI_Model{
     	return $data;
     } 
     
+    public function getCategory($cat_id){
+    	$result = NULL;
+    	 
+    	$query = $this->db->get_where('category', array('cat_id' => $cat_id));
+    	if ($query->num_rows() > 0){
+    		$row = $query->row();
+    		$result = $row;
+    	}
+    	 
+    	$query->free_result();
+    	return $result;
+    }
+    
     /*
      *  return clothing category list
      */

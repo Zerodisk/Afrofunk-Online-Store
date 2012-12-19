@@ -51,24 +51,50 @@ $route['admin/login'] = 		"admin/sessions/login";
 $route['admin/login/(:any)'] = 	"admin/sessions/login/$1";
 
 /*
-BRAND:
-below are list Brand name to BrandID
+Clothing
+ */
+$route['clothing'] =				"product/browsingByCat/1";
+$route['clothing/all'] =			"product/browsingByCat/1";
+$route['clothing/new-arrival'] = 	"product/browsingByNewArrival/1";
+$route['clothing/sale'] = 		 	"product/browsingBySale/1";
+$route['clothing/sales'] = 		 	"product/browsingBySale/1";
 
-$route['brand/hello-world-brand']	= "brand/view/2938";
-$route['brand/yo-yo-brand']			= "brand/view/9134";
-$route['brand/brand-1']				= "brand/view/10001";
-$route['brand/brand-2']				= "brand/view/10002";
-//any other brand that not being redirect, useing below
-$route['brand/(:any)']				= "brand/findByKeyword/$1";			//view brand page
+$route['clothing/dress'] =	 		"product/browsingByCat/21";
+$route['clothing/dresses'] = 		"product/browsingByCat/21";
+$route['clothing/top'] = 			"product/browsingByCat/22";
+$route['clothing/tops'] = 			"product/browsingByCat/22";
+$route['clothing/skirt'] = 			"product/browsingByCat/23";
+$route['clothing/skirts'] =			"product/browsingByCat/23";
+$route['clothing/short'] = 			"product/browsingByCat/24";
+$route['clothing/shorts'] =			"product/browsingByCat/24";
+$route['clothing/pant'] = 			"product/browsingByCat/25";
+$route['clothing/pants'] = 			"product/browsingByCat/25";
+
 /*
+Accessories
+ */
+$route['accessories'] =				"product/browsingByCat/2";
+$route['accessories/all'] =			"product/browsingByCat/2";
+$route['accessories/new-arrival'] = "product/browsingByNewArrival/2";
+$route['accessories/sale'] = 		"product/browsingBySale/2";
 
+$route['accessories/shoe'] = 		"product/browsingByCat/41";
+$route['accessories/shoes'] = 		"product/browsingByCat/41";
+$route['accessories/bag'] = 		"product/browsingByCat/42";
+$route['accessories/bags'] =		"product/browsingByCat/42";
+$route['accessories/sun-glasses'] = "product/browsingByCat/43";
 
-
+/*
+Brand
+ */
+$route['brand/view/(:any)']		  = "brand/view/$1";				//this is to maintain "brand" controller, i think i will remove brand.php later
+$route['brand/(:any)']			  = "product/browsingByBrand/$1";			
 
 
 /*
 PRODUCT
-below are list of product name
+  below are list of product name redirect from product name to sku
+$route['product/product-full-name']	= "product/DI085SH97FQG-16816";
 */
 
 

@@ -140,10 +140,10 @@ class ProductModel extends CI_Model{
 		//filter#4 is_fullprice
 		if (isset($filter['is_fullprice'])){
 			if ($filter['is_fullprice']){
-				$sql = $sql.' and p.prict_init = r.price';
+				$sql = $sql.' and p.price_init = r.price';
 			}
 			else{
-				$sql = $sql.' and p.prict_init > r.price';
+				$sql = $sql.' and p.price_init > r.price';
 			}
 		}
 		
@@ -172,7 +172,12 @@ class ProductModel extends CI_Model{
 	 * function return array list to string list with quote and comma separation
 	 */
 	private function arrayListToStringList($arrayList){
-		return "'".implode("','",$arrayList)."'";
+		if (is_array($arrayList)){
+			return "'".implode("','",$arrayList)."'";	
+		}	
+		else{
+			return "'".$arrayList."'";
+		}
 	}
 	
 }

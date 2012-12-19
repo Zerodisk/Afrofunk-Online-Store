@@ -9,7 +9,7 @@ class Brand extends MY_Controller {
 	
 	public function index()
 	{
-		echo('hitting the index function - will show brand page');
+		echo('hitting the index function on Brand controller - need to do something???');
 	}
 	
 
@@ -22,7 +22,7 @@ class Brand extends MY_Controller {
 	 */
 	public function view($brandName = ''){
 		$filter = array();
-		$filter['brand'] = $brandName;
+		$filter['brands'] = array($brandName);
 		$input = $this->input->get();
 		
 		if (isset($input['page_size'])){
