@@ -19,7 +19,7 @@ class Product extends MY_Controller {
 	 *	- should check if productId is empty, then redirect to something??
 	 */
 	public function view($productSku){
-		echo('you are on product page - '.$this->uri->segment(2).'<br>ProductSku is: '.$productSku.'<br><br>');	
+		echo('you are on product page<br>Sku is: '.$productSku.'<br><br>');	
 		
 		$product = $this->ProductModel->getProduct($productSku, 1);
 		var_dump($product);
@@ -36,25 +36,12 @@ class Product extends MY_Controller {
 		$filter['cat_id'] = $cat_id;
 		
 		$products = $this->ProductModel->getProductList($filter);
-		var_dump($products);
+		//var_dump($products);
+		$data = array();
+		$data['products'] = $products;
+		$this::loadViewProductBrowsing($data);
 	}
 
-	/*
-	 * browse for new arrival
-	 *   new arrival is always order by date_first_online desc
-	 *   so the result will be exactly the same as "browsingByCat" anyway !!
-	 */
-	public function browsingByNewArrival($cat_id = NULL){
-		$filter = array();
-		$filter['is_online'] = 1;
-		$filter['cat_id'] = $cat_id;
-		
-		$filter['page_size'] = 20;
-		$filter['page_index'] = 0;
-		
-		$products = $this->ProductModel->getProductList($filter);
-		var_dump($products);
-	}
 	
 	/*
 	 *  browse for the same item (price name is cheaper than price initial
@@ -67,7 +54,10 @@ class Product extends MY_Controller {
 		$filter['is_fullprice'] = FALSE;
 		
 		$products = $this->ProductModel->getProductList($filter);
-		var_dump($products);
+		//var_dump($products);
+		$data = array();
+		$data['products'] = $products;
+		$this::loadViewProductBrowsing($data);
 	}
 	
 	/*
@@ -82,13 +72,34 @@ class Product extends MY_Controller {
 			$filter['brands'] = array($brand);
 		}
 		$products = $this->ProductModel->getProductList($filter);
-		var_dump($products);
+		//var_dump($products);
+		$data = array();
+		$data['products'] = $products;
+		$this::loadViewProductBrowsing($data);
 	}
 	
 	
 	
 	
 
-
+	/*
+	 * this is for view product browsing in the front end page
+	* $data can have
+	*   - products 		    = list of product that will be display
+	*
+	*   - page			= page_index, start from 0
+	*   - sort   		= sort by
+	*   - sort_dir 		= sort direction (asc or desc)
+	*   - products		= list of product
+	*/
+	private function loadViewProductBrowsing($data){
+		$data['head']   = $this->load->view('head',   '', TRUE);
+		$data['header'] = $this->load->view('header', '', TRUE);
+		$data['ads'] 	= $this->load->view('ads', 	  '', TRUE);
+		$data['footer'] = $this->load->view('footer', '', TRUE);
+		 
+		$this->load->view('product_browsing', $data);
+	}
+	
 }
 

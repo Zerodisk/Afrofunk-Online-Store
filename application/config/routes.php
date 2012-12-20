@@ -38,63 +38,77 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] 	  = "product/browsingByCat";
 $route['404_override'] = '';
 
 /*
 ADMIN
 */
-$route['admin'] = 				"admin/home";
-$route['admin/'] = 				"admin/home";
-$route['admin/logout'] = 		"admin/sessions/logout";
-$route['admin/login'] = 		"admin/sessions/login";
-$route['admin/login/(:any)'] = 	"admin/sessions/login/$1";
+$route['admin'] 				  =	"admin/home";
+$route['admin/'] 				  =	"admin/home";
+$route['admin/logout'] 		 	  =	"admin/sessions/logout";
+$route['admin/login']    		  =	"admin/sessions/login";
+$route['admin/login/(:any)'] 	  =	"admin/sessions/login/$1";
+			  		  
 
 /*
 Clothing
  */
-$route['clothing'] =				"product/browsingByCat/1";
-$route['clothing/all'] =			"product/browsingByCat/1";
-$route['clothing/new-arrival'] = 	"product/browsingByNewArrival/1";
-$route['clothing/sale'] = 		 	"product/browsingBySale/1";
-$route['clothing/sales'] = 		 	"product/browsingBySale/1";
+$route['clothing'] 				  = "product/browsingByCat/1";
+$route['clothing/all'] 			  = "product/browsingByCat/1";
+$route['clothing/sale'] 		  = "product/browsingBySale/1";
+$route['clothing/sales'] 		  = "product/browsingBySale/1";
 
-$route['clothing/dress'] =	 		"product/browsingByCat/21";
-$route['clothing/dresses'] = 		"product/browsingByCat/21";
-$route['clothing/top'] = 			"product/browsingByCat/22";
-$route['clothing/tops'] = 			"product/browsingByCat/22";
-$route['clothing/skirt'] = 			"product/browsingByCat/23";
-$route['clothing/skirts'] =			"product/browsingByCat/23";
-$route['clothing/short'] = 			"product/browsingByCat/24";
-$route['clothing/shorts'] =			"product/browsingByCat/24";
-$route['clothing/pant'] = 			"product/browsingByCat/25";
-$route['clothing/pants'] = 			"product/browsingByCat/25";
+$route['clothing/dress'] 		  = "product/browsingByCat/21";
+$route['clothing/dresses'] 		  = "product/browsingByCat/21";
+$route['clothing/top'] 			  = "product/browsingByCat/22";
+$route['clothing/tops'] 		  =	"product/browsingByCat/22";
+$route['clothing/skirt'] 		  =	"product/browsingByCat/23";
+$route['clothing/skirts'] 		  =	"product/browsingByCat/23";
+$route['clothing/short'] 		  =	"product/browsingByCat/24";
+$route['clothing/shorts'] 		  = "product/browsingByCat/24";
+$route['clothing/pant'] 		  = "product/browsingByCat/25";
+$route['clothing/pants'] 		  = "product/browsingByCat/25";
 
 /*
 Accessories
  */
-$route['accessories'] =				"product/browsingByCat/2";
-$route['accessories/all'] =			"product/browsingByCat/2";
-$route['accessories/new-arrival'] = "product/browsingByNewArrival/2";
-$route['accessories/sale'] = 		"product/browsingBySale/2";
+$route['accessories'] 			  =	"product/browsingByCat/2";
+$route['accessories/all'] 		  =	"product/browsingByCat/2";
+$route['accessories/sale'] 		  =	"product/browsingBySale/2";
+$route['accessories/sales']		  =	"product/browsingBySale/2";
 
-$route['accessories/shoe'] = 		"product/browsingByCat/41";
-$route['accessories/shoes'] = 		"product/browsingByCat/41";
-$route['accessories/bag'] = 		"product/browsingByCat/42";
-$route['accessories/bags'] =		"product/browsingByCat/42";
+$route['accessories/shoe'] 		  =	"product/browsingByCat/41";
+$route['accessories/shoes'] 	  = "product/browsingByCat/41";
+$route['accessories/bag'] 		  = "product/browsingByCat/42";
+$route['accessories/bags']        =	"product/browsingByCat/42";
 $route['accessories/sun-glasses'] = "product/browsingByCat/43";
 
 /*
 Brand
  */
+$route['brand']		  			  = "product/browsingByBrand";			
+$route['brands']		  		  = "product/browsingByBrand";
 $route['brand/view/(:any)']		  = "brand/view/$1";				//this is to maintain "brand" controller, i think i will remove brand.php later
-$route['brand/(:any)']			  = "product/browsingByBrand/$1";			
+$route['brands/view/(:any)']	  = "brand/view/$1";				//this is to maintain "brand" controller, i think i will remove brand.php later
+$route['brand/(:any)']			  = "product/browsingByBrand/$1";
+$route['brands/(:any)']			  = "product/browsingByBrand/$1";			
+
+/*
+SALE
+ */
+$route['sale'] 		  			  = "product/browsingBySale";
+$route['sales']		  			  = "product/browsingBySale";
+$route['sale/clothing'] 		  = "product/browsingBySale/1";
+$route['sales/clothing'] 		  = "product/browsingBySale/1";
+$route['sale/accessories'] 		  = "product/browsingBySale/2";
+$route['sales/accessories'] 	  = "product/browsingBySale/2";
 
 
 /*
 PRODUCT
   below are list of product name redirect from product name to sku
-$route['product/product-full-name']	= "product/DI085SH97FQG-16816";
+$route['product/product-full-name']	= "product/view/DI085SH97FQG-16816";
 */
 
 

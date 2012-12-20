@@ -1,0 +1,101 @@
+#products{
+	display: block;
+	background-color: white;
+	border-top: 1px solid silver;
+}
+
+.searchbox{
+	width: 400px;
+	height: 23px;
+	background-color: silver;
+	margin: 10px;
+	font-family: Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	text-transform: uppercase;
+}
+
+.block {
+	width: 225px;
+	height: 355px;
+	margin: 6px;	
+	background: white;
+	border: 1px solid gray;
+}
+
+.float {
+	float: left;
+}
+
+.photoblock {
+	width: 185px;
+	height: 250px;
+	background: gray;
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.brandblock {
+	width: 225px;
+	height: 34px;
+	background: white;
+	border-bottom: 1px solid gray;
+	font: 25px "Brush Script MT";
+	text-align: center;
+	text-transform: capitalize;
+}
+
+.nameblock {
+	width: 185px;
+	height: 28px;
+	background: white;
+	margin-right: 20px;
+	margin-left: 20px;
+	font: 15px Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	text-transform: capitalize;
+}
+
+.priceblock_font{
+	font: 15px Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+}
+
+.priceblock1 {
+	float: left;
+	width: 125px;
+	height: 20px;
+	margin-left: 20px;
+	background: white;
+	}
+
+.priceblock1_line {
+	float: left;
+	width: 125px;
+	height: 20px;
+	margin-left: 20px;
+	background: white;
+	text-decoration: line-through;
+}
+
+.priceblock2 {
+	float: left;
+	width: 25px;
+	height: 20px;
+	background: white;
+	color: red;
+	text-align: right;
+}
+
+
+.space {
+	height: 20px;
+	background: white;
+	clear: left;
+	border-bottom: 1px solid silver;
+}
+
+.itemfound{
+	height: 50px;
+	background: white;
+	border-bottom: 1px solid silver;
+	margin-bottom: 20px;
+	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+}

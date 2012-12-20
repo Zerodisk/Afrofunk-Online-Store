@@ -1,0 +1,49 @@
+#adsblock{
+	height: 362px;
+	background-color: white;
+	border-top: 1px solid silver;
+}
+	
+#slidepix{
+	float: left;
+	width: 725px;
+	height: 322px;
+	margin: 20;
+	background-color: red;
+	font-style: italic;
+}
+
+#ads{
+	float: left;
+	width: 175px;
+	height: 322px;
+	margin-top: 20;
+	background-color: yellow;
+}
+
+.ads1 {
+	width: 175px;
+	height: 90px;
+	margin-top: 16;
+	background-color: orange;
+}
+
+.ads2 {
+	width: 175px;
+	height: 90px;
+	margin-top: 10;
+	margin-bottom:10;
+	background: orange;
+}
+
+.ads3 {
+	width: 175px;
+	height: 90px;
+	margin-top: 10;
+	background: orange;
+}
+
+.smallbox {
+	height: 30px;
+	background-color: white;
+}
