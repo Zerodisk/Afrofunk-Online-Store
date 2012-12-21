@@ -5,15 +5,11 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			
-			  $("button").click(function(){
-				    $("#popup").load("product/view/DI085SH97FQG-16816");
-			  });
+
 			  
 		});
 
 		function fnPopItem(sku){
-			//$("#popup").load("product/view/" + sku);
-
 			$("#popup").load("product/view/" + sku,function(responseTxt,statusTxt,xhr){
 				 if(statusTxt=="success")
 				      alert("External content loaded successfully!");
@@ -26,7 +22,7 @@
 <body>
 
 <div id="popup"></div>
-<button>Get External Content</button>	
+
 
 
 	<div id="container">

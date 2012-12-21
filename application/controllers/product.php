@@ -22,7 +22,11 @@ class Product extends MY_Controller {
 		echo('you are on product page<br>Sku is: '.$productSku.'<br><br>');	
 		
 		$product = $this->ProductModel->getProduct($productSku, 1);
-		var_dump($product);
+		//var_dump($product);
+		
+		$data = array();
+		$data['product'] = $product;
+		$this->load->view('product', $data);
 	}
 
 	
