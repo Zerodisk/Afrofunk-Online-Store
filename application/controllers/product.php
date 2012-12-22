@@ -5,6 +5,7 @@ class Product extends MY_Controller {
 	public function __construct(){
         parent::__construct();
         $this->load->model('ProductModel');
+        $this->load->model('PhotoModel');
         $this->load->model('CategoryModel');
     }	
 
@@ -18,14 +19,15 @@ class Product extends MY_Controller {
 	 *	view product page by productId
 	 *	- should check if productId is empty, then redirect to something??
 	 */
-	public function view($productSku){
-		echo('you are on product page<br>Sku is: '.$productSku.'<br><br>');	
+	public function view($sku){
+		echo('you are on product page<br>Sku is: '.$sku.'<br><br>');	
 		
-		$product = $this->ProductModel->getProduct($productSku, 1);
-		//var_dump($product);
+		$product = $this->ProductModel->getProduct($sku, 1);
+		$photos  = $this->PhotoModel->getPhotoList($sku);
 		
 		$data = array();
 		$data['product'] = $product;
+		$data['photos']  = $photos; 
 		$this->load->view('product', $data);
 	}
 
@@ -98,11 +100,32 @@ class Product extends MY_Controller {
 	*/
 	private function loadViewProductBrowsing($data){
 		$data['head']   = $this->load->view('head',   '', TRUE);
-		$data['header'] = $this->load->view('header', '', TRUE);
+		
+		$header = array();
+		$header['cat_clothing']    = $this->CategoryModel->getCategoryList(1);
+		$header['cat_accessories'] = $this->CategoryModel->getCategoryList(2);
+		$data['header'] = $this->load->view('header', $header, TRUE);
+		
 		$data['ads'] 	= $this->load->view('ads', 	  '', TRUE);
 		$data['footer'] = $this->load->view('footer', '', TRUE);
+		
+		$data['nav_html'] = $this::getNavigatorHtml();
 		 
 		$this->load->view('product_browsing', $data);
+	}
+	
+	private function getNavigatorHtml(){
+		$result = '<a href="'.base_url().'" class="navigatefont1">home</a>';
+	
+		for ($i = 1; $i <= $this->uri->total_segments(); $i++){
+			$result = $result.' >> <a href="'.base_url();
+			for ($j = 1;$j <= $i; $j++){
+				$result = $result.$this->uri->segment($j).'/';
+			}
+			$result = $result.'" class="navigatefont2">'.$this->uri->segment($i).'</a>';
+		}
+	
+		return $result;
 	}
 	
 }

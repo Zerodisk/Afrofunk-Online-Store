@@ -5,7 +5,8 @@
 <body>
 
 <div>
-	<?php var_dump($product);?>
+	<?php var_dump($product);?><br>
+	<?php var_dump($photos);?>
 </div>
 
 

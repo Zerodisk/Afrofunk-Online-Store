@@ -2,22 +2,53 @@
 	<head>
 		<?php echo $head;?>
 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			
-
-			  
-		});
-
-		function fnPopItem(sku){
-			$("#popup").load("product/view/" + sku,function(responseTxt,statusTxt,xhr){
-				 if(statusTxt=="success")
-				      alert("External content loaded successfully!");
-				 if(statusTxt=="error")
-				      alert("Error: "+xhr.status+": "+xhr.statusText);
+		<script type="text/javascript">
+			$(document).ready(function(){
+				
+	
+				  
 			});
-		}
-	</script>
+	
+			function fnPopItem(sku){
+				$("#popup").load("product/view/" + sku,function(responseTxt,statusTxt,xhr){
+					 if(statusTxt=="success")
+					      alert("External content loaded successfully!");
+					 if(statusTxt=="error")
+					      alert("Error: "+xhr.status+": "+xhr.statusText);
+				});
+			}
+	
+			function fnMenu(menuName, isDisplay){
+				if (isDisplay){
+					clearTimer();
+					hideMenus()
+					$('#'+menuName).css('visibility', 'visible');
+				}
+				else{
+					$('#'+menuName).css('visibility', 'hidden');
+				}
+			}
+	
+			/* ******* top menu ****** */
+			var  timerId=0 ;
+			
+			function clearTimer() {
+				if (timerId!=0) {
+				    clearTimeout(timerId); timerId=0; 
+				}
+			}
+	
+			function startTimer() {
+				  clearTimer(); timerId=setTimeout('timerId=0;hideMenus()',200); 
+			}
+	
+			function hideMenus(){
+				fnMenu('maincatbox', false);
+				fnMenu('mainassbox', false);
+				fnMenu('mainsalebox', false);
+			}
+						
+		</script>
 </head>
 <body>
 
@@ -26,9 +57,9 @@
 
 
 	<div id="container">
-		
+
 		<?php echo $header;?>
-		
+
 		<div class="smallbox">
 	
 		</div>
@@ -37,8 +68,8 @@
 
 		<div id="products">
 		
-			<div class="searchbox">
-				search by brand
+			<div class="navigatebox">
+				<?=$nav_html?>
 			</div>
 			
 			<?php foreach($products as $product){?>
@@ -80,32 +111,17 @@
 			</div>
 			<?php }?>
 			
-			<div class="block float">
 			
-				<div class="photoblock">
-				
-				</div>
-				
-				<div class="brandblock">
-					sample brand
-				</div>
-				
-				<div class="nameblock">
-					sample product name
-				</div>
-				
-				<div class="priceblock1">
-					$89.00
-				</div>
-				
-				<div class="priceblock2">
-					$49.00
-				</div>
-							
+			<!--  sample product box 
+			<div class="block float">		
+				<div class="photoblock"></div>			
+				<div class="brandblock">sample brand</div>				
+				<div class="nameblock">sample product name</div>				
+				<div class="priceblock1">$89.00</div>				
+				<div class="priceblock2">$49.00</div>							
 			</div>
+			-->
 			
-			
-
 			
 			<div class="space">
 			
@@ -117,7 +133,7 @@
 
 		</div>
 		
-
+    <br>
 	<?php echo $footer;?>		
 
 

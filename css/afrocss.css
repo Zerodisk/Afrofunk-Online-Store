@@ -21,8 +21,17 @@ body{
 	
 
 #footer{
+	margin-left: auto;
+    margin-right: auto;
 	height: 100px;
+	text-align: center;
+	<!--
 	background-color: orange;
+	-->
+}
+
+.copyright{
+	font: 0.7em Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
 }
 
 

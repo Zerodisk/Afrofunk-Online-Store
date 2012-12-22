@@ -4,14 +4,26 @@
 	border-top: 1px solid silver;
 }
 
-.searchbox{
-	width: 400px;
+.navigatebox{
 	height: 23px;
 	background-color: silver;
-	margin: 10px;
-	font-family: Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
-	text-transform: uppercase;
+	margin: 10px;	
 }
+
+.navigatefont1{
+	text-transform: uppercase;
+	font: bold 0.9em Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	text-decoration: none;
+	color: black;
+}
+
+.navigatefont2{
+	text-transform: capitalize;
+	font: bold 0.9em Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	text-decoration: none;
+	color: maroon;
+}
+
 
 .block {
 	width: 225px;
@@ -27,11 +39,12 @@
 
 .photoblock {
 	width: 185px;
-	height: 250px;
+	height: 237px;
 	background: gray;
 	margin-top: 20px;
 	margin-right: 20px;
 	margin-left: 20px;
+	border: 1px solid silver;
 }
 
 .brandblock {
@@ -92,10 +105,29 @@
 	border-bottom: 1px solid silver;
 }
 
-.itemfound{
+.itempage{
 	height: 50px;
-	background: white;
 	border-bottom: 1px solid silver;
 	margin-bottom: 20px;
-	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+.pagebox{
+	width: 20px;
+	height:27px;
+	background-color: orange;
+	margin-left: 20px;
+}
+
+.pagecount{
+	width: 250px;
+	height: 25px;
+	margin-left: 700px;
+	text-align: center;
+	font: bold 1.25em Georgia, "Times New Roman", Times, serif;
+	color: black;
+}
+
+.pagebox:hover{
+	color: white;
 }

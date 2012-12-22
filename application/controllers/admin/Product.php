@@ -166,7 +166,7 @@ class Product extends MY_Controller{
     	$result = "\n";
     	if (!is_array($brands_selected)){$brands_selected = array();}
     	foreach($brands as $brand){
-    		$result = $result.'<input type="checkbox" name="brand[]" value="'.$brand['brand'].'"'.((in_array($brand['brand'], $brands_selected))?(' checked="true"'):('')).'> '.$brand['brand'].'<br>'."\n";
+    		$result = $result.'<input class="chkBrand" type="checkbox" name="brand[]" value="'.$brand['brand'].'"'.((in_array($brand['brand'], $brands_selected))?(' checked="true"'):('')).'> '.$brand['brand'].'<br>'."\n";
     	}
     	return $result;
     }

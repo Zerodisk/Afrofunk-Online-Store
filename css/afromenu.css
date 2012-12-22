@@ -1,0 +1,81 @@
+#maincatbox{
+	width: 260;
+	height: 168px;
+	margin-left: 40px;	
+	position:absolute;
+	left:-50px;
+	top:15px;
+	visibility:hidden;
+}
+
+#mainassbox{
+	width: 260;
+	height: 168px;
+	margin-left: 40px;	
+	position:absolute;
+	left:-40px;
+	top:15px;
+	visibility:hidden;
+}
+
+#mainsalebox{
+	width: 260;
+	height: 168px;
+	margin-left: 40px;	
+	position:absolute;
+	left:-60px;
+	top:15px;
+	visibility:hidden;
+}
+
+.cattop{
+	height: 16px;
+	background-image: url('/store/images/triangle.png');
+	background-repeat: no-repeat;
+	margin-left: 20px;
+}
+
+.cat{
+	height: 143px;
+	border-radius: 20px;
+	border: 4px solid #F37139;
+	background-color: white;
+	opacity: 0.8;
+	margin-top: -2px;	
+}
+
+.cat1{
+	float: left;
+	width: 114px;
+	height: 120px;
+	margin-top: 15px;
+	margin-left: 18px;
+	text-transform: uppercase;
+	border-right: 1px solid silver;
+}
+
+.cat2{
+	float: left;
+	width: 105px;
+	height: 120px;	
+	margin-top: 15px;
+	margin-left: 10px;
+	text-transform: capitalize;
+}
+
+.catbox{
+	width: 100px;
+	height: 20px;
+}
+
+.catbox:hover{
+	width: 100px;
+	height: 20px;
+	text-decoration: underline;
+}
+
+.deco{
+	font: 0.8em Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	text-decoration: none;
+	color: black;
+}

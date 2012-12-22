@@ -30,6 +30,12 @@
 				
 			}
 
+			function fnCheckBrand(isCheck){
+				$('.chkBrand').each(function(){
+					this.checked = isCheck;
+				});
+			}
+
 		</script>
 	</head>
 	<body>
@@ -45,7 +51,9 @@
 						<?php echo $status_selectbox;?><br>
 						
 						brand:<br>
-						<?php echo $brands_selectbox;?><br>
+						<?php echo $brands_selectbox;?>
+						
+						&nbsp;&nbsp;<a href="javascript:fnCheckBrand(true);">check all</a> | <a href="javascript:fnCheckBrand(false);">uncheck all</a><br><br>
 						
 						<input type="button" value="filter" onClick="fnFiterSubmit()">
 					</div>
