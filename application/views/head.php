@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/adsblock.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/products.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/afromenu.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/afropopup.css" />
 
 
 

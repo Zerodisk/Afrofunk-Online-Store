@@ -3,18 +3,28 @@
 		<?php echo $head;?>
 
 		<script type="text/javascript">
+			var isPopup = false;
+		
 			$(document).ready(function(){
-				
+				$(document).keyup(function(e) {
+					  if (e.keyCode == 27) {  // esc (27 = escape key)
+						  fnControlProductPopup(false);
+					  }   
+				});
 	
 				  
 			});
 	
 			function fnPopItem(sku){
-				$("#popup").load("product/view/" + sku,function(responseTxt,statusTxt,xhr){
-					 if(statusTxt=="success")
-					      alert("External content loaded successfully!");
+				if (isPopup) {return;}
+				$("#popup").load("<?=base_url()?>product/view/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
+					 if(statusTxt=="success"){
+					      //alert("External content loaded successfully!");
+						 fnControlProductPopup(true);
+					 }
 					 if(statusTxt=="error")
-					      alert("Error: "+xhr.status+": "+xhr.statusText);
+					      //alert("Error: "+xhr.status+": "+xhr.statusText);
+					      alert('Sorry, there was a problem. Please try again.');
 				});
 			}
 	
@@ -28,6 +38,22 @@
 					$('#'+menuName).css('visibility', 'hidden');
 				}
 			}
+
+			/* ******* popup product ******* */
+			function fnControlProductPopup(isDisplay){
+				if (isDisplay){
+					isPopup = true;
+					$('#popup').css('visibility', 'visible');
+					$('#container').fadeTo('fast',.3);			//background face out
+				}
+				else{
+					isPopup = false;
+					$('#popup').css('visibility', 'hidden');
+					$('#container').fadeTo('fast',1);			//backgroud to normal
+				}
+			}
+			
+			
 	
 			/* ******* top menu ****** */
 			var  timerId=0 ;
@@ -49,13 +75,25 @@
 			}
 						
 		</script>
-</head>
+		<style>
+			#popup{
+				position:fixed;
+				
+				//margin: 0 auto;
+				text-align: center ;
+				margin-left: auto ;
+  				margin-right: auto ;
+  				
+				max-height:550px;
+				top:5px;
+				z-index:100;
+				overflow:scroll;
+				overflow-x:hidden;
+			}
+		</style>
+	</head>
 <body>
-
-<div id="popup"></div>
-
-
-
+	<div id="popup"></div>
 	<div id="container">
 
 		<?php echo $header;?>
@@ -133,11 +171,9 @@
 
 		</div>
 		
-    <br>
-	<?php echo $footer;?>		
+   	    <br>
+	    <?php echo $footer;?>		
 
-
-		
 	</div>
 
 </body>

@@ -20,7 +20,7 @@ class Product extends MY_Controller {
 	 *	- should check if productId is empty, then redirect to something??
 	 */
 	public function view($sku){
-		echo('you are on product page<br>Sku is: '.$sku.'<br><br>');	
+		//echo('you are on product page<br>Sku is: '.$sku.'<br><br>');	
 		
 		$product = $this->ProductModel->getProduct($sku, 1);
 		$photos  = $this->PhotoModel->getPhotoList($sku);
@@ -28,6 +28,12 @@ class Product extends MY_Controller {
 		$data = array();
 		$data['product'] = $product;
 		$data['photos']  = $photos; 
+		$data['css'] = '<link rel="stylesheet" type="text/css" href="'.base_url().'css/afropopup.css" />';
+		
+		if ($this->input->get('noCSS') == 'true'){
+			$data['css'] = '';
+		}
+		
 		$this->load->view('product', $data);
 	}
 

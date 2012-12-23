@@ -3,7 +3,7 @@
 		<?php echo $head;?>
 		<script>
 			function fnViewProduct(sku){
-				window.open('product/view/' + sku, sku,'width=910,height=700');
+				window.open('product/view/' + sku, sku,'width=1010,height=700');
 			}
 
 			function fnFiterSubmit(){

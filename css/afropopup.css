@@ -1,180 +1,166 @@
-h1{
-	color: #e243c9;
-}
-
-body{
-	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
-	color: black;
-}
-
-#container{
-	width: 550px; margin: 0 auto;
+#containerPopup{
+	width: 520px; margin: 0 auto;
 	background-color: gray;
 }
 
-#banner{
-	height: 165px;
-	background-color: orange;
+.xbox{
+	width: 30px;
+	height: 30px;
+	margin-left: 490px;
+	background-image: url('/store/images/close.png');
+	background-repeat: no-repeat;	
+
+}
+
+.xbox:hover{
+	opacity: 0.5;
+}
+
+#photobox{
+	height: 450px;
 }
 	
-#menu{
-	height: 23px;
-	background-color: gray;
-	border-bottom: 1px solid silver;
-}
-
-.menublock{
-	width: 160px;
-	height: 23px;
-	background: white;
-	text-align: center;
-	font: 13px "Lucida Grande", Lucida, Verdana, sans-serif;
-}
-
-#adsblock{
-	height: 515px;
-	background-color: gray;
-}
-	
-#slidepix{
+#mainphoto{
 	float: left;
-	width: 390px;
-	height: 490px;
-	background-color: red;
-	margin-left: 25px;
-	margin-top: 25px;
+	width: 350px;
+	height: 448px;
+	background-color: gray;
+	margin-left: 20px;
+	border: 1px solid silver;
 }
 
-#ads{
+#subphoto{
 	float: left;
 	width: 110px;
-	height: 490px;
-	background-color: yellow;
-	margin-top: 25px;
+	height: 450px;
 }
 
-.ads1 {
-	width: 105px;
-	height: 140px;
+.photo1 {
+	width: 108px;
+	height: 138px;
 	background: orange;
-	margin-left: 5px;
+	margin-left: 15px;
+	border: 1px solid silver;
 }
 
-.ads2 {
-	width: 105px;
-	height: 140px;
+.photo2 {
+	width: 108px;
+	height: 138px;
 	background: orange;
-	margin-top: 35px;
-	margin-left: 5px;
+	margin-top: 15px;
+	margin-left: 15px;
+	border: 1px solid silver;
 }
 
-.ads3 {
-	width: 105px;
-	height: 140px;
+.photo3 {
+	width: 108px;
+	height: 138px;
 	background: orange;
-	margin-top: 35px;
-	margin-left: 5px;
-}
-	
-#products{
-	display: block;
-	background-color: lime;
-}
-
-.searchbox{
-	width: 400px;
-	height: 23px;
-	background-color: silver;
-	margin: 10px;
-	font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
-}
-.block {
-	width: 225px;
-	height: 320px;
-	margin: 6px;	
-	background: white;
-	border: 1px solid gray;
+	margin-top: 15px;
+	margin-left: 15px;
+	border: 1px solid silver;
 }
 
 .float {
 	float: left;
 }
 
-.photoblock {
-	width: 185px;
-	height: 215px;
-	background: gray;
-	margin-top: 20px;
-	margin-right: 20px;
-	margin-left: 20px;
+.brandbox {
+	float: left;
+	width: 170px;
+	height: 30px;
+	font: 1em bold "Myriad Pro", Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	text-transform: uppercase;
+	color: white;
 }
 
-.brandblock {
+.namebox {
 	float: left;
-	width: 190px;
+	width: 180px;
 	height: 30px;
-	background: navy;
-}
-
-.nameblock {
-	float: left;
-	width: 200px;
-	height: 30px;
-	background: purple;
+	font: 0.8em bold Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	text-transform: capitalize;
+	color: white;
+	text-align: right;
 }
 
 .pricebox {
 	float: left;
 	width: 105px;
-	height: 55px;
-	background: white;
+	height: 40px;
 	margin-left: 5px;
+	font: 0.95em bold Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	color: white;
+	text-align: right;
+	
 }
 
-.priceblock1 {
+.pricebox1 {
 	width: 105px;
-	height: 30px;
-	background: olive;
-}
-
-.priceblock2 {
-	width: 105px;
-	height: 25px;
-	background: green;
-}
-
-.space {
 	height: 20px;
-	background: white;
-	clear: left;
-	border-bottom: 1px solid silver;
+}
+
+.pricebox1_line {
+	width: 105px;
+	height: 20px;
+	text-decoration: line-through;
+	color: white;
+}
+.pricebox2 {
+	width: 105px;
+	height: 20px;
+	color: orange;
+
 }
 
 .productdes{
-	height: 110px;
-	background: yellow;
+	clear:both;
+	height: 90px;
+	background: grey;
 	margin-left: 25px;
 	margin-right: 25px;
 	clear: left;
 }
 
 .productdetail{
-	height: 55px;
-	background: orange;
+	height: 45px;
 	clear: both;
-}
-
-.buttonblock{
-	height: 100px;
-	margin-left: 25px;
-	margin-right: 25px;
-	background: purple;
+	font: 0.725em bold Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	text-align: justify;
+	color: white;
 	
 }
 
-#footer{
-	height: 100px;
-	background-color: orange;
+.buttonblock{
+	height: 55px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+.shipping{
+	float: left;
+	width: 305px;
+	height: 25px;
+	font: 1.2em bold Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	padding-top: 5px;
+	padding-left: 5px;
+	text-transform: capitalize;
+	color: orange;
+	margin-top: 20px;
+	text-align: left;
+}
+
+.shopbutton{
+	float: left;
+	width: 153px;
+	height: 50px;
+	background-color: grey;
+	background-image: url('/store/images/shop.png');
+	background-repeat: no-repeat;	
+}
+
+.shopbutton:hover{
+	opacity: 0.5;
 }
 
 

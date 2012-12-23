@@ -1,7 +1,7 @@
 		<div id="adsblock">
 			
 			<div id="slidepix">
-		
+				<img src="/store/images/test.jpg" width="730" height="335">
 			</div>
 		
 			<div id="ads">
