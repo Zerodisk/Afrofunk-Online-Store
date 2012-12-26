@@ -14,7 +14,21 @@ class Product extends MY_Controller {
 		echo('hitting the index function - will show all product');
 	}
 	
-
+	/*
+	 *	view product popup by productId
+	 *    this will be called from product_browsing only
+	*/
+	public function view_popup($sku){
+		$product = $this->ProductModel->getProduct($sku, 1);
+		$photos  = $this->PhotoModel->getPhotoList($sku);
+	
+		$data = array();
+		$data['product'] = $product;
+		$data['photos']  = $photos;
+	
+		$this->load->view('product_popup', $data);
+	}
+	
 	/*
 	 *	view product page by productId
 	 *	- should check if productId is empty, then redirect to something??
@@ -26,13 +40,15 @@ class Product extends MY_Controller {
 		$photos  = $this->PhotoModel->getPhotoList($sku);
 		
 		$data = array();
+		$data['head']   = $this->load->view('head',   '', TRUE);
+		$header = array();
+		$header['cat_clothing']    = $this->CategoryModel->getCategoryList(1);
+		$header['cat_accessories'] = $this->CategoryModel->getCategoryList(2);
+		$data['header'] = $this->load->view('header', $header, TRUE);
+		$data['footer'] = $this->load->view('footer', '', TRUE);
+		
 		$data['product'] = $product;
 		$data['photos']  = $photos; 
-		$data['css'] = '<link rel="stylesheet" type="text/css" href="'.base_url().'css/afropopup.css" />';
-		
-		if ($this->input->get('noCSS') == 'true'){
-			$data['css'] = '';
-		}
 		
 		$this->load->view('product', $data);
 	}
@@ -96,14 +112,14 @@ class Product extends MY_Controller {
 
 	/*
 	 * this is for view product browsing in the front end page
-	* $data can have
-	*   - products 		    = list of product that will be display
-	*
-	*   - page			= page_index, start from 0
-	*   - sort   		= sort by
-	*   - sort_dir 		= sort direction (asc or desc)
-	*   - products		= list of product
-	*/
+	 * $data can have
+	 *   - products 		    = list of product that will be display
+	 *
+	 *   - page			= page_index, start from 0
+	 *   - sort   		= sort by
+	 *   - sort_dir 		= sort direction (asc or desc)
+	 *   - products		= list of product
+	 */
 	private function loadViewProductBrowsing($data){
 		$data['head']   = $this->load->view('head',   '', TRUE);
 		
@@ -120,6 +136,11 @@ class Product extends MY_Controller {
 		$this->load->view('product_browsing', $data);
 	}
 	
+	/*
+	 * this is for return html of the navigation start from home
+	 *    home >> category >> product
+	 *    home >> brands >> brand name
+	 */
 	private function getNavigatorHtml(){
 		$result = '<a href="'.base_url().'" class="navigatefont1">home</a>';
 	

@@ -106,12 +106,15 @@ $route['sales/clothing'] 		  = "product/browsingBySale/1";
 $route['sale/accessories'] 		  = "product/browsingBySale/2";
 $route['sales/accessories'] 	  = "product/browsingBySale/2";
 
-
 /*
 PRODUCT
   below are list of product name redirect from product name to sku
 $route['product/product-full-name']	= "product/view/DI085SH97FQG-16816";
 */
+$route['redirect/view/(:any)']	  = 'redirect/view/$1';
+$route['redirect/(:any)']		  = 'redirect/view/$1';
+
+$route['aboutus']				  = 'home/aboutus';
 
 
 

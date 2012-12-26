@@ -17,7 +17,7 @@
 	
 			function fnPopItem(sku){
 				if (isPopup) {return;}
-				$("#popup").load("<?=base_url()?>product/view/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
+				$("#popup").load("/store/product/view_popup/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
 					 if(statusTxt=="success"){
 					      //alert("External content loaded successfully!");
 						 fnControlProductPopup(true);
@@ -28,17 +28,6 @@
 				});
 			}
 	
-			function fnMenu(menuName, isDisplay){
-				if (isDisplay){
-					clearTimer();
-					hideMenus()
-					$('#'+menuName).css('visibility', 'visible');
-				}
-				else{
-					$('#'+menuName).css('visibility', 'hidden');
-				}
-			}
-
 			/* ******* popup product ******* */
 			function fnControlProductPopup(isDisplay){
 				if (isDisplay){
@@ -51,27 +40,6 @@
 					$('#popup').css('visibility', 'hidden');
 					$('#container').fadeTo('fast',1);			//backgroud to normal
 				}
-			}
-			
-			
-	
-			/* ******* top menu ****** */
-			var  timerId=0 ;
-			
-			function clearTimer() {
-				if (timerId!=0) {
-				    clearTimeout(timerId); timerId=0; 
-				}
-			}
-	
-			function startTimer() {
-				  clearTimer(); timerId=setTimeout('timerId=0;hideMenus()',200); 
-			}
-	
-			function hideMenus(){
-				fnMenu('maincatbox', false);
-				fnMenu('mainassbox', false);
-				fnMenu('mainsalebox', false);
 			}
 						
 		</script>

@@ -1,3 +1,36 @@
+<script type="text/javascript">
+	/* ******* top menu ****** */
+	var  timerId=0 ;
+
+	function fnMenu(menuName, isDisplay){
+		if (isDisplay){
+			clearTimer();
+			hideMenus()
+			$('#'+menuName).css('visibility', 'visible');
+		}
+		else{
+			$('#'+menuName).css('visibility', 'hidden');
+		}
+	}
+	
+	function clearTimer() {
+		if (timerId!=0) {
+		    clearTimeout(timerId); timerId=0; 
+		}
+	}
+
+	function startTimer() {
+		  clearTimer(); timerId=setTimeout('timerId=0;hideMenus()',200); 
+	}
+
+	function hideMenus(){
+		fnMenu('maincatbox', false);
+		fnMenu('mainassbox', false);
+		fnMenu('mainsalebox', false);
+	}
+				
+</script>
+
 <div id="banner" onclick="window.location.href='/store'" style="cursor:hand">
 	<!--  afrofunk logo  -->		
 </div>
