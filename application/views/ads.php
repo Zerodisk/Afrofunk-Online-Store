@@ -1,23 +1,11 @@
+<!-- only home page
 		<div id="adsblock">
 			
 			<div id="slidepix">
-				<img src="/store/images/test.jpg" width="730" height="335">
+				
 			</div>
 		
 			<div id="ads">
-				<!--  
-				<div class="ads1">
-				
-				</div>
-				
-				<div class="ads2">
-				
-				</div>
-				
-				<div class="ads3">
-				
-				</div>
-				-->
 				
 				<a href="https://track.commissionfactory.com.au/b/6718/10175/women/special-price/" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/a272e586-baf4-4649-8c97-075906cb1e34.gif" /></a>
 				<br><br>
@@ -25,3 +13,54 @@
 			</div>
 		
 		</div>
+-->
+
+<!-- clothing page 
+		<div id="adsblocksmall">
+			<div class="adscat">
+				<img src="/store/images/clothingbanner.png" />
+			</div>
+		</div>
+-->
+
+<!-- accessories page 
+		<div id="adsblocksmall">
+			<div class="adscat">
+				<img src="/store/images/clothingbanner.png" />
+			</div>
+		</div>
+-->	
+	
+<!-- sale page 
+		<div id="adsblocksmall">
+			<div class="adscat">
+				<img src="/store/images/clothingbanner.png" />
+			</div>
+		</div>		
+-->		
+		
+		
+<!-- brand main page -->
+		<div id="adsblocksmall">
+			<div class="adsbrand">
+				<img src="/store/images/augustbrand.jpg" />
+			</div>
+			
+			<div class="adsbrandside">
+				
+			</div>
+		</div>
+ 
+ 
+ <!-- brand sub page 
+		<div id="adsblocksmall">
+			<div class="adsbrand">
+				<img src="/store/images/augustbrand.jpg" />
+			</div>
+			
+			<div class="adsbrandside">
+				
+			</div>
+		</div>
+-->		
+		

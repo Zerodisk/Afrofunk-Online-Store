@@ -11,8 +11,7 @@
 						  fnControlProductPopup(false);
 					  }   
 				});
-	
-				  
+
 			});
 	
 			function fnPopItem(sku){
@@ -32,8 +31,11 @@
 			function fnControlProductPopup(isDisplay){
 				if (isDisplay){
 					isPopup = true;
+					$('#popup').css('left', ((self.innerWidth - 810)/2) + 'px');
+					$('#popup').css('top', ((self.innerHeight - 550)/2) + 'px');
 					$('#popup').css('visibility', 'visible');
 					$('#container').fadeTo('fast',.3);			//background face out
+
 				}
 				else{
 					isPopup = false;
@@ -87,7 +89,7 @@
 				</div>
 				
 				<div class="brandblock">
-					<?=$product['brand']?>
+					<a href="<?=base_url()?>brands/<?=$product['brand']?>"><?=$product['brand']?></a>
 				</div>
 				
 				<div class="nameblock">

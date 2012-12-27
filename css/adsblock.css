@@ -3,6 +3,11 @@
 	background-color: white;
 	border-top: 1px solid silver;
 }
+
+#adsblocksmall{
+	height: 180px;
+	border-top: 1px solid silver;
+}
 	
 #slidepix{
 	float: left;
@@ -11,6 +16,7 @@
 	margin: 20;
 	background-color: red;
 	font-style: italic;
+	background-image: url('/store/images/newyear.png');
 }
 
 #ads{
@@ -48,4 +54,29 @@
 .smallbox {
 	height: 30px;
 	background-color: white;
+}
+
+.adsbrand {
+	float: left;
+	height: 140px;
+	width: 748px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.adsbrandside {
+	float: left;
+	width: 200px;
+	height: 140px;
+	margin-top: 20;
+	background-color: black;
+}
+
+.adscat {
+	float: left;
+	height: 140px;
+	width: 930px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
 }
