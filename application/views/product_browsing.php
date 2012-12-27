@@ -47,16 +47,17 @@
 			#popup{
 				position:fixed;
 				
-				//margin: 0 auto;
+				margin: 0 auto;
 				text-align: center ;
 				margin-left: auto ;
   				margin-right: auto ;
   				
-				max-height:550px;
+				max-height:560px;
 				top:5px;
 				z-index:100;
-				overflow:scroll;
+				//overflow:scroll;
 				overflow-x:hidden;
+				overflow-y:hidden;
 			}
 		</style>
 	</head>
@@ -82,7 +83,7 @@
 			<div class="block float">
 			
 				<div class="photoblock">
-					<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=$product['image_url']?>" width="185" /></a>
+					<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=base_url()?>images/grey.gif" data-original="<?=$product['image_url']?>" width="185" /></a>
 				</div>
 				
 				<div class="brandblock">
@@ -143,6 +144,18 @@
 	    <?php echo $footer;?>		
 
 	</div>
+  <script src="<?=base_url()?>js/lazyload.js" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+      $(function() {
+          $("img").lazyload();
+      });
 
+      /*
+      need to change from
+      <img src="<?=$product['image_url']?>" width="185" />
+      to
+      <img src="<?=base_url()?>images/grey.gif" data-original="<?=$product['image_url']?>" width="185" />
+      */
+  </script>
 </body>
 </html>

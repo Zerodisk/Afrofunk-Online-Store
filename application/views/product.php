@@ -16,86 +16,107 @@
 		
 		    <!-- copy from view_popup -- start here -->
 			<div id="containerPopup">
-			
-					<div class="xbox" onclick="fnControlProductPopup(false)">
+
+				<br>
+				
+				<div id="photobox">
+				
+					<div id="mainphoto">
+						<img src="<?=$product->image_url?>" width="351">
+					</div>
+					
+					<div id="subphoto">
+						<div class="photo1">
+							<img src="<?=$product->image_url?>" width="108">
+						</div>
+						
+						
+						<?php 
+						$imgUrl = '';
+						if (count($photos) >= 1){
+							$imgUrl = $photos[0]['url'];
+						
+						?>
+						<div class="photo2">
+							<img src="<?=$imgUrl?>" width="108" />
+						</div>
+						<?php 
+						}
+						?>
+						
+						
+						<?php 
+						if (count($photos) >= 2){
+							$imgUrl = $photos[1]['url'];
+
+						?>
+						<div class="photo3">
+							<img src="<?=$imgUrl?>" width="108" />
+						</div>
+						<?php 
+						}
+						?>
+						
+					</div>				
+				
+					<div id="productdetailbox">
+				
+						<div class="brandandnamebox">
 							
-					</div>
-					
-					<div id="photobox">
-						
-						<div id="mainphoto">
-							<img src="<?=$product->image_url?>" width="351">
-						</div>
-					
-						<div id="subphoto">
-							<?php
-							$i = 1; 
-							foreach($photos as $photo){
-							?>
-							<div class="photo<?=$i?>">
-								<img src="<?=$photo['url']?>" width="108">
+							<div class="brandbox">
+								<?=$product->brand?>
 							</div>
-							<?php
-								$i = $i + 1; 
-							}
-							?>
-						</div>
-						
-					</div>
-					
-					<div class="productdes">
-					
-						<div class="brandbox">
-							<?=$product->brand?>		
-						</div>
-						
-						<div class="namebox">
-							<?=$product->product_name?>
+							
+							<div class="namebox">
+								<?=$product->product_name?>
+							</div>
+							
 						</div>
 						
 						<div class="pricebox">
-						<?php 
-							if ($product->price_now < $product->price_init){
-								//discounted item
-						?>
-							<div class="pricebox1_line">
-								$<?=$product->price_init?>				
-							</div>
-							
-							<div class="pricebox2">
-								$<?=$product->price_now?>				
-							</div>
-						<?php 
-							}
-							else{
-								//full price item
-						?>		
-							<div class="pricebox1">
-								$<?=$product->price_now?>				
-							</div>
-						<?php 
-							}
-						?>
+							<?php 
+								if ($product->price_now < $product->price_init){
+									//discounted item
+							?>
+								<div class="pricebox1_line">
+									$<?=$product->price_init?>				
+								</div>
+								
+								<div class="pricebox2">
+									$<?=$product->price_now?>				
+								</div>
+							<?php 
+								}
+								else{
+									//full price item
+							?>		
+								<div class="pricebox1">
+									$<?=$product->price_now?>				
+								</div>
+							<?php 
+								}
+							?>
 						</div>
-			
+						
 						<div class="productdetail">
 						
 							<?=$product->description?>
 							
 						</div>
 						
-					</div>
-					
-					<div class="buttonblock">
-						
 						<div class="shipping">
-							free shipping
+							free shipping within Australia
 						</div>
 						
+						
 						<a class="shopbutton" href="<?=base_url()?>redirect/<?=$product->sku?>">
+							<img src="<?=base_url()?>images/shopthislook.png" border="0" />
 						</a>
+			
+					</div>
 					
-					</div>	
+				</div>
+				
 			</div>
 			<!-- copy from view_popup -- end here -->
 

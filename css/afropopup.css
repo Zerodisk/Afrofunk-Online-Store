@@ -1,12 +1,13 @@
 #containerPopup{
-	width: 520px; margin: 0 auto;
+	width: 810px; height: 550px; margin: 0 auto;
+	border-radius: 20px;
+	border: 4px solid silver;
 	background-color: gray;
 }
 
 .xbox{
 	width: 30px;
 	height: 30px;
-	margin-left: 490px;
 	background-image: url('/store/images/close.png');
 	background-repeat: no-repeat;	
 
@@ -17,7 +18,10 @@
 }
 
 #photobox{
-	height: 450px;
+	float: left;
+	height: 448px;
+	margin-top: 20px;
+	margin-left: 20px;
 }
 	
 #mainphoto{
@@ -25,21 +29,21 @@
 	width: 350px;
 	height: 448px;
 	background-color: gray;
-	margin-left: 20px;
 	border: 1px solid silver;
 }
 
 #subphoto{
 	float: left;
-	width: 110px;
-	height: 450px;
+	width: 108px;
+	height: 448px;
+	margin-left: 12px;
+	
 }
 
 .photo1 {
 	width: 108px;
 	height: 138px;
 	background: orange;
-	margin-left: 15px;
 	border: 1px solid silver;
 }
 
@@ -48,7 +52,6 @@
 	height: 138px;
 	background: orange;
 	margin-top: 15px;
-	margin-left: 15px;
 	border: 1px solid silver;
 }
 
@@ -57,111 +60,99 @@
 	height: 138px;
 	background: orange;
 	margin-top: 15px;
-	margin-left: 15px;
 	border: 1px solid silver;
 }
 
-.float {
+#productdetailbox{
 	float: left;
+	width: 300px;
+	margin-left: 14px;
+}
+
+
+.brandandnamebox {
+	float: left;
+	width: 200px;
+	height: 100px;
+	color: white;
+	font-family: "Myriad Pro", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
 .brandbox {
-	float: left;
-	width: 170px;
 	height: 30px;
-	font: 1em bold "Myriad Pro", Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	font: 1.2em bold;
 	text-transform: uppercase;
 	color: white;
 }
 
 .namebox {
-	float: left;
-	width: 180px;
-	height: 30px;
-	font: 0.8em bold Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	height: 70px;
+	font: 1em;
 	text-transform: capitalize;
 	color: white;
-	text-align: right;
 }
+
 
 .pricebox {
 	float: left;
-	width: 105px;
+	width: 70px;
 	height: 40px;
 	margin-left: 5px;
-	font: 0.95em bold Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	font: 1em bold "Myriad Pro", Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
 	color: white;
 	text-align: right;
 	
 }
 
 .pricebox1 {
-	width: 105px;
+	width: 70px;
 	height: 20px;
 }
 
 .pricebox1_line {
-	width: 105px;
+	width: 70px;
 	height: 20px;
 	text-decoration: line-through;
 	color: white;
 }
 .pricebox2 {
-	width: 105px;
+	width: 70px;
 	height: 20px;
 	color: orange;
-
-}
-
-.productdes{
-	clear:both;
-	height: 90px;
-	background: grey;
-	margin-left: 25px;
-	margin-right: 25px;
-	clear: left;
 }
 
 .productdetail{
-	height: 45px;
 	clear: both;
-	font: 0.725em bold Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	width: 270px;
+	font: 0.725em bold "Myriad Pro", Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
 	text-align: justify;
-	color: white;
-	
-}
-
-.buttonblock{
-	height: 55px;
-	margin-left: 25px;
-	margin-right: 25px;
+	color: black;
+	background-color: whitesmoke;
+	padding: 10px;
+	border: 1px outset silver;
 }
 
 .shipping{
-	float: left;
-	width: 305px;
+	width: 350px;
 	height: 25px;
-	font: 1.2em bold Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
-	padding-top: 5px;
-	padding-left: 5px;
-	text-transform: capitalize;
+	font: 1.2em bold "Myriad Pro", Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
 	color: orange;
-	margin-top: 20px;
 	text-align: left;
+	text-transform: capitalize;
 }
 
 .shopbutton{
-	float: left;
 	width: 153px;
-	height: 50px;
+	height: 100px;
+	margin-top: 20px;
+	margin-left: 120px;
 	background-color: grey;
-	background-image: url('/store/images/shop.png');
+	//background-image: url('/store/images/shopthislook.png');
 	background-repeat: no-repeat;	
 }
 
 .shopbutton:hover{
 	opacity: 0.5;
 }
-
 
 

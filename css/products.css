@@ -52,19 +52,21 @@
 	height: 34px;
 	background: white;
 	border-bottom: 1px solid gray;
-	font: 25px "Brush Script MT";
+	font: 1.25em "Lucida Grande", Lucida, Verdana, sans-serif;
 	text-align: center;
 	text-transform: capitalize;
 }
 
 .nameblock {
 	width: 185px;
-	height: 28px;
+	height: 30px;
 	background: white;
 	margin-right: 20px;
 	margin-left: 20px;
-	font: 15px Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	border-bottom: 1px solid silver;
+	font: 0.8em Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
 	text-transform: capitalize;
+	padding-top: 2px;
 }
 
 .priceblock_font{
@@ -76,6 +78,7 @@
 	width: 125px;
 	height: 20px;
 	margin-left: 20px;
+	margin-top: 5px;
 	background: white;
 	}
 
@@ -84,6 +87,7 @@
 	width: 125px;
 	height: 20px;
 	margin-left: 20px;
+	margin-top: 5px;
 	background: white;
 	text-decoration: line-through;
 }
@@ -92,6 +96,7 @@
 	float: left;
 	width: 25px;
 	height: 20px;
+	margin-top: 5px;
 	background: white;
 	color: red;
 	text-align: right;
