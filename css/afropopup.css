@@ -83,6 +83,7 @@
 	font: 1.2em bold;
 	text-transform: uppercase;
 	color: white;
+	text-align: left;
 }
 
 .namebox {
@@ -90,6 +91,7 @@
 	font: 1em;
 	text-transform: capitalize;
 	color: white;
+	text-align: left;
 }
 
 
@@ -147,7 +149,6 @@
 	margin-top: 20px;
 	margin-left: 120px;
 	background-color: grey;
-	//background-image: url('/store/images/shopthislook.png');
 	background-repeat: no-repeat;	
 }
 

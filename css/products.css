@@ -6,8 +6,10 @@
 
 .navigatebox{
 	height: 23px;
-	background-color: silver;
-	margin: 10px;	
+	background-color: orange;
+	margin: 10px;
+	padding-top: 3px;
+	padding-left: 3px;
 }
 
 .navigatefont1{
@@ -21,7 +23,7 @@
 	text-transform: capitalize;
 	font: bold 0.9em Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
 	text-decoration: none;
-	color: maroon;
+	color: white;
 }
 
 
@@ -47,14 +49,23 @@
 	border: 1px solid silver;
 }
 
+.photoblock:hover {
+	opacity: 0.3;
+}
+
 .brandblock {
 	width: 225px;
 	height: 34px;
 	background: white;
 	border-bottom: 1px solid gray;
-	font: 1.25em "Lucida Grande", Lucida, Verdana, sans-serif;
 	text-align: center;
+}
+
+.brandfont {
+	font: 1.2em "Lucida Grande", Lucida, Verdana, sans-serif;
 	text-transform: capitalize;
+	text-decoration: none;
+	color: black;	
 }
 
 .nameblock {
@@ -111,10 +122,11 @@
 }
 
 .itempage{
-	height: 50px;
+	height: 30px;
 	border-bottom: 1px solid silver;
 	margin-bottom: 20px;
 	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	padding-top: 9px;
 }
 
 .pagebox{

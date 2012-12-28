@@ -84,7 +84,11 @@ $route['accessories/shoe'] 		  =	"product/browsingByCat/41";
 $route['accessories/shoes'] 	  = "product/browsingByCat/41";
 $route['accessories/bag'] 		  = "product/browsingByCat/42";
 $route['accessories/bags']        =	"product/browsingByCat/42";
-$route['accessories/sun-glasses'] = "product/browsingByCat/43";
+$route['accessories/Jewellery']   = "product/browsingByCat/43";
+$route['accessories/Sunglasses']  = "product/browsingByCat/44";
+$route['accessories/Sun-glasses'] = "product/browsingByCat/44";
+$route['accessories/Other']       = "product/browsingByCat/45";
+$route['accessories/Others']      = "product/browsingByCat/45";
 
 /*
 Brand
@@ -105,6 +109,13 @@ $route['sale/clothing'] 		  = "product/browsingBySale/1";
 $route['sales/clothing'] 		  = "product/browsingBySale/1";
 $route['sale/accessories'] 		  = "product/browsingBySale/2";
 $route['sales/accessories'] 	  = "product/browsingBySale/2";
+
+$route['sale/dresses'] 		  	  = "product/browsingBySale/21";
+$route['sale/tops'] 		  	  = "product/browsingBySale/22";
+$route['sale/jackets'] 		  	  = "product/browsingBySale/23";
+$route['sale/skirts'] 		  	  = "product/browsingBySale/24";
+$route['sale/shorts'] 		 	  = "product/browsingBySale/25";
+$route['sale/pants'] 		  	  = "product/browsingBySale/26";
 
 /*
 PRODUCT

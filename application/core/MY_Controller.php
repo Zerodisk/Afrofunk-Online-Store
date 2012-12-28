@@ -25,7 +25,33 @@ class MY_Controller extends CI_Controller{
     }	
 
 
-
+    /*
+     * return main information required in header
+     *   - category list for clothing
+     *   - category list for accessories
+     *   - list of brand
+     */
+	protected function getFrontendHeader($cat_id1 = NULL, $cat_id2 = NULL, $getBrand = FALSE){
+		$this->load->model('CategoryModel');
+				
+		$header = array();
+		$header['cat_clothing'] = array();
+		$header['cat_accessories'] = array();
+		$header['brands'] = array();
+		
+		if ($cat_id1 != NULL)
+			$header['cat_clothing']    = $this->CategoryModel->getCategoryList($cat_id1);
+		
+		if ($cat_id2 != NULL)
+			$header['cat_accessories'] = $this->CategoryModel->getCategoryList($cat_id2);
+		
+		if ($getBrand){
+			$this->load->model('BrandModel');
+			$header['brands']          = $this->BrandModel->getBrandList();
+		}
+		
+		return $header;
+	}
 
 
 	/******************* for testing ******************/

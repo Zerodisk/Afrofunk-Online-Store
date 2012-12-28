@@ -18,9 +18,7 @@ class Redirect extends MY_Controller {
 		$data = array();
 		$data['head']   = $this->load->view('head',   '', TRUE);
 		
-		$header = array();
-		$header['cat_clothing']    = array();
-		$header['cat_accessories'] = array();
+		$header = $this::getFrontendHeader();
 		$data['header'] = $this->load->view('header', $header, TRUE);
 		
 		$data['footer'] = $this->load->view('footer', '', TRUE);

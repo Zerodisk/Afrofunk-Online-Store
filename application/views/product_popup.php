@@ -85,9 +85,11 @@
 					free shipping within Australia
 				</div>
 				
-				<a class="shopbutton" href="<?=base_url()?>redirect/<?=$product->sku?>">
-					<img src="<?=base_url()?>images/shopthislook.png" border="0" />
-				</a>
+				<div class="shopbutton">
+					<a href="<?=base_url()?>redirect/<?=$product->sku?>">
+						<img src="<?=base_url()?>images/shopthislook.png" border="0" />
+					</a>
+				</div>
 		
 			</div>
 			

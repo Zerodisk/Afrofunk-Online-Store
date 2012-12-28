@@ -24,9 +24,10 @@
 	}
 
 	function hideMenus(){
-		fnMenu('maincatbox', false);
-		fnMenu('mainassbox', false);
-		fnMenu('mainsalebox', false);
+		fnMenu('maincatbox',   false);
+		fnMenu('mainassbox',   false);
+		fnMenu('mainsalebox',  false);
+		fnMenu('mainbrandbox', false);
 	}
 				
 </script>
@@ -124,11 +125,77 @@
 	</li>
 	
 	<li>
-		<a href="<?=base_url()?>brands">BRANDS</a>			
+		<a href="<?=base_url()?>brands" onmouseover="fnMenu('mainbrandbox', true)" onmouseout="startTimer()">BRANDS</a>	
+		<div id="mainbrandbox" onmouseover="fnMenu('mainbrandbox', true)" onmouseout="startTimer()">
+			
+			<div class="cattop">
+			</div>
+			
+			<div class="subbrandbox">
+				<?php 
+				$leftNum = count($brands) % 3;
+				$eachNum = intval(count($brands) / 3);
+				$max1 = $eachNum;
+				$max2 = $eachNum;
+				$max3 = $eachNum;
+				
+				if ($leftNum == 1){
+					$max1 = $max1 + 1;
+				}
+				
+				if ($leftNum == 2){
+					$max1 = $max1 + 1;
+					$max2 = $max2 + 1;
+				}
+				
+				$count = 1;
+				?>
+			
+			
+				<div class="brand1">	
+				<?php for ($i = $count; $i <= $max1; $i++){?>		
+					<div class="catbox">
+						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand']?>" class="deco">
+							<?=$brands[$i-1]['brand']?>
+						</a>			
+					</div>							
+				<?php 
+					$count = $count + 1;
+				}
+				?>
+				</div>
+				<div class="brand2">			
+				<?php for ($i = $count; $i <= $max1+$max2; $i++){?>		
+					<div class="catbox">
+						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand']?>" class="deco">
+							<?=$brands[$i-1]['brand']?>
+						</a>			
+					</div>							
+				<?php 
+					$count = $count + 1;
+				}
+				?>						
+				</div>
+				<div class="brand3">			
+				<?php for ($i = $count; $i <= $max1+$max2+$max3; $i++){?>		
+					<div class="catbox">
+						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand']?>" class="deco">
+							<?=$brands[$i-1]['brand']?>
+						</a>			
+					</div>							
+				<?php 
+					$count = $count + 1;
+				}
+				?>						
+				</div>
+
+			</div>
+			
+		</div>		
 	</li>
 	
 	<li>
-		<a href="<?=base_url()?>sales" onmouseover="fnMenu('mainsalebox', true)" onmouseout="startTimer()">SALE</a>		
+		<a href="<?=base_url()?>sale" onmouseover="fnMenu('mainsalebox', true)" onmouseout="startTimer()">SALE</a>		
 		<div id="mainsalebox" onmouseover="fnMenu('mainsalebox', true)" onmouseout="startTimer()">
 			
 			<div class="cattop">
@@ -139,13 +206,13 @@
 				<div class="cat1">
 					
 					<div class="catbox">
-						<a href="<?=base_url().'clothing'?>" class="deco">
+						<a href="<?=base_url().'sale/clothing'?>" class="deco">
 							clothing
 						</a>			
 					</div>
 					
 					<div class="catbox">
-						<a href="<?=base_url().'accessories'?>" class="deco">
+						<a href="<?=base_url().'sale/accessories'?>" class="deco">
 							accessories
 						</a>
 					</div>
@@ -155,7 +222,7 @@
 				<div class="cat2">
 					<?php foreach($cat_clothing as $cat){?>
 					<div class="catbox">
-						<a href="<?=base_url().'clothing/'.strtolower($cat['category_name'])?>" class="deco">
+						<a href="<?=base_url().'sale/'.strtolower($cat['category_name'])?>" class="deco">
 							<?=$cat['category_name']?>
 						</a>
 					</div>

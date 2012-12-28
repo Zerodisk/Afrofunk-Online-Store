@@ -10,9 +10,7 @@ class Home extends MY_Controller {
 		$data = array();
 		$data['head']   = $this->load->view('head',   '', TRUE);
 		
-		$header = array();
-		$header['cat_clothing']    = $this->CategoryModel->getCategoryList(1);
-		$header['cat_accessories'] = $this->CategoryModel->getCategoryList(2);
+		$header = $this::getFrontendHeader(1, 2, TRUE);
 		$data['header'] = $this->load->view('header', $header, TRUE);
 		
 		$data['footer'] = $this->load->view('footer', '', TRUE);
