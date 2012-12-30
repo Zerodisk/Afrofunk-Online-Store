@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	<div id="popup"></div>
+
 	<div id="container">
 
 		<?php echo $header;?>
@@ -17,31 +17,26 @@
 	
 		</div>
 
-		<div id="products">
-		    <p>&nbsp;</p>
+		<div id="aboutusblock">
 		
-		
-			here is about us page text text text
-		
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-
-		
-		
-		
-		
-			
-			
-			
-			<div class="space">
+			<div class="afrologo">
 			
 			</div>
 			
-			<div class="itemfound">
-
+			<div class="afroabout">
+			     Established in Sydney in 2005, our first store was in The Galeries Sydney
+			     our second store was in Westfield Bondi Junction. Thank you for your
+			     support on our both stores and please continue to support us on our online store.
+			     <br><br><br>
+			     Afro Funk is a place where you can find a funky cutting edge
+			     products that available in the market. We are best in selecting
+			     and searching for a cool and different products.
+			     
+			     <br><br><br>
+			     We are now become a partner with many local and international
+			     brands. Please check them out.			     
 			</div>
-
+		    
 		</div>
 		
    	    <br>

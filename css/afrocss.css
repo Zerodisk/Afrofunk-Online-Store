@@ -18,7 +18,34 @@ body{
 	background-color: white;
 	opacity: 0.7;
 }
-	
+
+#aboutusblock{
+	width: 750px;
+	height: 400px;
+	border-radius: 20px;
+	background-color: BCD74D;
+	margin: 50px auto;
+}
+
+.afrologo{
+	float: left;
+	width: 100px;
+	height: 100px;	
+	margin-top: 40px;
+	margin-left: 40px;
+	background: url('/store/images/afrologo.png') no-repeat;
+}
+
+.afroabout{
+	float: left;
+	width: 460px;
+	height: 300px;
+	margin-top: 40px;
+	margin-left: 80px;
+	color: white;
+	text-align: justify;
+	font: 0.9em "Myriad Pro", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
 
 #footer{
 	margin-left: auto;
