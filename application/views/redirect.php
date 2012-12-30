@@ -3,7 +3,7 @@
 	<?php echo $head;?>
 
 	<script type="text/javascript">  
-		var count = 6;  
+		var count = 7;  
 		var redirect="<?=$product->url?>"  
 		  
 		function countDown(){  
@@ -11,7 +11,7 @@
 		    	window.location = redirect;  
 			}else{  
 		    	count--;  
-		    	document.getElementById("timer").innerHTML = "This page will redirect in "+count+" seconds."  
+		    	document.getElementById("timer").innerHTML = " "+count+""  
 		    	setTimeout("countDown()", 1000)  
 			}  
 		}  
@@ -38,22 +38,45 @@
 
 		<div id="products">
 		
-		
- 
+			<div id="redirectblock">
+				
+				<div class="redirectmsg">				
+					We are redirecting you to your favorite item.
+				</div>
+				
+				<div class="circleblock">
+					<img src="/store/images/ajax-loader-green.gif" />
+				</div>
+				
+				<div class="waitblock">
+					Please wait...
+					<span id="timer">  
+						<script>  
+						 	countDown();  
+						</script>  
+					</span>  
+					<br><br>
+					if it doesn't redirect, please click <a href="<?=$product->url?>">here</a>
+				</div>
+			
+			</div>
+ 			<!--
 			<br>
 			Afrofunk Clothing is sending you to buy on TheIconic.    
 			  
 			<span id="timer">  
 				<script>  
-				 	countDown();  
+				 	//countDown();  
 				</script>  
 			</span>  
+			
 			<br>
 			<br>		
 			if it doesn't redirect, please click <a href="<?=$product->url?>">here</a>
 			<br>
 		    <img src="/store/images/ajax-loader.gif" />
 		    <br>
+		    -->
 			<?// var_dump($product)?>
 		
 

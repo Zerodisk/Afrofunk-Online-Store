@@ -47,6 +47,41 @@ body{
 	font: 0.9em "Myriad Pro", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
+#redirectblock{
+	width: 400px;
+	height: 270px;
+	border-radius: 20px;
+	background-color: BCD74D;
+	margin: 100px auto;
+	border: 3px hidden silver;
+}
+
+.redirectmsg{
+	height: 50px;
+	text-align: center;
+	padding-top: 15px;
+	color: white;
+	font: bold 1.5em "Myriad Pro", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+
+}
+
+.circleblock{
+	width: 32px;
+	height: 32px;
+	//border: 1px solid white;
+	margin-left: 180px;
+	margin-top: 30px;
+}
+
+.waitblock{
+	height: 50px;
+	margin-top: 30px;
+	color: white;
+	font: 1.2em "Myriad Pro", "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	text-align: center;
+}
+
+
 #footer{
 	margin-left: auto;
     margin-right: auto;
