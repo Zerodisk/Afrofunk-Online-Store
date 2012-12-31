@@ -54,7 +54,7 @@
 				<div class="cat1">
 					
 					<div class="catbox">
-						<a href="<?=base_url().'clothing'?>" class="deco">
+						<a href="<?=base_url().'clothing/new-arrival'?>" class="deco">
 							new arrival
 						</a>			
 					</div>
@@ -95,7 +95,7 @@
 				<div class="cat1">
 					
 					<div class="catbox">
-						<a href="<?=base_url().'accessories'?>" class="deco">
+						<a href="<?=base_url().'accessories/new-arrival'?>" class="deco">
 							new arrival
 						</a>			
 					</div>
@@ -155,7 +155,7 @@
 				<div class="brand1">	
 				<?php for ($i = $count; $i <= $max1; $i++){?>		
 					<div class="catbox">
-						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand']?>" class="deco">
+						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand_url']?>" class="deco">
 							<?=$brands[$i-1]['brand']?>
 						</a>			
 					</div>							
@@ -167,7 +167,7 @@
 				<div class="brand2">			
 				<?php for ($i = $count; $i <= $max1+$max2; $i++){?>		
 					<div class="catbox">
-						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand']?>" class="deco">
+						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand_url']?>" class="deco">
 							<?=$brands[$i-1]['brand']?>
 						</a>			
 					</div>							
@@ -179,7 +179,7 @@
 				<div class="brand3">			
 				<?php for ($i = $count; $i <= $max1+$max2+$max3; $i++){?>		
 					<div class="catbox">
-						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand']?>" class="deco">
+						<a href="<?=base_url().'brands/'.$brands[$i-1]['brand_url']?>" class="deco">
 							<?=$brands[$i-1]['brand']?>
 						</a>			
 					</div>							

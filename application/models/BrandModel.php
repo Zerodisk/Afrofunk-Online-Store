@@ -12,6 +12,12 @@ class BrandModel extends CI_Model{
     	$query = $this->db->query($sql);
     	$data = $query->result_array();
     	$query->free_result();
+    	
+    	for ($i = 0; $i <= count($data) - 1; $i++){
+    		$data[$i]['brand_url'] = url_title($data[$i]['brand']);
+    	}
+    	
+    	
     	return $data;
     }
     

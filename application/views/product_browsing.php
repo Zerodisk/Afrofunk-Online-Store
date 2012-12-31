@@ -89,7 +89,7 @@
 				</div>
 				
 				<div class="brandblock">
-					<a class="brandfont" href="<?=base_url()?>brands/<?=$product['brand']?>"><?=$product['brand']?></a>
+					<a class="brandfont" href="<?=base_url()?>brands/<?=url_title($product['brand'])?>"><?=$product['brand']?></a>
 				</div>
 				
 				<div class="nameblock">

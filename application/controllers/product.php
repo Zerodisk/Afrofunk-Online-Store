@@ -95,6 +95,7 @@ class Product extends MY_Controller {
 		$filter = array();
 		$filter['is_online'] = 1;
 		if ($brand != NULL){
+			$brand = str_replace('-', ' ', $brand);		//replace dash (-) with space
 			$filter['brands'] = array($brand);
 		}
 		$products = $this->ProductModel->getProductList($filter);
@@ -145,7 +146,7 @@ class Product extends MY_Controller {
 			for ($j = 1;$j <= $i; $j++){
 				$result = $result.$this->uri->segment($j).'/';
 			}
-			$result = $result.'" class="navigatefont2">'.$this->uri->segment($i).'</a>';
+			$result = $result.'" class="navigatefont2">'.str_replace('-', ' ', $this->uri->segment($i)).'</a>';
 		}
 	
 		return $result;

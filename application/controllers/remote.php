@@ -61,6 +61,7 @@ class Remote extends MY_Controller {
     	 
     	$result = substr($result, 0, strlen($result) - strlen($separation));
     	echo($result);
+    	//var_dump($list);
     }
     
     /*

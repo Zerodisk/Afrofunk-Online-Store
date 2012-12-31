@@ -56,8 +56,11 @@ Clothing
  */
 $route['clothing'] 				  = "product/browsingByCat/1";
 $route['clothing/all'] 			  = "product/browsingByCat/1";
+$route['clothing/new-arrival'] 	  = "product/browsingByCat/1";
+
 $route['clothing/sale'] 		  = "product/browsingBySale/1";
 $route['clothing/sales'] 		  = "product/browsingBySale/1";
+
 
 $route['clothing/dress'] 		  = "product/browsingByCat/21";
 $route['clothing/dresses'] 		  = "product/browsingByCat/21";
@@ -77,6 +80,7 @@ Accessories
  */
 $route['accessories'] 			  =	"product/browsingByCat/2";
 $route['accessories/all'] 		  =	"product/browsingByCat/2";
+$route['accessories/new-arrival'] =	"product/browsingByCat/2";
 $route['accessories/sale'] 		  =	"product/browsingBySale/2";
 $route['accessories/sales']		  =	"product/browsingBySale/2";
 
@@ -97,7 +101,11 @@ $route['brand']		  			  = "product/browsingByBrand";
 $route['brands']		  		  = "product/browsingByBrand";
 $route['brand/view/(:any)']		  = "brand/view/$1";				//this is to maintain "brand" controller, i think i will remove brand.php later
 $route['brands/view/(:any)']	  = "brand/view/$1";				//this is to maintain "brand" controller, i think i will remove brand.php later
+
+$route['brand/Atmos']			  = "product/browsingByBrand/Atmos&Here;";
 $route['brand/(:any)']			  = "product/browsingByBrand/$1";
+
+$route['brands/Atmos']			  = "product/browsingByBrand/Atmos&Here;";
 $route['brands/(:any)']			  = "product/browsingByBrand/$1";			
 
 /*
