@@ -1,142 +1,210 @@
-<html>
-<head>
-	<?php echo $head;?>
-</head>
-<body>
-	<div id="container">
+<?php
+class Product extends MY_Controller{
 
-		<?php echo $header;?>
-		
-		<div class="smallbox">
-	
-		</div>
-			
-		<div id="products">
-			<br>
-		
-		    <!-- copy from view_popup -- start here -->
-				<div id="containerPopup">
-					
-					<br>
-					
-					<div id="photobox">
-					
-						<div id="mainphoto">
-							<img width="351" id="mainImage">
-						</div>
-						
-						<div id="subphoto">
-							<div class="photo1">
-								<img width="108" id="image1" onmouseover="fnImageSwitch(this)">
-							</div>
-							
-							
-							<?php if (count($photos) >= 1){?>
-							<div class="photo2">
-								<img width="108" id="image2" onmouseover="fnImageSwitch(this)" />
-							</div>
-							<?php }?>
-							
-							
-							<?php if (count($photos) >= 2){?>
-							<div class="photo3">
-								<img width="108" id="image3" onmouseover="fnImageSwitch(this)" />
-							</div>
-							<?php }?>
-						</div>				
-					
-						<div id="productdetailbox">
-					
-							<div class="brandandnamebox">
-								
-								<div class="brandbox">
-									<?=$product->brand?>
-								</div>
-								
-								<div class="namebox">
-									<?=$product->product_name?>
-								</div>
-								
-							</div>
-							
-							<div class="pricebox">
-								<?php 
-									if ($product->price_now < $product->price_init){
-										//discounted item
-								?>
-									<div class="pricebox1_line">
-										$<?=$product->price_init?>				
-									</div>
-									
-									<div class="pricebox2">
-										$<?=$product->price_now?>				
-									</div>
-								<?php 
-									}
-									else{
-										//full price item
-								?>		
-									<div class="pricebox1">
-										$<?=$product->price_now?>				
-									</div>
-								<?php 
-									}
-								?>
-							</div>
-							
-							<div class="productdetail">
-							
-								<?=$product->description?>
-								
-							</div>
-							
-							<div class="shipping">
-								free shipping within Australia
-							</div>
-							
-							<a class="shopbutton" href="<?=base_url()?>redirect/<?=$product->sku?>">
-								<img src="<?=base_url()?>images/shopthislook.png" border="0" />
-							</a>
-					
-						</div>
-						
-					</div>
-					
-				</div>
-				
-				<script type="text/javascript">
-					function fnImageSwitch(img){
-						$('#mainImage').attr("src", img.src);
-					}
-									
-					img1 = new Image();
-					img1.src = "<?=$product->image_url?>";
-					$('#mainImage').attr("src", img1.src);
-					$('#image1').attr("src", img1.src);
-				
-					<?php 
-					$i = 2;
-					foreach ($photos as $photo){
-						echo('img'.$i.' = new Image();'."\n");
-						echo('img'.$i.'.src = "'.$photo['url'].'";'."\n");
-						echo('$("#image'.$i.'").attr("src", img'.$i.'.src);'."\n");
-						
-						$i = $i + 1;
-					}
-					?>
-				</script>
-			<!-- copy from view_popup -- end here -->
+    public function __construct(){
+        parent::__construct('admin');
+        $this->load->model('CategoryModel');
+        $this->load->model('ProductModel');
+        $this->load->model('PhotoModel');
+        $this->load->model('BrandModel');
+    }	
+    
+    //main product browsing controller
+    public function index(){
+    	$data = array();
+    	
+    	//brand
+    	$data['brands'] 			= $this->BrandModel->getBrandList();
+    	$data['brands_selected']	= ($this->input->get('brand')==FALSE)?array():$this->input->get('brand');    		    	  
+    	$data['brands_selectbox']   = $this::generateBrandSelection($data['brands'], $data['brands_selected']);
+    	
+    	//status
+    	$data['status_selected']	= ($this->input->get('status')==FALSE)?'all':$this->input->get('status');
+    	$data['status_selectbox']   = $this::generateStatusSelection($data['status_selected']);
+   	
+    	//page, sort, sort_dir
+    	$data['page']				= ($this->input->get('page')==FALSE)?'0':$this->input->get('page');
+    	$data['page_size']			= $this->ProductModel->getDefaultPageSize();
+    	$data['sort']				= ($this->input->get('sort')==FALSE)?'date_modified':$this->input->get('sort');
+    	$data['sort_dir']			= ($this->input->get('sort_dir')==FALSE)?'desc':$this->input->get('sort_dir');
+    	
+    	//load product data
+    	$filter = array();
+    	$filter['brands'] 			= $data['brands_selected'];
+    	$filter['is_online'] 		= $this::manipulateStatus($data['status_selected']);
+    	$filter['sort'] 			= $data['sort'];
+    	$filter['sort_dir'] 		= $data['sort_dir'];   
+    	$filter['page_index']		= $data['page']; 	
+    	$data['products']			= $this->ProductModel->getProductList($filter);
 
-		<div class="space">
-			
-		</div>
-		<div class="itemfound">
+    	$this::loadViewProductBrowsing($data);
+    }
+    
+    //view product controller
+    public function view($sku){
+    	$data = array();
+    	
+    	$product = $this->ProductModel->getProduct($sku);
+    	$data['product'] = $product;
+    	
+    	$photos = $this->PhotoModel->getPhotoList($sku, -1);
+    	$data['photos']  = $photos;
+    	
+    	//category
+    	$data['cat_main'] 	  	 = $this->CategoryModel->getCategoryTopLevel();
+    	$data['cat_clothing'] 	 = $this->CategoryModel->getClothingList();
+    	$data['cat_accessories'] = $this->CategoryModel->getAccessoriesList();
+    	
+    	$this::loadViewProduct($data);
+    }
+    
+    //for update product (name, description, price)
+    public function update(){
+    	$sku = $this->input->post('sku');
+    	
+    	//update db
+    	$param = array();
+    	$param['product_name'] = $this->input->post('product_name');
+    	$param['description']  = $this->input->post('description');
+    	$param['price_init']   = $this->input->post('price_init');
+    	$param['cat_id']       = $this->input->post('cat_id');
+    	$this->ProductModel->updateProduct($sku, $param);        
+    	
+    	//view page
+    	$this::view($sku);
+    }
+    
+    //for adding new photo
+    public function addPhoto(){
+    	$sku = $this->input->post('sku');
+    	$url = $this->input->post('photoUrl');
+    	$this->PhotoModel->addPhoto($sku, $url, 1);
+    	
+    	//view page
+    	$this::view($sku);
+    }
+    
+    /*
+     * for ajax call to make a given sku online
+     */
+    public function ajaxMakeOnline(){
+    	$sku = $this->input->get('sku');
+    	if ($sku == false){echo('sku is missing');return;}
+    	
+    	$param = array();
+    	$param['is_online'] = 1;
+    	$product = $this->ProductModel->getProduct($sku);  	
+    	if ($product->date_first_online == NULL){				//make first time online, stamp date :)
+    		$param['date_first_online'] = date('Y-m-d H:i:s');
+    	}
+    	$this->ProductModel->updateProduct($sku, $param);
+    	echo('OK');
+    }
+    
+    /*
+     * for ajax call to make a given sku offline
+     */
+    public function ajaxMakeOffline(){
+    	$sku = $this->input->get('sku');
+    	if ($sku == false){echo('sku is missing');return;}
+    	
+    	$this->ProductModel->updateProduct($sku, array('is_online' => 0));
+    	echo('OK');
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /*
+     * this is for view product browsing in the admin page
+     * $data can have 
+     *   - brands 		    = list of brand
+     *   - brands_selected  = the list of selected brand
+     *   - brands_selectbox = the final html checkbox brand list
+     *   
+     *   - status_selected	= list of selected status
+     *   - status_selectbox	= the final html for checkbox status list
+     *   
+     *   - page			= page_index, start from 0
+     *   - sort   		= sort by
+     *   - sort_dir 	= sort direction (asc or desc)
+     *   - products		= list of product 
+     */
+    private function loadViewProductBrowsing($data){
+    	$data['head']   = $this->load->view('admin/head',   '', TRUE);
+    	$data['header'] = $this->load->view('admin/header', '', TRUE);
+    	$data['footer'] = $this->load->view('admin/footer', '', TRUE);
+    	    	 
+    	$this->load->view('admin/product_browsing', $data);
+    }
+    
+    /*
+     * this is for view/edit a given product sku
+     * $data can have
+     *  - product			= object of product
+     *  - ??
+     *  
+     */
+    private function loadViewProduct($data){
+    	$data['head'] = $this->load->view('admin/head', '', TRUE);
+    	$this->load->view('admin/product', $data);
+    }
+    
+    /*
+     *  generate html for brand checkbox (take cared of selected brand)
+     *  - $brands = list of brand (array of array of brand)
+     *  - $brands_selected = array list of selected brand
+     */
+    private function generateBrandSelection($brands, $brands_selected){
+    	$result = "\n";
+    	if (!is_array($brands_selected)){$brands_selected = array();}
+    	foreach($brands as $brand){
+    		$result = $result.'<input class="chkBrand" type="checkbox" name="brand[]" value="'.$brand['brand'].'"'.((in_array($brand['brand'], $brands_selected))?(' checked="true"'):('')).'> '.$brand['brand'].'<br>'."\n";
+    	}
+    	return $result;
+    }
+    
+    /*
+     * generate the html for status radio box (online, offline, all)
+     *    $status_selected, 1 = online, 0 = offline, -1 = all status
+     *    default $status_selected if not given is "all status"
+     */
+    private function generateStatusSelection($status_selected){
+    	if ($status_selected == ''){$status_selected = '-1';}
+    	$result = '<input type="radio" name="status"  value="on"'.('on'  ==$status_selected ? ' checked="checked"' : '').'> online<br>
+    			   <input type="radio" name="status" value="off"'.('off' ==$status_selected ? ' checked="checked"' : '').'> offline<br>
+    			   <input type="radio" name="status" value="all"'.('all' ==$status_selected ? ' checked="checked"' : '').'> all<br>';
+    	
+    	return $result;
+    }
+    
+    /*
+     * convert status
+     *   from on  to 1
+     *   from off to 0
+     *   from all to -1
+     */
+    private function manipulateStatus($status){
+    	switch($status){
+    		case "on":
+    			return 1;
+    			break;
+    		case "off":
+    			return 0;
+    			break;
+    		case "all":
+    			return -1;
+    			break;
+    	}
+    }
+   
 
-		</div>
-	</div>
 
-	<br>
-	<?php echo $footer;?>
-</div>
-</body>
-</html>
+}

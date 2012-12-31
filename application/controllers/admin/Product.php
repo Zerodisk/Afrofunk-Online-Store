@@ -78,7 +78,7 @@ class Product extends MY_Controller{
     public function addPhoto(){
     	$sku = $this->input->post('sku');
     	$url = $this->input->post('photoUrl');
-    	$this->PhotoModel->addPhoto($sku, $url, 0);
+    	$this->PhotoModel->addPhoto($sku, $url, 1);
     	
     	//view page
     	$this::view($sku);

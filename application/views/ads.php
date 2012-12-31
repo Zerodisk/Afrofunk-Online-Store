@@ -1,6 +1,7 @@
 <?php 
 $menu = '';
 $submenu = '';
+$brand = '';
 
 if ($this->uri->total_segments() >= 1){
 	$menu = strtolower($this->uri->segment(1));
@@ -8,6 +9,7 @@ if ($this->uri->total_segments() >= 1){
 
 if ($this->uri->total_segments() >= 2){
 	$submenu = strtolower($this->uri->segment(2));
+	$brand = $this->uri->segment(2);
 }
 
 switch($menu){
@@ -49,12 +51,13 @@ switch($menu){
  		<!-- brand specific page -->	
 		<div id="adsblocksmall">
 			<div class="adsbrand">
-				<img src="/store/images/augustbrand.jpg" />
+				<img src="/store/images/brandsbanner/<?=$brand?>.jpg">
 			</div>
-			
+			<!-- 
 			<div class="adsbrandside">
-				<?=$submenu?>
+				<?=$brand?>
 			</div>
+			-->
 		</div>
 <?php 
 		}

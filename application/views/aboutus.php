@@ -34,7 +34,9 @@
 			     
 			     <br><br><br>
 			     We are now become a partner with many local and international
-			     brands. Please check them out.			     
+			     brands. We do not carry any stock items. All the items are stock 
+			     and sold by our partner websites. Therefore, all terms and conditions 
+			     will be depending on each partner websites.		     
 			</div>
 		    
 		</div>
