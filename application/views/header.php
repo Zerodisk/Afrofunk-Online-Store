@@ -64,10 +64,11 @@
 							sale
 						</a>
 					</div>
-					
+																																
 				</div>
 				
 				<div class="cat2">
+				    
 					<?php foreach($cat_clothing as $cat){?>
 					<div class="catbox">
 						<a href="<?=base_url().'clothing/'.strtolower($cat['category_name'])?>" class="deco">
@@ -75,7 +76,11 @@
 						</a>
 					</div>
 					<?php }?>
-					
+								
+				</div>
+				
+				<div style="both:clear;">
+					&nbsp;&nbsp;	
 				</div>
 			
 			</div>
@@ -119,6 +124,10 @@
 					
 				</div>
 			
+				<div style="both:clear;">
+					&nbsp;&nbsp;	
+				</div>
+				
 			</div>
 			
 		</div>			
@@ -188,6 +197,10 @@
 				}
 				?>						
 				</div>
+				
+				<div style="both:clear;">
+					&nbsp;&nbsp;	
+				</div>
 
 			</div>
 			
@@ -228,6 +241,10 @@
 					</div>
 					<?php }?>
 					
+				</div>
+				
+				<div style="both:clear;">
+					&nbsp;&nbsp;	
 				</div>
 			
 			</div>

@@ -26,7 +26,7 @@
 }
 
 #mainbrandbox{
-	width: 505;
+	width: 510;
 	margin-left: 40px;	
 	position:absolute;
 	left:-52px;
@@ -35,7 +35,6 @@
 }
 
 .subbrandbox{
-	height: 223px;
 	border-radius: 20px;
 	border: 4px solid #F37139;
 	background-color: white;
@@ -52,7 +51,6 @@
 }
 
 .cat{
-	height: 143px;
 	border-radius: 20px;
 	border: 4px solid #F37139;
 	background-color: white;
@@ -62,49 +60,47 @@
 
 .cat1{
 	float: left;
-	width: 114px;
-	height: 120px;
+	width: 111px;
 	margin-top: 15px;
 	margin-left: 18px;
 	text-transform: uppercase;
-	border-right: 1px solid silver;
 }
 
 .cat2{
 	float: left;
 	width: 105px;
-	height: 120px;	
 	margin-top: 15px;
 	margin-left: 10px;
 	text-transform: capitalize;
+	border-left: 1px solid silver;
+	padding-left: 5px;
 }
 
 .brand1{
 	width: 150px;
-	height: 120px;
 	margin-top: 15px;
 	margin-left: 18px;
 	text-transform: capitalize;
-	border-right: 1px solid silver;
 	float: left;
 }
 
 .brand2{
-	width: 150px;
-	height: 120px;	
+	width: 150px;	
 	margin-top: 15px;
 	margin-left: 10px;
 	text-transform: capitalize;
-	border-right: 1px solid silver;
+	border-left: 1px solid silver;
+	padding-left: 5px;
 	float: left;
 }
 
 .brand3{
-	width: 150px;
-	height: 120px;	
+	width: 150px;	
 	margin-top: 15px;
 	margin-left: 10px;
 	text-transform: capitalize;
+	border-left: 1px solid silver;
+	padding-left: 5px;
 	float: left;
 }
 
