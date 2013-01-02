@@ -10,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/afromenu.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/afropopup.css" />
 
+<link rel="shortcut icon" href="<?php echo base_url();?>images/afrofunk_logo_small.ico">
+<link rel="icon" type="image/ico" href="<?php echo base_url();?>images/afrofunk_logo_small.ico">
+
 <title>Afrofunk Clothing Sydney</title>
 
 <script type="text/javascript">
