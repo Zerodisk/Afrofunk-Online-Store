@@ -119,16 +119,17 @@ class Product extends MY_Controller {
 	 *   - sort_dir 		= sort direction (asc or desc)
 	 *   - products		= list of product
 	 */
-	private function loadViewProductBrowsing($data){
+	private function loadViewProductBrowsing($data){	
 		$data['head']   = $this->load->view('head',   '', TRUE);
 		
-		$header = $this::getFrontendHeader(1, 2, TRUE);
-		$data['header'] = $this->load->view('header', $header, TRUE);
+		$header 			= $this::getFrontendHeader(1, 2, TRUE);
+		$data['header'] 	= $this->load->view('header', $header, TRUE);
 		
-		$data['ads'] 	= $this->load->view('ads', 	  '', TRUE);
-		$data['footer'] = $this->load->view('footer', '', TRUE);
+		$data['ads'] 		= $this->load->view('ads', 	  '', TRUE);
+		$data['footer'] 	= $this->load->view('footer', '', TRUE);
 		
-		$data['nav_html'] = $this::getNavigatorHtml();
+		$data['nav_html'] 	= $this::getNavigatorHtml();
+		$data['show_product_as_popup'] = $this::showProductAsPopup();
 		 
 		$this->load->view('product_browsing', $data);
 	}
@@ -150,6 +151,23 @@ class Product extends MY_Controller {
 		}
 	
 		return $result;
+	}
+	
+	/*
+	 * fucntion check browser agent and design if it should show product as popup within the same window or not (using ajax)
+	 *   return true: for display as ajax popup
+	 *   return false: for display in their own page
+	 */
+	private function showProductAsPopup(){
+		//need user agent library to check browser type
+		$this->load->library('user_agent');
+		
+		if (($this->agent->is_browser('Chrome') || $this->agent->is_browser('Firefox') || $this->agent->is_browser('Safari')) && ($this->agent->mobile() == '')){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
 	}
 	
 }

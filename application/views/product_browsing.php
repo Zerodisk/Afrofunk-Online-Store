@@ -17,17 +17,24 @@
 
 		});
 
-		function fnPopItem(sku){
-			if (isPopup) {return;}
-			$("#popup").load("/store/product/view_popup/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
-				 if(statusTxt=="success"){
-				      //alert("External content loaded successfully!");
-					 fnControlProductPopup(true);
-				 }
-				 if(statusTxt=="error")
-				      //alert("Error: "+xhr.status+": "+xhr.statusText);
-				      alert('Sorry, there was a problem. Please try again.');
-			});
+		function fnPopItem(sku){			
+			<?php if ($show_product_as_popup){?>
+				if (isPopup) {return;}
+				$("#popup").load("/store/product/view_popup/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
+					 if(statusTxt=="success"){
+					      //alert("External content loaded successfully!");
+						 fnControlProductPopup(true);
+					 }
+					 if(statusTxt=="error")
+					      //alert("Error: "+xhr.status+": "+xhr.statusText);
+					      alert('Sorry, there was a problem. Please try again.');
+				});
+			<?php
+			} 
+			else{
+			?>
+				window.location.href = '/store/product/view/' + sku;
+			<?php }?>			
 		}
 
 		/* ******* popup product ******* */

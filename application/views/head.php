@@ -2,13 +2,13 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 -->
 
-<script src="<?php echo base_url();?>js/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/afrocss.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/menublock.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/adsblock.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/products.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/afromenu.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/afropopup.css" />
+<script src="/store/js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/store/css/afrocss.css" />
+<link rel="stylesheet" type="text/css" href="/store/css/menublock.css" />
+<link rel="stylesheet" type="text/css" href="/store/css/adsblock.css" />
+<link rel="stylesheet" type="text/css" href="/store/css/products.css" />
+<link rel="stylesheet" type="text/css" href="/store/css/afromenu.css" />
+<link rel="stylesheet" type="text/css" href="/store/css/afropopup.css" />
 
 <link rel="shortcut icon" href="<?php echo base_url();?>images/afrofunk_logo_small.ico">
 <link rel="icon" type="image/ico" href="<?php echo base_url();?>images/afrofunk_logo_small.ico">
