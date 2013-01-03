@@ -1,5 +1,5 @@
 #maincatbox{
-	width: 260;
+	width: 300;
 	margin-left: 40px;	
 	position:absolute;
 	left:-50px;
@@ -8,7 +8,7 @@
 }
 
 #mainassbox{
-	width: 260;
+	width: 300;
 	margin-left: 40px;	
 	position:absolute;
 	left:-40px;
@@ -17,7 +17,7 @@
 }
 
 #mainsalebox{
-	width: 260;
+	width: 300;
 	margin-left: 40px;	
 	position:absolute;
 	left:-60px;
@@ -68,7 +68,7 @@
 
 .cat2{
 	float: left;
-	width: 105px;
+	width: 145px;
 	margin-top: 15px;
 	margin-left: 10px;
 	text-transform: capitalize;

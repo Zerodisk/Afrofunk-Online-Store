@@ -98,7 +98,7 @@
 			<div class="block float">
 			
 				<div class="photoblock">
-					<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=base_url()?>images/grey.gif" data-original="<?=$product['image_url']?>" width="185" /></a>
+					<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=base_url()?>images/grey.gif" data-original="<?=$product['image_url']?>" width="185" border="0" /></a>
 				</div>
 				
 				<div class="brandblock">

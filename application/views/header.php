@@ -71,7 +71,7 @@
 				    
 					<?php foreach($cat_clothing as $cat){?>
 					<div class="catbox">
-						<a href="<?=base_url().'clothing/'.strtolower($cat['category_name'])?>" class="deco">
+						<a href="<?=base_url().'clothing/'.url_title(strtolower($cat['category_name']))?>" class="deco">
 							<?=$cat['category_name']?>
 						</a>
 					</div>
@@ -116,7 +116,7 @@
 				<div class="cat2">
 					<?php foreach($cat_accessories as $cat){?>
 					<div class="catbox">
-						<a href="<?=base_url().'accessories/'.strtolower($cat['category_name'])?>" class="deco">
+						<a href="<?=base_url().'accessories/'.url_title(strtolower($cat['category_name']))?>" class="deco">
 							<?=$cat['category_name']?>
 						</a>
 					</div>
@@ -195,7 +195,9 @@
 				<?php 
 					$count = $count + 1;
 				}
-				?>						
+				?>			
+					<div class="catbox">
+					</div>		
 				</div>
 				
 				<div style="both:clear;">

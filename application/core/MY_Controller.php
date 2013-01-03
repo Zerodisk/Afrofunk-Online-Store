@@ -47,7 +47,7 @@ class MY_Controller extends CI_Controller{
 		
 		if ($getBrand){
 			$this->load->model('BrandModel');
-			$header['brands']          = $this->BrandModel->getBrandList();
+			$header['brands']          = $this->BrandModel->getBrandList(FALSE);
 		}
 		
 		return $header;

@@ -6,8 +6,16 @@ class BrandModel extends CI_Model{
         parent::__construct();
     }
 
-    public function getBrandList(){
-    	$sql = 'select distinct brand from product_raw order by brand';
+    public function getBrandList($isAll = TRUE){
+    	if ($isAll){
+    		$sql = 'select distinct brand from product_raw order by brand';
+    	}
+    	else{
+	    	$sql = 'select r.brand
+	    			from product p inner join product_raw r on p.sku = r.sku
+	    			where p.is_online = 1
+	    			group by r.brand having count(*) > 0';
+    	}
     	
     	$query = $this->db->query($sql);
     	$data = $query->result_array();

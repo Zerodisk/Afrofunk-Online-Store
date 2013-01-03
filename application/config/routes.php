@@ -68,12 +68,19 @@ $route['clothing/top'] 			  = "product/browsingByCat/22";
 $route['clothing/tops'] 		  =	"product/browsingByCat/22";
 $route['clothing/jacket'] 		  = "product/browsingByCat/23";
 $route['clothing/jackets'] 		  =	"product/browsingByCat/23";
+$route['clothing/coats-jacket']   =	"product/browsingByCat/23";
+$route['clothing/coats-jackets']  =	"product/browsingByCat/23";
 $route['clothing/skirt'] 		  =	"product/browsingByCat/24";
 $route['clothing/skirts'] 		  =	"product/browsingByCat/24";
 $route['clothing/short'] 		  =	"product/browsingByCat/25";
 $route['clothing/shorts'] 		  = "product/browsingByCat/25";
 $route['clothing/pant'] 		  = "product/browsingByCat/26";
 $route['clothing/pants'] 		  = "product/browsingByCat/26";
+$route['clothing/pants-leggin']   = "product/browsingByCat/26";
+$route['clothing/pants-leggins']  = "product/browsingByCat/26";
+$route['clothing/jumpsuits-playsuit']	= "product/browsingByCat/27";
+$route['clothing/jumpsuits-playsuits']	= "product/browsingByCat/27";
+
 
 /*
 Accessories
