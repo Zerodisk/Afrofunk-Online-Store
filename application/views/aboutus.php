@@ -1,6 +1,8 @@
 <html>
 <head>
 	<?php echo $head;?>
+	
+	<title>about us | Afrofunk Clothing Sydney</title>
 
 	<script type="text/javascript">
 

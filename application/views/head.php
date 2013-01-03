@@ -13,8 +13,6 @@
 <link rel="shortcut icon" href="<?php echo base_url();?>images/afrofunk_logo_small.ico">
 <link rel="icon" type="image/ico" href="<?php echo base_url();?>images/afrofunk_logo_small.ico">
 
-<title>Afrofunk Clothing Sydney</title>
-
 <script type="text/javascript">
 
   var _gaq = _gaq || [];

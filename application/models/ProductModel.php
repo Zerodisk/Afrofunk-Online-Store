@@ -4,7 +4,7 @@ class ProductModel extends CI_Model{
 	var $baseProductSql = 'select p.sku, p.product_name, p.description, p.price_init, 
 							p.date_first_online, p.is_online,
 							r.product_name as product_name_raw, r.description as description_raw, 
-							r.url, r.original_url, r.image_url, p.price_init, r.price as price_now, IF( p.price_init > r.price, p.price_init - r.price, 0 ) as price_saving, 
+							r.url, r.original_url, p.image_url, p.price_init, r.price as price_now, IF( p.price_init > r.price, p.price_init - r.price, 0 ) as price_saving, 
 							r.delivery_cost, r.currency_code, r.brand, r.colour, r.gender, r.size, 
 							r.date_created, r.date_modified, c.cat_id, c.category_name, c.parent_id
 							from product p inner join product_raw r on p.sku = r.sku
@@ -59,6 +59,7 @@ class ProductModel extends CI_Model{
 			$product['description'] = $param['description'];
 		}
 		$product['price_init']   	= $param['price'];
+		$product['image_url']   	= $param['image_url'];		//move image_url to product table 3-jan-2013
 		$product['is_online']	 	= 0;
 		$product['date_modified']   = date('Y-m-d H:i:s');
 		$this->db->insert('product', $product);

@@ -67,6 +67,7 @@ class Product extends MY_Controller{
     	$param['product_name'] = $this->input->post('product_name');
     	$param['description']  = $this->input->post('description');
     	$param['price_init']   = $this->input->post('price_init');
+    	$param['image_url']    = $this->input->post('image_url');		//move image_url to product table, so need to be able to update in admin area 3-jan-2013
     	$param['cat_id']       = $this->input->post('cat_id');
     	$this->ProductModel->updateProduct($sku, $param);        
     	

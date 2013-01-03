@@ -1,51 +1,64 @@
 <html>
-	<head>
-		<?php echo $head;?>
+<head>
+	<?php echo $head;?>
+	
+	<title>Afrofunk Clothing Sydney</title>
 
-		<script type="text/javascript">
-			var isPopup = false;
-		
-			$(document).ready(function(){
-				$(document).keyup(function(e) {
-					  if (e.keyCode == 27) {  // esc (27 = escape key)
-						  fnControlProductPopup(false);
-					  }   
-				});
-
+	<script type="text/javascript">
+		var isPopup = false;		//indicate popup - true: product is popup now, false: not popup
+		var isPopMouseIn = false;	//indicate is mouse is over/in the product popup - true: moust is over/in now
+	
+		$(document).ready(function(){
+			$(document).keyup(function(e) {
+				  if (e.keyCode == 27) {  // esc (27 = escape key)
+					  fnControlProductPopup(false);
+				  }   
 			});
-	
-			function fnPopItem(sku){
-				if (isPopup) {return;}
-				$("#popup").load("/store/product/view_popup/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
-					 if(statusTxt=="success"){
-					      //alert("External content loaded successfully!");
-						 fnControlProductPopup(true);
-					 }
-					 if(statusTxt=="error")
-					      //alert("Error: "+xhr.status+": "+xhr.statusText);
-					      alert('Sorry, there was a problem. Please try again.');
-				});
-			}
-	
-			/* ******* popup product ******* */
-			function fnControlProductPopup(isDisplay){
-				if (isDisplay){
-					isPopup = true;
-					$('#popup').css('left', ((self.innerWidth - 810)/2) + 'px');
-					$('#popup').css('top', ((self.innerHeight - 550)/2) + 'px');
-					$('#popup').css('visibility', 'visible');
-					$('#container').fadeTo('fast',.3);			//background face out
 
-				}
-				else{
-					isPopup = false;
-					$('#popup').css('visibility', 'hidden');
-					$('#container').fadeTo('fast',1);			//backgroud to normal
-				}
+		});
+
+		function fnPopItem(sku){
+			if (isPopup) {return;}
+			$("#popup").load("/store/product/view_popup/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
+				 if(statusTxt=="success"){
+				      //alert("External content loaded successfully!");
+					 fnControlProductPopup(true);
+				 }
+				 if(statusTxt=="error")
+				      //alert("Error: "+xhr.status+": "+xhr.statusText);
+				      alert('Sorry, there was a problem. Please try again.');
+			});
+		}
+
+		/* ******* popup product ******* */
+		function fnControlProductPopup(isDisplay){
+			if (isDisplay){
+				isPopup = true;
+				$('#popup').css('left', ((self.innerWidth - 810)/2) + 'px');
+				$('#popup').css('top', ((self.innerHeight - 550)/2) + 'px');
+				$('#popup').css('visibility', 'visible');
+				$('#container').fadeTo('fast',.3);			//background face out
+
 			}
-						
-		</script>
-		<style>
+			else{
+				isPopup = false;
+				$('#popup').css('visibility', 'hidden');
+				$('#container').fadeTo('fast',1);			//backgroud to normal
+			}
+		}
+
+		function fnSetPopupMouseValue(value){
+			isPopMouseIn = value;
+		}
+
+		function fnBody_OnClick(){
+			if (!isPopMouseIn){
+				fnControlProductPopup(false);
+			}
+		}
+					
+	</script>
+	<style>
 			#popup{
 				position:fixed;
 				
@@ -62,9 +75,9 @@
 				overflow-y:hidden;
 			}
 		</style>
-	</head>
-<body>
-	<div id="popup"></div>
+</head>
+<body onclick="fnBody_OnClick()">
+	<div id="popup" onmouseover="fnSetPopupMouseValue(true)" onmouseout="fnSetPopupMouseValue(false)"></div>
 	<div id="container">
 
 		<?php echo $header;?>

@@ -1,6 +1,8 @@
 <html>
 <head>
 	<?php echo $head;?>
+	
+	<title>redirecting to <?=$product->product_name?> | Afrofunk Clothing Sydney</title>
 
 	<script type="text/javascript">  
 		var count = 7;  
