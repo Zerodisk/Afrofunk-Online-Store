@@ -12,6 +12,7 @@
 
 <link rel="shortcut icon" href="<?php echo base_url();?>images/afrofunk_logo_small.ico">
 <link rel="icon" type="image/ico" href="<?php echo base_url();?>images/afrofunk_logo_small.ico">
+<link rel="apple-touch-icon" href="<?php echo base_url();?>/images/iphone-touch-icon.png" />
 
 <script type="text/javascript">
 
