@@ -7,7 +7,7 @@ body{
 }
 
 #container{
-	width: 960px; margin: 0 auto;
+	width: 964px; margin: 0 auto;
 	background-color: white;
 }
 
@@ -87,9 +87,6 @@ body{
     margin-right: auto;
 	height: 100px;
 	text-align: center;
-	<!--
-	background-color: orange;
-	-->
 }
 
 .copyright{

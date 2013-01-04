@@ -5,7 +5,7 @@
 	<title>redirecting to <?=$product->product_name?> | Afrofunk Clothing Sydney</title>
 
 	<script type="text/javascript">  
-		var count = 7;  
+		var count = 6;  
 		var redirect="<?=$product->url?>"  
 		  
 		function countDown(){  

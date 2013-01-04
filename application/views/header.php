@@ -36,8 +36,8 @@
 	<!--  afrofunk logo  -->		
 </div>
 
-<ul id="nav">
-	
+<div id="nav">
+<ul>	
 	<li>
 		<a href="<?=base_url()?>">HOME</a>			
 	</li>
@@ -196,8 +196,7 @@
 					$count = $count + 1;
 				}
 				?>			
-					<div class="catbox">
-					</div>		
+					<div class="catbox">&nbsp;</div>		
 				</div>
 				
 				<div style="both:clear;">
@@ -259,4 +258,4 @@
 	</li>
 		
 </ul>
-
+</div>

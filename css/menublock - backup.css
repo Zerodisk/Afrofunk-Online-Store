@@ -1,0 +1,25 @@
+#nav{
+	list-style: none;
+	float: left;
+	width: 100%;
+	
+}
+
+#nav li{
+	    float: left;
+	    margin-right: 70px;
+	    position:relative;
+}
+
+#nav a{
+	   display: block;
+	   height: 1px;
+	   font: bold 0.8125em "Myriad Pro", Helvetica, "Helvetica Neue", Arial, Geneva, sans-serif;
+	   color: gray;
+	   text-decoration: none;
+}
+
+
+#nav a:hover{
+		color: #FF5500;
+}

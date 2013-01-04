@@ -1,5 +1,5 @@
 #containerPopup{
-	width: 810px; height: 550px; margin: 0 auto;
+	width: 815px; height: 550px; margin: 0 auto;
 	border-radius: 20px;
 	border: 4px solid silver;
 	background-color: gray;
@@ -43,14 +43,14 @@
 .photo1 {
 	width: 108px;
 	height: 138px;
-	background: orange;
+	background: gray;
 	border: 1px solid silver;
 }
 
 .photo2 {
 	width: 108px;
 	height: 138px;
-	background: orange;
+	background: gray;
 	margin-top: 15px;
 	border: 1px solid silver;
 }
@@ -58,7 +58,7 @@
 .photo3 {
 	width: 108px;
 	height: 138px;
-	background: orange;
+	background: gray;
 	margin-top: 15px;
 	border: 1px solid silver;
 }

@@ -88,11 +88,13 @@
 	<div id="container">
 
 		<?php echo $header;?>
-
+ 
+ <!-- 
 		<div class="smallbox">
 	
 		</div>
-			
+-->
+		
 		<?php echo $ads;?>
 
 		<div id="products">
@@ -105,7 +107,17 @@
 			<div class="block float">
 			
 				<div class="photoblock">
+				    <?php
+				    //use lazy load only selected browser same way it's allowed popup product 
+				    if ($show_product_as_popup){
+					?>
 					<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=base_url()?>images/grey.gif" data-original="<?=$product['image_url']?>" width="185" border="0" /></a>
+					<?php 
+					}
+					else{
+					?>
+					<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=$product['image_url']?>" width="185" border="0" /></a>
+					<?php }?>
 				</div>
 				
 				<div class="brandblock">

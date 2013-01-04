@@ -9,13 +9,14 @@
 	<div id="container">
 
 		<?php echo $header;?>
-		
+		<!-- 
 		<div class="smallbox">
 	
 		</div>
-			
+		-->
+		
 		<div id="products">
-			<br>
+			<br><br>
 		
 		    <!-- copy from view_popup -- start here -->
 				<div id="containerPopup">
