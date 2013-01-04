@@ -29,6 +29,11 @@ class Remote extends MY_Controller {
     	}
     }
     
+    public function doFinaliseUpdate(){
+    	$this->RemoteModel->doFinaliseUpdate();
+    	echo('OK');
+    }
+    
     /*
      *	this is for local app to download all the active SKU list 
      *   - SKU of active product

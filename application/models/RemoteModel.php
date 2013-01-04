@@ -28,8 +28,9 @@ class RemoteModel extends CI_Model{
 				$this->ProductModel->addProductRaw($param);
 			}
 			else{
-				//existing product sku, just do a smart update
-				$includeParam = array('product_name','description','url','original_url','image_url','price','delivery_cost','currency_code','brand','colour','gender','size');
+				//existing product sku, just do a smart update   
+				//    remove brand name update 4-jan-2013
+				$includeParam = array('product_name','description','url','original_url','image_url','price','delivery_cost','currency_code','colour','gender','size');
 				$param = $this::filterParam($param, $includeParam);
 				$this->ProductModel->updateProductRaw($productSKU, $param);
 			}
@@ -51,6 +52,29 @@ class RemoteModel extends CI_Model{
 		$query->free_result();
 		return $data;
 	}
+	
+	/*
+	 * this is the final step need to do once after product update sync done
+	 *   1. update brand name
+	 *   
+	 */
+	public function doFinaliseUpdate(){
+		$sql = "update product_raw set brand = '1&20 Blackbirds' where brand = '1&20; Blackbirds'";
+		$this->db->query($sql);
+		
+		$sql = "update product_raw set brand = '80%20' where brand = '80 '";
+		$this->db->query($sql);
+		
+		$sql = "update product_raw set brand = 'House Of Harlow' where brand = 'House Of Harlow 1960'";
+		$this->db->query($sql);
+		
+		$sql = "update product_raw set brand = 'Atmos&Here' where brand = 'Atmos&Here;'";
+		$this->db->query($sql);
+	}
+	
+	
+	
+	
 	
 	/*
 	 * remove anything in param that is not in includeParam, then return $param
