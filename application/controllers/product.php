@@ -7,6 +7,7 @@ class Product extends MY_Controller {
         $this->load->model('ProductModel');
         $this->load->model('PhotoModel');
         $this->load->model('CategoryModel');
+        $this->load->model('BrandModel');
     }	
 
 	public function index()
@@ -95,11 +96,17 @@ class Product extends MY_Controller {
 		$filter = array();
 		$filter['is_online'] = 1;
 		if ($brand != NULL){
+			//do brand check for exception list, if match then replace with one in exception list
+			$exception = $this->BrandModel->getExceptionBrandList();
+			if (array_key_exists($brand, $exception)){
+				$brand = $exception[$brand];
+			}
+			
 			$brand = str_replace('-', ' ', $brand);		//replace dash (-) with space
 			$filter['brands'] = array($brand);
 		}
 		$products = $this->ProductModel->getProductList($filter);
-		//var_dump($products);
+		
 		$data = array();
 		$data['products'] = $products;
 		$this::loadViewProductBrowsing($data);

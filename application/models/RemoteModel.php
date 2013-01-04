@@ -5,6 +5,7 @@ class RemoteModel extends CI_Model{
         // Call the Model constructor
         parent::__construct();
         $this->load->model('ProductModel');
+        $this->load->model('BrandModel');
     }
 
     /*
@@ -56,23 +57,15 @@ class RemoteModel extends CI_Model{
 	/*
 	 * this is the final step need to do once after product update sync done
 	 *   1. update brand name
-	 *   
+	 *   		brand name rename came from $this->BrandModel->getRenameBrandList()
 	 */
 	public function doFinaliseUpdate(){
-		$sql = "update product_raw set brand = '1&20 Blackbirds' where brand = '1&20; Blackbirds'";
-		$this->db->query($sql);
-		
-		$sql = "update product_raw set brand = '80%20' where brand = '80 '";
-		$this->db->query($sql);
-		
-		$sql = "update product_raw set brand = 'House Of Harlow' where brand = 'House Of Harlow 1960'";
-		$this->db->query($sql);
-		
-		$sql = "update product_raw set brand = 'Atmos&Here' where brand = 'Atmos&Here;'";
-		$this->db->query($sql);
+		$brands = $this->BrandModel->getRenameBrandList();
+		foreach(array_keys($brands) as $key){
+			$sql = "update product_raw set brand = '".$brands[$key]."' where brand = '".$key."'";
+			$this->db->query($sql);
+		}
 	}
-	
-	
 	
 	
 	

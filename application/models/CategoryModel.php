@@ -31,6 +31,11 @@ class CategoryModel extends CI_Model{
     	$query = $this->db->query($sql);
     	$data = $query->result_array();
     	$query->free_result();
+    	
+    	for ($i = 0; $i <= count($data) - 1; $i++){
+    		$data[$i]['category_name_seo'] = url_title($data[$i]['category_name']);
+    	}
+    	
     	return $data;
     } 
     
