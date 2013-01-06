@@ -98,8 +98,8 @@ $route['accessories/bags']        =	"product/browsingByCat/42";
 $route['accessories/jewellery']   = "product/browsingByCat/43";
 $route['accessories/sunglasses']  = "product/browsingByCat/44";
 $route['accessories/sun-glasses'] = "product/browsingByCat/44";
-$route['accessories/Other']       = "product/browsingByCat/45";
-$route['accessories/Others']      = "product/browsingByCat/45";
+$route['accessories/other']       = "product/browsingByCat/45";
+$route['accessories/others']      = "product/browsingByCat/45";
 
 /*
 Brand
