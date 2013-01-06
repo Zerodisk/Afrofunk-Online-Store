@@ -18,23 +18,17 @@
 		});
 
 		function fnPopItem(sku){			
-			<?php if ($show_product_as_popup){?>
-				if (isPopup) {return;}
-				$("#popup").load("/store/product/view_popup/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
-					 if(statusTxt=="success"){
-					      //alert("External content loaded successfully!");
-						 fnControlProductPopup(true);
-					 }
-					 if(statusTxt=="error")
-					      //alert("Error: "+xhr.status+": "+xhr.statusText);
-					      alert('Sorry, there was a problem. Please try again.');
-				});
-			<?php
-			} 
-			else{
-			?>
-				window.location.href = '/store/product/view/' + sku;
-			<?php }?>			
+			if (isPopup) {return;}
+			
+			$("#popup").load("/store/product/view_popup/" + sku + '/?noCSS=true',function(responseTxt,statusTxt,xhr){
+				 if(statusTxt=="success"){
+				      //alert("External content loaded successfully!");
+					 fnControlProductPopup(true);
+				 }
+				 if(statusTxt=="error")
+				      //alert("Error: "+xhr.status+": "+xhr.statusText);
+				      alert('Sorry, there was a problem. Please try again.');
+			});		
 		}
 
 		/* ******* popup product ******* */
@@ -108,15 +102,17 @@
 			
 				<div class="photoblock">
 				    <?php
-				    //use lazy load only selected browser same way it's allowed popup product 
 				    if ($show_product_as_popup){
+						//use lazy load only selected browser same way it's allowed popup product
+						//use javascript to popup product
 					?>
-					<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=base_url()?>images/grey.gif" data-original="<?=$product['image_url']?>" width="185" border="0" /></a>
+						<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=base_url()?>images/grey.gif" data-original="<?=$product['image_url']?>" width="185" border="0" /></a>
 					<?php 
 					}
 					else{
+						//for IE and Mobile client
 					?>
-					<a href="javascript:fnPopItem('<?=$product['sku']?>')"><img src="<?=$product['image_url']?>" width="185" border="0" /></a>
+						<a href="/store/product/view/<?=$product['sku']?>"><img src="<?=$product['image_url']?>" width="185" border="0" /></a>
 					<?php }?>
 				</div>
 				
