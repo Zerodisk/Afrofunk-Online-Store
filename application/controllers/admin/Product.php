@@ -25,7 +25,7 @@ class Product extends MY_Controller{
     	//page, sort, sort_dir
     	$data['page']				= ($this->input->get('page')==FALSE)?'0':$this->input->get('page');
     	$data['page_size']			= $this->ProductModel->getDefaultPageSize();
-    	$data['sort']				= ($this->input->get('sort')==FALSE)?'date_modified':$this->input->get('sort');
+    	$data['sort']				= ($this->input->get('sort')==FALSE)?'r.date_created':$this->input->get('sort');
     	$data['sort_dir']			= ($this->input->get('sort_dir')==FALSE)?'desc':$this->input->get('sort_dir');
     	
     	//load product data

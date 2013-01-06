@@ -30,8 +30,18 @@ class Remote extends MY_Controller {
     }
     
     public function doFinaliseUpdate(){
-    	$this->RemoteModel->doFinaliseUpdate();
-    	echo('OK');
+    	//validate secretCode
+    	$secretCode = $this->input->get_post('secret_code');
+    	
+    	if ($secretCode == $this->config->item('encryption_key')){
+    		
+	    	$this->RemoteModel->doFinaliseUpdate();
+	    	echo('OK');
+	    	
+    	}
+    	else{
+    		echo('the encryption value not matched, sc = '.$secretCode);
+    	}
     }
     
     /*
