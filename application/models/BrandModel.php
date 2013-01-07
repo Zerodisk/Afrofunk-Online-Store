@@ -4,6 +4,7 @@ class BrandModel extends CI_Model{
     function __construct(){
         // Call the Model constructor
         parent::__construct();
+        $this->load->model('GlobalvalueModel');
     }
 
     /*
@@ -64,6 +65,43 @@ class BrandModel extends CI_Model{
     				 );
    
     	return $brands;
+    }
+    
+    /*
+     * this is part of finalise step for data feed pushing
+     * it does
+     *  1. delete old data from brand_update table
+     *  2. get date_last_push from global value
+     *  3. find brand and number of new item those have been inserted into product_raw table by looking at date_created
+     *     we are compare with date-only of date_last_push (no time)
+     */
+    public function updateNewBrandItem(){
+    	//delete all old table from brand_update table
+    	$sql = 'delete from brand_update';
+    	$this->db->query($sql);
+    	
+    	//get last_date_push data
+    	$date_last_update = $this->GlobalvalueModel->getGlobalValue('date_last_push');
+    	$date_last_update = substr($date_last_update->value, 0, 10).' 00:00:00';
+    	
+    	//add new one
+    	$sql = "insert into brand_update(brand, num_item)
+    			select brand, count(*) from product_raw where date_created > '".$date_last_update."'
+    			group by brand order by brand";
+    	$this->db->query($sql);
+    }
+    
+    /*
+     * return list of data in table brand_update
+     */
+    public function getNewBrandList(){
+    	$sql = 'select brand, num_item, date_created from brand_update order by brand';
+
+    	$query = $this->db->query($sql);
+    	$data = $query->result_array();
+    	$query->free_result();
+
+    	return $data;
     }
     
 }

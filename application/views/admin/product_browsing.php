@@ -76,7 +76,7 @@
 						<?php foreach($products as $product) {?>
 						<div class="product-box">
 							
-							<div class="product-name"><?php echo $product['product_name'];?></div><br>
+							<div class="product-name" <?php if ($product['date_created'] > $date_last_push) {echo('style="color:red"');} ?>><?php echo $product['product_name'];?></div><br>
 							
 							<div class="sku">SKU: <?php echo $product['sku'];?></div><br>
 							

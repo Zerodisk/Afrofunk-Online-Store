@@ -7,6 +7,7 @@ class Product extends MY_Controller{
         $this->load->model('ProductModel');
         $this->load->model('PhotoModel');
         $this->load->model('BrandModel');
+        $this->load->model('GlobalvalueModel');
     }	
     
     //main product browsing controller
@@ -37,6 +38,11 @@ class Product extends MY_Controller{
     	$filter['page_index']		= $data['page']; 	
     	$data['products']			= $this->ProductModel->getProductList($filter);
 
+    	//load global_value
+    	$date_last_update			= $this->GlobalvalueModel->getGlobalValue('date_last_push');
+    	$date_last_update 			= substr($date_last_update->value, 0, 10).' 00:00:00';      //remove the time here
+    	$data['date_last_push']		= $date_last_update;
+    	
     	$this::loadViewProductBrowsing($data);
     }
     

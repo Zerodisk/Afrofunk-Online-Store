@@ -1,0 +1,37 @@
+.dateblock {
+	width: 200px;
+	margin-top: 30;
+	background-color: silver;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.updateblock{
+	float: left;
+	width: 200px;
+	height: 300px;
+	overflow: scroll;
+	border: 1px solid silver;
+	background-color: pink;
+}
+
+.sumblock {
+	float: left;
+	width: 300px;
+	height: 200px;
+	margin-left: 30px;
+	border: 1px solid silver;
+	padding: 20px;
+	font-size: 1.2em;
+}
+
+.micblock {
+	float: left;
+	width: 300px;
+	height: 200px;
+	margin-left: 30px;
+	border: 1px solid silver;
+	padding: 20px;
+	font-size: 1.2em;
+
+}

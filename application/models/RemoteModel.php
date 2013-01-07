@@ -6,6 +6,7 @@ class RemoteModel extends CI_Model{
         parent::__construct();
         $this->load->model('ProductModel');
         $this->load->model('BrandModel');
+        $this->load->model('GlobalvalueModel');
     }
 
     /*
@@ -60,11 +61,18 @@ class RemoteModel extends CI_Model{
 	 *   		brand name rename came from $this->BrandModel->getRenameBrandList()
 	 */
 	public function doFinaliseUpdate(){
+		//rename brand
 		$brands = $this->BrandModel->getRenameBrandList();
 		foreach(array_keys($brands) as $key){
 			$sql = "update product_raw set brand = '".$brands[$key]."' where brand = '".$key."'";
 			$this->db->query($sql);
 		}
+		
+		//update date_last_push value in global_value table
+		$this->GlobalvalueModel->updateGlobalValue('date_last_push');
+		
+		//update brand - which brand got new items since last push and how many of them
+		$this->BrandModel->updateNewBrandItem();
 	}
 	
 	
