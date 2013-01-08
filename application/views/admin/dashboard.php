@@ -29,10 +29,40 @@
 							<a href="http://dashboard.commissionfactory.com.au/Affiliate/Creatives/DataFeeds/ivKEs4ex1reY6M$n2eeR4pfygumdtsG3grGNp9$nm@Cq4ff4turUgslT/">
 								check iconic feed
 							</a><br><br>
-							Number of Online Items = aa <br><br>
-							Number of brands = bb <br><br>
-							Online brands = cc <br><br>
-							Offline brands = dd <br><br>								
+							<table width="98%" border="0">
+								<tr>
+									<td><b>Items</b></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Number of Items</td>
+									<td><?=$num_items?></td>
+								</tr>
+								<tr>
+									<td>Online Items</td>
+									<td><?=$num_items_online?></td>
+								</tr>
+								<tr>
+									<td>Offline Items</td>
+									<td><?=$num_items_offline?></td>
+								</tr>
+								<tr>
+									<td><b>Brands</b></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Number of brands</td>
+									<td><?=$num_brand?></td>
+								</tr>
+								<tr>
+									<td>Online brands</td>
+									<td><?=$num_brand_online?></td>
+								</tr>
+								<tr>
+									<td>Offline brands</td>
+									<td><?=$num_brand_offline?></td>
+								</tr>
+							</table>						
 						
 						</div>
 						

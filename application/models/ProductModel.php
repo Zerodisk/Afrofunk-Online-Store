@@ -168,6 +168,39 @@ class ProductModel extends CI_Model{
 		return $data;
 	}
 	
+	/*
+	 * just return number of item from product table
+	*/
+	public function getNumberOfItem(){
+		$sql = 'select count(*) as num_items from product';
+	
+		$query = $this->db->query($sql);
+		if ($query->num_rows() > 0){
+			$row = $query->row();
+			$result = $row;
+		}
+	
+		$query->free_result();
+		return $result->num_items;
+	}
+	
+	/*
+	 * just return number of item that are online
+	 */
+	public function getNumberOfOnlineItem(){
+		$sql = 'select count(*) as num_items from product where is_online = 1';
+		
+		$query = $this->db->query($sql);
+		if ($query->num_rows() > 0){
+			$row = $query->row();
+			$result = $row;
+		}
+	
+		$query->free_result();
+		return $result->num_items;
+	}
+
+	
 	
 	/*
 	 * function return array list to string list with quote and comma separation

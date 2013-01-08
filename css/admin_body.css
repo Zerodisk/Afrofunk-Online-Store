@@ -18,7 +18,7 @@
 .sumblock {
 	float: left;
 	width: 300px;
-	height: 200px;
+	height: 250px;
 	margin-left: 30px;
 	border: 1px solid silver;
 	padding: 20px;
@@ -28,7 +28,7 @@
 .micblock {
 	float: left;
 	width: 300px;
-	height: 200px;
+	height: 250px;
 	margin-left: 30px;
 	border: 1px solid silver;
 	padding: 20px;
