@@ -10,7 +10,7 @@ class RemoteModel extends CI_Model{
     }
 
     /*
-     *	- select product with $productSKU
+     *	- select product with $sku
      *	- if not found,
      *		 easy as just add
      *	  else
@@ -19,22 +19,37 @@ class RemoteModel extends CI_Model{
      *	- return false when failed (it should be db error return if there is any
      */
 	public function doProductUpdate($param){
-		$productSKU = $param['sku'];
+		$sku = $param['sku'];
+		$original_url = $param['original_url'];
 		
 		try {
-			$result = $this->ProductModel->getProductRaw($productSKU);
+			$result = $this->ProductModel->getProductRaw($sku);
 			if ($result == NULL){
-				//new product sku
-				$includeParam = array('sku','product_name','description','url','original_url','image_url','price','delivery_cost','currency_code','brand','colour','gender','size');
-				$param = $this::filterParam($param, $includeParam);
-				$this->ProductModel->addProductRaw($param);
+				
+				//get list of product_raw that matched the given original_url (we will assume that it's the exising product)
+				$duplicateOriginalUrlList = $this->ProductModel->getProductRawListByOriginalURL($original_url);
+				
+				if (count($duplicateOriginalUrlList) == 0){		
+					//original_url isn't found so it's new product 
+					$includeParam = array('sku','product_name','description','url','original_url','image_url','price','delivery_cost','currency_code','brand','colour','gender','size');
+					$param = $this::filterParam($param, $includeParam);
+					$this->ProductModel->addProductRaw($param);
+				}
+				else{
+					//only update "price" to the existing sku with the same original_url
+					$sku = $duplicateOriginalUrlList[0]['sku'];
+					$includeParam = array('price');
+					$param = $this::filterParam($param, $includeParam);
+					$this->ProductModel->updateProductRaw($sku, $param);
+				}
+				
 			}
 			else{
 				//existing product sku, just do a smart update   
 				//    remove brand name update 4-jan-2013
 				$includeParam = array('product_name','description','url','original_url','image_url','price','delivery_cost','currency_code','colour','gender','size');
 				$param = $this::filterParam($param, $includeParam);
-				$this->ProductModel->updateProductRaw($productSKU, $param);
+				$this->ProductModel->updateProductRaw($sku, $param);
 			}
 			return TRUE;
 		} 

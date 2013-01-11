@@ -41,6 +41,16 @@ class ProductModel extends CI_Model{
 	}
 	
 	/*
+	 * return list of product_raw for a given original_url
+	 */
+	public function getProductRawListByOriginalURL($original_url){
+    	$query = $this->db->get_where('product_raw', array('original_url' => $original_url));
+		$data = $query->result_array();
+		$query->free_result();
+		return $data;
+	}
+	
+	/*
 	 * add new product into 2 table
 	 *  - product_raw
 	 *  - product
