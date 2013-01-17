@@ -10,7 +10,7 @@ class ProductModel extends CI_Model{
 							from product p inner join product_raw r on p.sku = r.sku
 							left join category c on p.cat_id = c.cat_id 
 							where 0 = 0 ';
-	var $default_page_size = 100;
+	var $default_page_size = 150;
 	
     function __construct(){
         // Call the Model constructor
