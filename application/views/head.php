@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html" />
-<meta name="description" content="Australia best online affiliate fashion and footwear store. Funky style with the trendiest brands. Buy clothes online, shoes online, 
+<meta name="description" content="Australia best online affiliate fashion and footwear store. Funky and Streetware style with the trendiest brands. Buy clothes online, shoes online, 
 and fashion accessories." />
-<meta name="keywords" content="Funky Fashion Accessories, Designer clothes women, Women designer clothes, Ladies Fashion accessories" />
+<meta name="keywords" content="Funky Fashion Accessories, Streetware vision, Designer clothes women, Women designer clothes, Ladies Fashion accessories" />
 <meta name="geo.region" content="AU-NSW" />
 <meta name="rating" content="general" />
 <meta name="language" content="English" />
@@ -10,8 +10,7 @@ and fashion accessories." />
 <!-- 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 -->
-
-<script src="/store/js/jquery.min.js"></script>
+<script type="text/javascript" src="/store/js/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/store/css/afrocss.css" />
 <link rel="stylesheet" type="text/css" href="/store/css/menublock.css" />
 <link rel="stylesheet" type="text/css" href="/store/css/adsblock.css" />
