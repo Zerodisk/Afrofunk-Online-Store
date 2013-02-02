@@ -82,7 +82,7 @@ switch($menu){
 			<div id="ads">		
 				<a href="https://track.commissionfactory.com.au/b/6718/10486/women/accessories/sunglasses/" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/0ac38747-d568-43bc-a41b-a86505abe760.gif" /></a>
 				<br><br>
-				<a href="https://track.commissionfactory.com.au/b/6718/9139/women/clothing/new-products/?sort=popularity&amp;dir=desc" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/b04260b9-88e1-4106-9f31-ca13a1e0f61e.gif" /></a>
+				<a href="https://track.commissionfactory.com.au/b/6718/10492/women/womens-bags/" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/9673a31f-bc05-4cc4-af60-e397038846fc.gif" /></a>
 			</div>
 		</div>
 <?php 
