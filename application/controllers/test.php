@@ -3,12 +3,16 @@
 class Test extends MY_Controller {
 
 	public function __construct(){
-        parent::__construct();
+        parent::__construct('admin');
         $this->load->model('ProductModel');
     }	
     
     public function view($templateFileName){
     	$this->load->view(str_replace('.php', '', $templateFileName));
+    }
+    
+    public function phpinfo(){
+    	echo phpinfo(); 
     }
     
     public function mybrowser(){    	
