@@ -15,6 +15,11 @@ class Test extends MY_Controller {
     	echo phpinfo(); 
     }
     
+    public function deleteProduct($num_product){
+    	$this->ProductModel->deleteProducts($num_product);
+    	echo($num_product.' products have been deleted');
+    }
+    
     public function mybrowser(){    	
     	$this->load->library('user_agent');
     	

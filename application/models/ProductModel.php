@@ -209,6 +209,38 @@ class ProductModel extends CI_Model{
 		$query->free_result();
 		return $result->num_items;
 	}
+	
+	/*
+	 * delete x number of given $num_product offline product
+	 */
+	public function deleteProducts($num_product = 100){
+		$data = $this::getOfflineProductForDeletion($num_product);
+		foreach($data as $product){
+			$this::deleteProduct($product['sku']);			
+		}
+	}
+	
+	/*
+	 * delete a give sku from 3 tabled - product, product_raw, photo
+	 */
+	public function deleteProduct($sku){
+		$this->db->delete('product_raw', array('sku' => $sku));
+		$this->db->delete('product',     array('sku' => $sku));
+		$this->db->delete('photo',       array('sku' => $sku));
+	}
+	
+	/*
+	 * get list of offline product order by date_created asc
+	 */
+	public function getOfflineProductForDeletion($num_product){
+		$sql = 'select p.sku, r.date_created from product p inner join product_raw r on p.sku = r.sku
+					where p.is_online = 0 order by r.date_created asc limit '.$num_product;
+		//execute query
+		$query = $this->db->query($sql);
+		$data = $query->result_array();
+		$query->free_result();
+		return $data;
+	}
 
 	
 	
