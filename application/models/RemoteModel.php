@@ -31,7 +31,7 @@ class RemoteModel extends CI_Model{
 				
 				if (count($duplicateOriginalUrlList) == 0){		
 					//original_url isn't found so it's new product 
-					$includeParam = array('sku','product_name','description','url','original_url','image_url','price','delivery_cost','currency_code','brand','colour','gender','size');
+					$includeParam = array('sku','product_name','description','url','original_url','image_url','price','delivery_cost','currency_code','brand','colour','gender','size','mid');
 					$param = $this::filterParam($param, $includeParam);
 					$this->ProductModel->addProductRaw($param);
 				}
