@@ -47,4 +47,19 @@ class Test extends MY_Controller {
     	else
     		echo('found and it is > 0');
     }
+    
+    public function myip(){
+    	$this->load->library('session');
+    	$session_data = $this->session->all_userdata();
+    	
+    	$myip = $session_data['ip_address'];
+    	
+    	echo('my ip address is: '.$myip.' and it convert to long = '.sprintf("%u", ip2long($myip)).'<br>');
+    	
+    	echo('convert ip adddress of 198.151.53.250 to long = '.sprintf("%u", ip2long('198.151.53.250')));
+    	
+    	
+    	
+    	
+    }
 }
