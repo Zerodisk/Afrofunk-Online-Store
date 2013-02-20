@@ -50,7 +50,10 @@
 						status<br>
 						<?php echo $status_selectbox;?><br>
 						
-						brand:<br>
+						merchants<br>
+						<?php echo $mids_selectbox;?><br>
+						
+						brands:<br>
 						<?php echo $brands_selectbox;?>
 						
 						&nbsp;&nbsp;<a href="javascript:fnCheckBrand(true);">check all</a> | <a href="javascript:fnCheckBrand(false);">uncheck all</a><br><br>

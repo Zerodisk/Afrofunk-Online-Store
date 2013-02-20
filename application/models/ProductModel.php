@@ -1,7 +1,7 @@
 <?php
 class ProductModel extends CI_Model{
 	
-	var $baseProductSql = 'select p.sku, p.product_name, p.description, p.price_init, 
+	var $baseProductSql = 'select p.sku, r.mid, p.product_name, p.description, p.price_init, 
 							p.date_first_online, p.is_online,
 							r.product_name as product_name_raw, r.description as description_raw, 
 							r.url, r.original_url, p.image_url, p.price_init, r.price as price_now, IF( p.price_init > r.price, p.price_init - r.price, 0 ) as price_saving, 
@@ -118,6 +118,7 @@ class ProductModel extends CI_Model{
 	 * 2. is_online 		(1 = online only, 0 = offline, negative = all = this value NotSet)
 	 * 3. cat_id    		(category id, Not Set = no category fillter)
 	 * 4. is_fullprice 		(TRUE = item with full price, FALSE = item with discount, NotSet = no filter by price at all) 
+	 * 5. mids				(array of merchant id)
 	 * 
 	 * - sort and sort_dir (both need to come together, e.g. sort = product_name, sort_dir = desc)
 	 * - page_size 
@@ -157,6 +158,10 @@ class ProductModel extends CI_Model{
 				$sql = $sql.' and p.price_init > r.price';
 			}
 		}
+		
+		//filter#5 merchant
+		if (isset($filter['mids'])){$sql = $sql." and r.mid in (".$this::arrayListToNumberList($filter['mids']).")";}
+
 		
 		//sorting
 		if (isset($filter['sort'])){
@@ -253,6 +258,21 @@ class ProductModel extends CI_Model{
 		}	
 		else{
 			return "'".$arrayList."'";
+		}
+	}
+	
+	/*
+	 * function return array list to internet list with quote and comma separation
+	*/
+	private function arrayListToNumberList($arrayList){
+		if (is_array($arrayList)){
+			if (count($arrayList) > 0)
+				return ''.implode(',',$arrayList).'';
+			else
+				return '-999';		//return a dummy mid
+		}
+		else{
+			return $arrayList;
 		}
 	}
 	

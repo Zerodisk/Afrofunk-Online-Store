@@ -4,7 +4,7 @@
 		<div id="menubar">
 			<ul>
 				<li class="menu"><a href="<?php echo base_url();?>admin/home">dashboard</a></li>
-				<li class="menu"><a href="<?php echo base_url();?>admin/product">product</a></li>
+				<li class="menu"><a href="<?php echo base_url();?>admin/product?mid%5B%5D=100&mid%5B%5D=101&mid%5B%5D=102">product</a></li>
 				<!-- 
 				<li class="menu"><a href="<?php echo base_url();?>admin/setting">setting</a></li>
 				-->

@@ -7,6 +7,7 @@ class Product extends MY_Controller{
         $this->load->model('ProductModel');
         $this->load->model('PhotoModel');
         $this->load->model('BrandModel');
+        $this->load->model('MerchantModel');
         $this->load->model('GlobalvalueModel');
     }	
     
@@ -14,6 +15,11 @@ class Product extends MY_Controller{
     public function index(){
     	$data = array();
     	
+    	//merchant
+    	$data['mids']			    = $this->MerchantModel->getMerchantList();
+    	$data['mids_selected'] 		= ($this->input->get('mid')==FALSE)?array():$this->input->get('mid');
+    	$data['mids_selectbox']    	= $this::generateMerchantSelection($data['mids'], $data['mids_selected']);
+	
     	//brand
     	$data['brands'] 			= $this->BrandModel->getBrandList();
     	$data['brands_selected']	= ($this->input->get('brand')==FALSE)?array():$this->input->get('brand');    		    	  
@@ -31,6 +37,7 @@ class Product extends MY_Controller{
     	
     	//load product data
     	$filter = array();
+    	$filter['mids']				= $data['mids_selected'];
     	$filter['brands'] 			= $data['brands_selected'];
     	$filter['is_online'] 		= $this::manipulateStatus($data['status_selected']);
     	$filter['sort'] 			= $data['sort'];
@@ -174,6 +181,15 @@ class Product extends MY_Controller{
     	if (!is_array($brands_selected)){$brands_selected = array();}
     	foreach($brands as $brand){
     		$result = $result.'<input class="chkBrand" type="checkbox" name="brand[]" value="'.rawurlencode($brand['brand']).'"'.((in_array($brand['brand'], $brands_selected))?(' checked="true"'):('')).'> '.'<a href="/store/brands/'.url_title($brand['brand']).'" target="_blank" style="text-decoration: none; color:black;">'.$brand['brand'].'</a><br>'."\n";
+    	}
+    	return $result;
+    }
+    
+    private function generateMerchantSelection($merchants, $merchants_selected){
+    	$result = "\n";
+    	if (!is_array($merchants_selected)){$merchants_selected = array();}
+    	foreach($merchants as $merchant){
+    		$result = $result.'<input class="chkBrand" type="checkbox" name="mid[]" value="'.rawurlencode($merchant['mid']).'"'.((in_array($merchant['mid'], $merchants_selected))?(' checked="true"'):('')).'> '.$merchant['merchant_name'].'<br>'."\n";
     	}
     	return $result;
     }
