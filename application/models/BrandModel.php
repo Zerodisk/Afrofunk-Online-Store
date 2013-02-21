@@ -46,7 +46,9 @@ class BrandModel extends CI_Model{
     			'1&20; Blackbirds' 		=> '1&20 Blackbirds',
     			'80 ' 					=> '80%20',
     			'House Of Harlow 1960' 	=> 'House Of Harlow',
-    			'Atmos&Here;' 			=> 'Atmos&Here'
+    			'Atmos&Here;' 			=> 'Atmos&Here',
+    			'Keepsake'				=> 'Keepsake the Label',
+    			''						=> 'Beginning Boutique'
     	);
     	
     	return $brands;
