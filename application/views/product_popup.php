@@ -82,7 +82,11 @@
 				</div>
 				
 				<div class="shipping">
-					free shipping within Australia
+				    <?php if ($product->mid == '100') {echo('free shipping within Australia');}?>
+
+					<?php if ($product->mid == '101') {echo('free shipping within Australia');}?>
+												
+					<?php if ($product->mid == '102') {echo('free shipping on $50 or more');}?>
 				</div>
 				
 				<div class="shopbutton">
