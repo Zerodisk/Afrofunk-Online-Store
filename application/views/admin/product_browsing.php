@@ -85,7 +85,9 @@
 							
 							<center>
 							<a href="javascript:fnViewProduct('<?php echo $product['sku'];?>')">
-								<img src="<?php echo $product['image_url'];?>" border="1" width="180" />
+							   <div style="overflow:hidden; width:180px; height:230px; border: 1px solid black">
+								   <img src="<?php echo $product['image_url'];?>" width="180" />
+							   </div>
 							</a>
 							</center><br>
 													

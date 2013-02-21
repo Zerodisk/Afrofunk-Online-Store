@@ -30,6 +30,7 @@
 	height: 448px;
 	background-color: gray;
 	border: 1px solid silver;
+	overflow: hidden;
 }
 
 #subphoto{
@@ -37,7 +38,6 @@
 	width: 108px;
 	height: 448px;
 	margin-left: 12px;
-	
 }
 
 .photo1 {
@@ -45,6 +45,7 @@
 	height: 138px;
 	background: gray;
 	border: 1px solid silver;
+	overflow: hidden;
 }
 
 .photo2 {
@@ -53,6 +54,7 @@
 	background: gray;
 	margin-top: 15px;
 	border: 1px solid silver;
+	overflow: hidden;
 }
 
 .photo3 {
@@ -61,6 +63,7 @@
 	background: gray;
 	margin-top: 15px;
 	border: 1px solid silver;
+	overflow: hidden;
 }
 
 #productdetailbox{
