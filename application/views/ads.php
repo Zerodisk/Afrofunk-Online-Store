@@ -77,7 +77,7 @@ switch($menu){
 		<!-- default ads-->
 		<div id="adsblock">
 			<div id="slidepix">
-				<img src="/store/images/newyear.jpg" />
+				<img src="/store/images/bannertop.jpg" />
 			</div>
 			<div id="ads">		
 				<a href="https://track.commissionfactory.com.au/b/6718/10486/women/accessories/sunglasses/" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/0ac38747-d568-43bc-a41b-a86505abe760.gif" /></a>
