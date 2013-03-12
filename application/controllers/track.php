@@ -22,27 +22,35 @@ class Track extends MY_Controller {
     	$amount 	   = $this->input->get('Amount');
     	$random 	   = $this->input->get('Random');
     	
-    	$config['mailtype'] = 'text';
-    	$this->email->initialize($config);
+    	$this->email->initialize(array(
+    			'protocol'  => 'smtp',
+    			'smtp_host' => 'smtp.sendgrid.net',
+    			'smtp_user' => 'azure_05c31c1024b3d00febba4041ac54c447@azure.com',
+    			'smtp_pass' => 'lcdj3x27',
+    			'smtp_port' => 587,
+    			'crlf' 		=> "\r\n",
+    			'newline' 	=> "\r\n",
+    			'mailtype' 	=> 'text'
+    	));
     	
     	$this->email->from('info@afrofunk.com.au', 'afrofunk tracking');
     	$this->email->to('apichart.tang@gmail.com');
     	 
     	$this->email->subject('Afrofunk - new order');    	 
-    	$body = 'Yo Yo !!
+    	$body = 
+'Yo Yo !!
     			
-    			Congraturation on the new order. Below are details
+Congraturation on the new order. Below are details
     			
-    			Merchant ID:    '.$merchantId.'
-    			Merchange Name: '.$merchangeName.'
-    			Order ID:	    '.$orderId.'
-    			Source Type:    '.$sourceType.'
-    			Source Name:    '.$sourceName.'
-    			Amount: 	    $'.$amount.'
+Merchant ID:    '.$merchantId.'
+Merchange Name: '.$merchangeName.'
+Order ID:	    '.$orderId.'
+Source Type:    '.$sourceType.'
+Source Name:    '.$sourceName.'
+Amount: 	    $'.$amount.'
     	
-    			Have a nice day!
-    			go
-    			';
+Have a nice day!
+go';
     	
     	$this->email->message($body);
     	$this->email->send();

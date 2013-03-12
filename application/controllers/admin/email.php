@@ -24,9 +24,17 @@ class Email extends MY_Controller{
 		$recipientList =  explode("\n", $recipientList);
 		
 		foreach($recipientList as $recipient){
-			
-			$config['mailtype'] = $emailFormat;
-			$this->email->initialize($config);
+		
+			$this->email->initialize(array(
+					'protocol'  => 'smtp',
+					'smtp_host' => 'smtp.sendgrid.net',
+					'smtp_user' => 'azure_05c31c1024b3d00febba4041ac54c447@azure.com',
+					'smtp_pass' => 'lcdj3x27',
+					'smtp_port' => 587,
+					'crlf' 		=> "\r\n",
+					'newline' 	=> "\r\n",
+					'mailtype' 	=> $emailFormat
+			));
 			
 			$this->email->from($fromEmail, $fromName);
 			$this->email->to($recipient);
