@@ -9,9 +9,12 @@ class Redirect extends MY_Controller {
     }	
     
     public function index(){
-    	echo('hitting the index function - think about redirecting somewhere else');
+    	redirect('/', 'location', 301);
     }
     
+    /*
+     * this is for redirecting to the merchant item page
+     */
     public function view($sku){
     	$product = $this->ProductModel->getProduct($sku, 1);
     	
@@ -28,4 +31,26 @@ class Redirect extends MY_Controller {
 		$this->load->view('redirect', $data);
     }
     
+    /*
+     * this is for redirecting to merchant page for a given $merchantCode
+    */
+    public function merchant($merchantCode){
+    	$url = '';
+    	switch($merchantCode){
+    		case 'bb':
+    			$url = 'https://track.commissionfactory.com.au/t/6718/7639/';
+    			break;
+    		case 'gosh':
+    			$url = 'https://track.commissionfactory.com.au/t/6718/6997/';
+    			break;
+    		case 'theiconic':
+    			$url = 'https://track.commissionfactory.com.au/t/6718/3097/';
+    			break;
+    		default:
+    			$url = 'https://track.commissionfactory.com.au/t/6718/3097/';		//default is theiconic
+    			break;
+    	}
+    	redirect($url, 'location', 301);
+    }    
+        
 }

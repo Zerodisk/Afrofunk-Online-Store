@@ -146,6 +146,23 @@ $route['product/product-full-name']	= "product/view/DI085SH97FQG-16816";
 $route['redirect/view/(:any)']	  = 'redirect/view/$1';
 $route['redirect/(:any)']		  = 'redirect/view/$1';
 
+
+/*
+ * Merchant website
+*/
+$route['merchant/iconic']	      = 'redirect/merchant/theiconic';
+$route['merchant/theiconic']	  = 'redirect/merchant/theiconic';
+$route['merchant/gosh']			  = 'redirect/merchant/gosh';
+$route['merchant/bb']			  = 'redirect/merchant/bb';
+
+$route['iconic']	  			  = 'redirect/merchant/theiconic';
+$route['theiconic']	  			  = 'redirect/merchant/theiconic';
+$route['gosh']			  		  = 'redirect/merchant/gosh';
+$route['bb']			  		  = 'redirect/merchant/bb';
+
+/*
+ * Other
+ */
 $route['aboutus']				  = 'home/aboutus';
 
 
