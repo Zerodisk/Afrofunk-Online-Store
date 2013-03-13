@@ -54,6 +54,11 @@ go';
     	
     	$this->email->message($body);
     	$this->email->send();
+    	
+    	//read image file and echo
+    	$im = file_get_contents('http://afrofunk.com.au/store/images/track.gif');
+    	header('content-type: image/gif');
+    	echo $im;
     }
     
 }
