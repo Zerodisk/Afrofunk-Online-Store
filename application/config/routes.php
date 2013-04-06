@@ -164,6 +164,7 @@ $route['bb']			  		  = 'redirect/merchant/bb';
  * Other
  */
 $route['aboutus']				  = 'home/aboutus';
+$route['notfound']				  = 'home/notfound';
 
 
 

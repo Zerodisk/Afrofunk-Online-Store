@@ -49,7 +49,12 @@ class Product extends MY_Controller {
 		$data['product'] = $product;
 		$data['photos']  = $photos; 
 		
-		$this->load->view('product', $data);
+		if ($product == null){
+			$this->load->view('notfound', $data);		
+		}
+		else{
+			$this->load->view('product', $data);
+		}
 	}
 
 	

@@ -18,4 +18,16 @@ class Home extends MY_Controller {
 		$this->load->view('aboutus', $data);
 	}
 	
+	public function notfound(){
+		$data = array();
+		$data['head']   = $this->load->view('head',   '', TRUE);
+		
+		$header = $this::getFrontendHeader(1, 2, TRUE);
+		$data['header'] = $this->load->view('header', $header, TRUE);
+		
+		$data['footer'] = $this->load->view('footer', '', TRUE);
+		
+		$this->load->view('notfound', $data);
+	}
+	
 }
