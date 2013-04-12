@@ -39,7 +39,11 @@
 */
 
 $route['default_controller'] 	  = "product/browsingByCat";
-$route['404_override'] = '';
+$route['404_override'] 			  = '';
+$route['rss']					  = "product/rss";
+$route['rss.xml']				  = "product/rss";
+$route['xml.rss']				  = "product/rss";
+$route['index.rss']				  = "product/rss";
 
 /*
 ADMIN

@@ -117,7 +117,22 @@ class Product extends MY_Controller {
 		$this::loadViewProductBrowsing($data);
 	}
 	
+	/*
+	 *  to feed the RSS
+	*/
+	public function rss(){
+		$filter = array();
+		$filter['is_online'] = 1;
+		$filter['page_size'] = 50;
 	
+		$products = $this->ProductModel->getProductList($filter);
+
+		$data = array();
+		$data['products'] = $products;
+				
+		header("Content-Type: application/rss+xml");
+		$this->load->view('rss', $data);
+	}	
 	
 	
 
