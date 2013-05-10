@@ -1,6 +1,10 @@
 <?php 
 
 class Product extends MY_Controller {
+	
+	var $meta_title = 'Afrofunk Clothing Sydney';
+	var $meta_description = 'Australia best online affiliate fashion and footwear store. Products are selected with Funky and Streetware style with the trendiest brands. Buy clothes online, shoes online, and fashion accessories.';
+	var $meta_keyword = 'Funky Fashion Accessories, Streetware vision, Designer clothes women, Women designer clothes, Ladies Fashion accessories';
 
 	public function __construct(){
         parent::__construct();
@@ -71,6 +75,14 @@ class Product extends MY_Controller {
 		//var_dump($products);
 		$data = array();
 		$data['products'] = $products;
+		
+		if ($cat_id != null){
+			$category = $this->CategoryModel->getCategory($cat_id);
+			//add brand name into meta-description and title
+			//$this->meta_description = 'Buy '.$category->category_name.' online at Afro Funk';
+			$this->meta_title   	= 'Category: '.$category->category_name.' | '.$this->meta_title;
+		}
+		
 		$this::loadViewProductBrowsing($data);
 	}
 
@@ -89,6 +101,14 @@ class Product extends MY_Controller {
 		//var_dump($products);
 		$data = array();
 		$data['products'] = $products;
+		
+		if ($cat_id != null){
+			$category = $this->CategoryModel->getCategory($cat_id);
+			//add brand name into meta-description and title
+			//$this->meta_description = $category->category_name.' are on sale online at Afro Funk';
+			$this->meta_title   	= 'Category: '.$category->category_name.' | '.$this->meta_title;
+		}
+		
 		$this::loadViewProductBrowsing($data);
 	}
 	
@@ -109,6 +129,11 @@ class Product extends MY_Controller {
 			
 			$brand = str_replace('-', ' ', $brand);		//replace dash (-) with space
 			$filter['brands'] = array($brand);
+			
+			//add brand name into meta-description, meta-keyword and title
+			$this->meta_description = 'Shop for '.$brand.' clothing online at Afro Funk';
+			$this->meta_keyword 	= $brand.', '.$this->meta_keyword;
+			$this->meta_title   	= $brand.' | '.$this->meta_title; 
 		}
 		$products = $this->ProductModel->getProductList($filter);
 		
@@ -147,7 +172,7 @@ class Product extends MY_Controller {
 	 *   - products		= list of product
 	 */
 	private function loadViewProductBrowsing($data){	
-		$data['head']   = $this->load->view('head',   '', TRUE);
+		$data['head']   	= $this->load->view('head',   '', TRUE);
 		
 		$header 			= $this::getFrontendHeader(1, 2, TRUE);
 		$data['header'] 	= $this->load->view('header', $header, TRUE);
@@ -157,6 +182,10 @@ class Product extends MY_Controller {
 		
 		$data['nav_html'] 	= $this::getNavigatorHtml();
 		$data['show_product_as_popup'] = $this::showProductAsPopup();
+		
+		$data['meta_title']		  = $this->meta_title;
+		$data['meta_description'] = $this->meta_description;
+		$data['meta_keyword']	  = $this->meta_keyword;
 		 
 		$this->load->view('product_browsing', $data);
 	}
