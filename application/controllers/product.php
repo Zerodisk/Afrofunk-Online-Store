@@ -79,7 +79,7 @@ class Product extends MY_Controller {
 		if ($cat_id != null){
 			$category = $this->CategoryModel->getCategory($cat_id);
 			//add brand name into meta-description and title
-			//$this->meta_description = 'Buy '.$category->category_name.' online at Afro Funk';
+			$this->meta_description = $category->description;
 			$this->meta_title   	= 'Category: '.$category->category_name.' | '.$this->meta_title;
 		}
 		
@@ -105,7 +105,7 @@ class Product extends MY_Controller {
 		if ($cat_id != null){
 			$category = $this->CategoryModel->getCategory($cat_id);
 			//add brand name into meta-description and title
-			//$this->meta_description = $category->category_name.' are on sale online at Afro Funk';
+			$this->meta_description = $category->category_name.' are on sale online at Afro Funk';
 			$this->meta_title   	= $category->category_name.' is on sale now | '.$this->meta_title;
 		}
 		

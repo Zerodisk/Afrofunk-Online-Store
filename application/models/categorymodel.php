@@ -102,6 +102,30 @@ class CategoryModel extends CI_Model{
     	 
     	return $result;
     }
+    
+    /*
+     * return list of cateogry with parent (e.g. Clothing - Top, Clothing - Dress)
+     */
+    public function getCategoryListWithParent(){
+    	$sql = 'select c.cat_id, p.cat_id as parent_id, p.category_name as parent_name, c.category_name, c.description
+				from category p right join category c on c.parent_id = p.cat_id
+				order by p.cat_id, c.cat_id';
+    	
+    	//execute query
+    	$query = $this->db->query($sql);
+    	$data = $query->result_array();
+    	$query->free_result();
+    	return $data;
+    }
+    
+    
+    /*
+     * update category by a given cat_id
+    */
+    public function updateCategory($cat_id, $param){
+    	$this->db->where('cat_id', $cat_id);
+    	$this->db->update('category', $param);
+    }
 
     
 
