@@ -79,7 +79,9 @@ class Product extends MY_Controller {
 		if ($cat_id != null){
 			$category = $this->CategoryModel->getCategory($cat_id);
 			//add brand name into meta-description and title
-			$this->meta_description = $category->description;
+			if ($category->description != ''){
+				$this->meta_description = $category->description;
+			}
 			$this->meta_title   	= 'Category: '.$category->category_name.' | '.$this->meta_title;
 		}
 		
