@@ -28,7 +28,7 @@
 	float: left;
 	width: 350px;
 	height: 448px;
-	background-color: gray;
+	background-color: white;
 	border: 1px solid silver;
 	overflow: hidden;
 }
@@ -43,7 +43,7 @@
 .photo1 {
 	width: 108px;
 	height: 138px;
-	background: gray;
+	background: white;
 	border: 1px solid silver;
 	overflow: hidden;
 }
@@ -51,7 +51,7 @@
 .photo2 {
 	width: 108px;
 	height: 138px;
-	background: gray;
+	background: white;
 	margin-top: 15px;
 	border: 1px solid silver;
 	overflow: hidden;
@@ -60,7 +60,7 @@
 .photo3 {
 	width: 108px;
 	height: 138px;
-	background: gray;
+	background: white;
 	margin-top: 15px;
 	border: 1px solid silver;
 	overflow: hidden;
