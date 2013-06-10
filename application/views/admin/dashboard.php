@@ -17,7 +17,7 @@
 							<table width="98%" border="0">
 							<?php foreach($brand_update_list as $brand){?>
 								<tr>
-									<td><a href="/store/admin/product?page=0&mid%5B%5D=100&mid%5B%5D=101&mid%5B%5D=102&mid%5B%5D=103&status=all&brand%5B%5D=<?=rawurlencode(rawurlencode($brand['brand']))?>"><?=$brand['brand']?></a></td>
+									<td><a href="/store/admin/product?page=0&mid%5B%5D=100&mid%5B%5D=101&mid%5B%5D=102&mid%5B%5D=103&mid%5B%5D=104&status=all&brand%5B%5D=<?=rawurlencode(rawurlencode($brand['brand']))?>"><?=$brand['brand']?></a></td>
 									<td align="right"><?=$brand['num_item']?></td>
 								</tr>
 							<?php }?>
