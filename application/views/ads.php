@@ -80,8 +80,7 @@ switch($menu){
 				<img src="/store/images/bannertop.jpg" />
 			</div>
 			<div id="ads">		
-				<!-- <a href="https://track.commissionfactory.com.au/b/6718/10486/women/accessories/sunglasses/" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/0ac38747-d568-43bc-a41b-a86505abe760.gif" /></a> -->
-				<a href="https://track.commissionfactory.com.au/b/6718/11022/AW2013Women/" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/b2b62557-a40c-4c61-9426-796b07415a34.gif" /></a>
+				<a href="https://track.commissionfactory.com.au/b/6718/12025/aff_c" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/3222eb0a-3271-46e0-b044-0131926cda7c/a55e4eec-e845-4417-9d90-a3c21223bb80.jpg" /></a>
 				<br><br>
 				<!-- <a href="https://track.commissionfactory.com.au/b/6718/10492/women/womens-bags/" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/9673a31f-bc05-4cc4-af60-e397038846fc.gif" /></a> -->
 				<a href="https://track.commissionfactory.com.au/b/6718/10963/women/clothing/coats-and-jackets/" rel="noindex,nofollow"><img style="border: none; vertical-align: middle;" alt="" src="http://content.commissionfactory.com.au/Banners/9f772a1f-b8f6-4ccb-94b6-607ffa8e72a5/250edc51-d64b-4ec4-9f21-278457c47298.gif" /></a>
