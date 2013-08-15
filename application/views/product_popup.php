@@ -82,11 +82,15 @@
 				</div>
 				
 				<div class="shipping">
-				    <?php if ($product->mid == '100') {echo('free shipping within Australia');}?>
+				    <?php if ($product->mid == '100') {echo('free shipping on $50 or more');}  	//theiconic?>
 
-					<?php if ($product->mid == '101') {echo('free shipping within Australia');}?>
+					<?php if ($product->mid == '101') {echo('free shipping within Australia');}	//gosh?>
 												
-					<?php if ($product->mid == '102') {echo('free shipping on $50 or more');}?>
+					<?php if ($product->mid == '102') {echo('free shipping on $50 or more');}	//bb?>
+					
+					<?php if ($product->mid == '103') {echo('free shipping within Australia');}	//mida?>
+					
+					<?php if ($product->mid == '104') {echo('free shipping within Australia');}	//galsson?>
 				</div>
 				
 				<div class="shopbutton">
