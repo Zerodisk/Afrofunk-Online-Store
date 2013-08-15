@@ -38,8 +38,9 @@ class BrandModel extends CI_Model{
     }
     
     /*
-     * return list of brand that need to be rename when push from remote
+     * return list of brand that need to be rename when push from remote before store in mysql
      *   format of array is "change from" => "change to"
+     *   use in remotemodel=>doFinaliseUpdate to rename brand in mysql
      */
     public function getRenameBrandList(){
     	$brands = array(
@@ -61,9 +62,11 @@ class BrandModel extends CI_Model{
      */
     public function getExceptionBrandList(){
     	$brands = array(
-    					'120-Blackbirds' => '1&20 Blackbirds',
-    					'8020' 			 => '80%20',
-    					'AtmosHere' 	 => 'Atmos&Here'
+    					'120-Blackbirds' 		=> '1&20 Blackbirds',
+    					'8020' 			 		=> '80%20',
+    					'AtmosHere' 	 		=> 'Atmos&Here',
+    					'Akin-by-Ginger-Smart' 	=> 'Akin by Ginger & Smart',
+    					'Camilla-Marc'			=> 'Camilla & Marc'
     				 );
    
     	return $brands;
