@@ -116,8 +116,9 @@ $route['brands/view/(:any)']	  = "brand/view/$1";				//this is to maintain "bran
 $route['brand/Atmos']			  = "product/browsingByBrand/Atmos&Here;";
 $route['brand/(:any)']			  = "product/browsingByBrand/$1";
 
-$route['brands/Atmos']			  = "product/browsingByBrand/Atmos&Here;";
-$route['brands/(:any)']			  = "product/browsingByBrand/$1";			
+$route['brands/Akin-by-Ginger-Smart'] = 'product/browsingByBrand/Akin';
+$route['brands/Atmos']			      = "product/browsingByBrand/Atmos&Here;";
+$route['brands/(:any)']			      = "product/browsingByBrand/$1";			
 
 /*
 SALE

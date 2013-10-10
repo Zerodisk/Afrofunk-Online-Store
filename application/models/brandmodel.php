@@ -49,7 +49,8 @@ class BrandModel extends CI_Model{
     			'House Of Harlow 1960' 	=> 'House Of Harlow',
     			'Atmos&Here;' 			=> 'Atmos&Here',
     			'Keepsake'				=> 'Keepsake the Label',
-    			''						=> 'Beginning Boutique'
+    			''						=> 'Beginning Boutique',
+    			'Akin by Ginger & Smart'=> 'Akin'
     	);
     	
     	return $brands;
