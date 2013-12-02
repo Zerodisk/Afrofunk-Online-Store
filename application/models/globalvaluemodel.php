@@ -18,6 +18,9 @@ class GlobalvalueModel extends CI_Model{
     		case 'date_last_push':
     			$sql = "UPDATE global_value SET `value` = CURRENT_TIMESTAMP() WHERE `key` = 'date_last_push';";
     			break;
+    		case 'product_my_id':
+    			$sql = "UPDATE global_value SET `value` = ".$value." WHERE `key` = 'product_my_id';";
+    			break;
     		default:
     			$sql = '';
     	}

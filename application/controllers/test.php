@@ -56,10 +56,22 @@ class Test extends MY_Controller {
     	
     	echo('my ip address is: '.$myip.' and it convert to long = '.sprintf("%u", ip2long($myip)).'<br>');
     	
-    	echo('convert ip adddress of 198.151.53.250 to long = '.sprintf("%u", ip2long('198.151.53.250')));
+    	echo('convert ip adddress of 198.151.53.250 to long = '.sprintf("%u", ip2long('198.151.53.250')));    	    	   
     	
+    }
+    
+    public function tantest(){
+    	/*
+    	$this->load->model('GlobalvalueModel');
     	
+    	$param = array();
+    	$param['mid'] = '99';
+    	$param['product_name'] = 'micky mouse';
+    	$param['price'] = 23.99;
+    	$param['brand'] = 'afrofunk';
     	
-    	
+    	$sku = $this->ProductModel->addProductMy($param);
+    	var_dump($sku);
+    	*/
     }
 }

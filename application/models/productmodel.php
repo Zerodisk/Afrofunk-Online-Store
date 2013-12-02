@@ -1,15 +1,29 @@
 <?php
 class ProductModel extends CI_Model{
 	
+	//affiliate products (is_my = 0)
 	var $baseProductSql = 'select p.sku, r.mid, p.product_name, p.description, p.price_init, 
 							p.date_first_online, p.is_online,
 							r.product_name as product_name_raw, r.description as description_raw, 
-							r.url, r.original_url, p.image_url, p.price_init, r.price as price_now, IF( p.price_init > r.price, p.price_init - r.price, 0 ) as price_saving, 
+							r.url, r.original_url, p.image_url, r.price as price_now, IF( p.price_init > r.price, p.price_init - r.price, 0 ) as price_saving, 
 							r.delivery_cost, r.currency_code, r.brand, r.colour, r.gender, r.size, 
-							r.date_created, r.date_modified, c.cat_id, c.category_name, c.parent_id
+							r.date_created, r.date_modified, c.cat_id, c.category_name, c.parent_id,
+			                0 as is_my
 							from product p inner join product_raw r on p.sku = r.sku
 							left join category c on p.cat_id = c.cat_id 
 							where 0 = 0 ';
+	
+	//my own products (is_my = 1)
+	var $myProductSql   = 'select pm.sku, pm.mid, pm.product_name, pm.description, pm.price_init, 
+							pm.date_first_online, pm.is_online,
+							pm.product_name as product_name_raw, pm.description as description_raw, 
+							NULL as url, NULL as original_url, pm.image_url, pm.price as price_now, IF( pm.price_init > pm.price, pm.price_init - pm.price, 0 ) as price_saving, 
+							NULL as delivery_cost, NULL as currency_code, pm.brand, NULL as colour, NULL as gender, NULL as size, 
+							pm.date_created, pm.date_modified, cm.cat_id, cm.category_name, cm.parent_id,
+							1 as is_my
+							from product_my pm left join category cm on pm.cat_id = cm.cat_id 
+							where 0 = 0 ';
+	
 	var $default_page_size = 150;
 	
     function __construct(){
@@ -78,6 +92,40 @@ class ProductModel extends CI_Model{
 	}
 	
 	/*
+	 * add my own product
+	 *   mandatory requirement fields
+	 *   - mid
+	 *   - product_name
+	 *   - price
+	 *   - brand
+	 *   
+	 *   optional
+	 *   - description
+	 *   - cat_id
+	 *   - image_url
+	 */
+	public function addProductMy($param){
+		//log global value model
+		$this->load->model('GlobalvalueModel');
+		
+		//get the next product id
+		$id = $this->GlobalvalueModel->getGlobalValue('product_my_id')->value;	
+		
+		$param['sku'] 		    = $param['mid'].'-'.$id;
+		$param['price_init']    = $param['price'];		
+		$param['date_created']  = date('Y-m-d H:i:s');
+		$param['date_modified'] = date('Y-m-d H:i:s');		
+		
+		$this->db->insert('product_my', $param);
+		$sku = $this->db->insert_id();
+		
+		//update new product id + 1 (plus 1)
+		$this->GlobalvalueModel->updateGlobalValue('product_my_id', ($id + 1));
+		
+		return $sku; 
+	}
+	
+	/*
 	 * update existing product_raw
 	 */
 	public function updateProductRaw($sku, $param){
@@ -125,50 +173,14 @@ class ProductModel extends CI_Model{
 	 * - page_index (start from 0)
 	 */
 	public function getProductList($filter = array()){
-		$sql = $this->baseProductSql;
-		
-		//filter#1 brands
-		if (isset($filter['brands'])){$sql = $sql." and r.brand in (".$this::arrayListToStringList($filter['brands']).")";}		
-		//filter#2 is_online
-		if (isset($filter['is_online'])){
-			if ($filter['is_online'] >= 0){			
-				$sql = $sql.' and p.is_online = '.$filter['is_online'];
-			}
-		}
-		//filter#3 cat_id
-		if (isset($filter['cat_id'])){
-			switch ($filter['cat_id']){
-				case 1:
-					$sql = $sql.' and c.cat_id in ('.$this->CategoryModel->getClothingCatIdList().')';
-					break;
-				case 2:
-					$sql = $sql.' and c.cat_id in ('.$this->CategoryModel->getAccessoriesCatIdList().')';
-					break;
-				default:
-					$sql = $sql.' and c.cat_id = '.$filter['cat_id'];
-					break;
-			}
-		}
-		//filter#4 is_fullprice
-		if (isset($filter['is_fullprice'])){
-			if ($filter['is_fullprice']){
-				$sql = $sql.' and p.price_init = r.price';
-			}
-			else{
-				$sql = $sql.' and p.price_init > r.price';
-			}
-		}
-		
-		//filter#5 merchant
-		if (isset($filter['mids'])){$sql = $sql." and r.mid in (".$this::arrayListToNumberList($filter['mids']).")";}
-
+		$sql = $this::getSqlProductAff($filter).' union '.$this::getSqlProductMy($filter);
 		
 		//sorting
 		if (isset($filter['sort'])){
 			$sql = $sql.' order by '.$filter['sort'].' '.$filter['sort_dir'];
 		}
 		else{
-			$sql = $sql.' order by p.date_first_online desc';
+			$sql = $sql.' order by date_first_online desc';
 		}
 		
 		//setup page return
@@ -274,6 +286,94 @@ class ProductModel extends CI_Model{
 		else{
 			return $arrayList;
 		}
+	}
+	
+	/*
+	 * return the sql for my product, this won't include sorting and limiting
+	 */
+	private function getSqlProductMy($filter = array()){
+		$sql = $this->myProductSql;
+		
+		//filter#1 brands
+		if (isset($filter['brands'])){$sql = $sql." and pm.brand in (".$this::arrayListToStringList($filter['brands']).")";}
+		//filter#2 is_online
+		if (isset($filter['is_online'])){
+			if ($filter['is_online'] >= 0){
+				$sql = $sql.' and pm.is_online = '.$filter['is_online'];
+			}
+		}
+		//filter#3 cat_id
+		if (isset($filter['cat_id'])){
+			switch ($filter['cat_id']){
+				case 1:
+					$sql = $sql.' and cm.cat_id in ('.$this->CategoryModel->getClothingCatIdList().')';
+					break;
+				case 2:
+					$sql = $sql.' and cm.cat_id in ('.$this->CategoryModel->getAccessoriesCatIdList().')';
+					break;
+				default:
+					$sql = $sql.' and cm.cat_id = '.$filter['cat_id'];
+					break;
+			}
+		}
+		//filter#4 is_fullprice
+		if (isset($filter['is_fullprice'])){
+			if ($filter['is_fullprice']){
+				$sql = $sql.' and pm.price_init = pm.price';
+			}
+			else{
+				$sql = $sql.' and pm.price_init > pm.price';
+			}
+		}
+		
+		//filter#5 merchant
+		if (isset($filter['mids'])){$sql = $sql." and pm.mid in (".$this::arrayListToNumberList($filter['mids']).")";}
+		
+		return $sql;
+	}
+	
+	/*
+	 * return the sql for affiliate product, this won't include sorting and limiting
+	 */
+	private function getSqlProductAff($filter = array()){
+		$sql = $this->baseProductSql;
+		
+		//filter#1 brands
+		if (isset($filter['brands'])){$sql = $sql." and r.brand in (".$this::arrayListToStringList($filter['brands']).")";}
+		//filter#2 is_online
+		if (isset($filter['is_online'])){
+			if ($filter['is_online'] >= 0){
+				$sql = $sql.' and p.is_online = '.$filter['is_online'];
+			}
+		}
+		//filter#3 cat_id
+		if (isset($filter['cat_id'])){
+			switch ($filter['cat_id']){
+				case 1:
+					$sql = $sql.' and c.cat_id in ('.$this->CategoryModel->getClothingCatIdList().')';
+					break;
+				case 2:
+					$sql = $sql.' and c.cat_id in ('.$this->CategoryModel->getAccessoriesCatIdList().')';
+					break;
+				default:
+					$sql = $sql.' and c.cat_id = '.$filter['cat_id'];
+					break;
+			}
+		}
+		//filter#4 is_fullprice
+		if (isset($filter['is_fullprice'])){
+			if ($filter['is_fullprice']){
+				$sql = $sql.' and p.price_init = r.price';
+			}
+			else{
+				$sql = $sql.' and p.price_init > r.price';
+			}
+		}
+		
+		//filter#5 merchant
+		if (isset($filter['mids'])){$sql = $sql." and r.mid in (".$this::arrayListToNumberList($filter['mids']).")";}
+		
+		return $sql;
 	}
 	
 }
