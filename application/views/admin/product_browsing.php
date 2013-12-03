@@ -6,6 +6,10 @@
 				window.open('product/view/' + sku, sku,'width=1010,height=700');
 			}
 
+			function fnAddNewProduct(){
+				window.open('product/addnew', 'addNewProduct','width=1010,height=700');
+			}
+
 			function fnFiterSubmit(){
 				document.frmMain.page.value = 0;
 				document.frmMain.submit();
@@ -45,7 +49,9 @@
 				<form name="frmMain" method="get">
 				    <input type="hidden" name="page" value="<?=$page?>">
 					<div id="filter">
-						<input type="button" value="filter" onClick="fnFiterSubmit()"><br><br>
+						<input type="button" value="filter" onClick="fnFiterSubmit()">
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="button" value="new product" onClick="fnAddNewProduct()"><br><br>
 						
 						status<br>
 						<?php echo $status_selectbox;?><br>
@@ -59,6 +65,7 @@
 						&nbsp;&nbsp;<a href="javascript:fnCheckBrand(true);">check all</a> | <a href="javascript:fnCheckBrand(false);">uncheck all</a><br><br>
 						
 						<input type="button" value="filter" onClick="fnFiterSubmit()">
+						
 					</div>
 				
 					<div id="main">

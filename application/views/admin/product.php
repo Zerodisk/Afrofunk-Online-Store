@@ -100,11 +100,16 @@
 				document.frmMain.action = '<?=base_url().'admin/product/addPhoto'?>';
 				document.frmMain.submit();
 			}
+
+			function fnUploadForm(sku){
+				window.open('<?=base_url()?>admin/upload/sku/' + sku, 'upload-'+sku,'width=550,height=150');
+			}
 			
 		</script>
 	</head>
 	<body>
-		<form name="frmMain" action="<?=base_url().'admin/product/update'?>" method="post">
+	    <?php if ($product->is_addnew == 0) {?><form name="frmMain" action="<?=base_url().'admin/product/update'?>" method="post"><?php }?>
+		<?php if ($product->is_addnew == 1) {?><form name="frmMain" action="<?=base_url().'admin/product/add'?>" method="post"><?php }?>
 		<input type="hidden" name="sku" value="<?=$product->sku?>"/>
 	
 		<div id="photo-list-left">
@@ -125,23 +130,37 @@
 		
 		
 		<div id="product-detail-right">
+		  <?php if ($product->is_addnew == 0) {?>
 		  status: <br>
 			<div class="field switch">
 			    <label class="cb-enable"><span>On</span></label>
 			    <label class="cb-disable selected"><span>Off</span></label>
 			    <input type="checkbox" id="checkbox" class="checkbox" ctype="product" name="is_online" value="1" <?php if($product->is_online == 1){echo('checked="true"');}?>/>
 			</div>
+		  <?php }?>		
 			<div style="float:right">
 				<input type="submit" value="save" class="button">&nbsp;&nbsp;
 			</div>
-			
+		  
 			<br><br><br>
 		  
 		  name:<br>
 		  <input type="text" name="product_name" size="100" maxlength="199" value="<?php echo $product->product_name;?>" /><br><br>
 		  
-		  price (initial)<br>
-		  $<input type="text" name="price_init" size="6" value="<?php echo $product->price_init;?>"/> - price (now): $<?php echo $product->price_now;?><br><br>
+		  <div style="float:left">
+		  	price (initial)<br>
+		  	$<input type="text" name="price_init" size="6" value="<?php echo $product->price_init;?>"/>
+		  </div>
+		  <div style="float:left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		  <?php if ($product->is_addnew == 0) {?>
+		  <div style="float:left">
+		    price (now)<br> 
+		    $<input type="text" name="price" size="6" value="<?php echo $product->price_now;?>"/>
+		  </div>
+		  <?php }?>
+		  <div style="clear">&nbsp;</div>
+		    
+		  <br><br><br>
 
 		  category:<br>
 		  <select name="cat_id" id="cat_id">		
@@ -160,8 +179,12 @@
 		  	  </optgroup>
 		  </select><br><br>
 		  
-		  photo (main/default):<br>
+		  <?php if ($product->is_addnew == 0) {?>
+		  photo (main/default)&nbsp;-&nbsp;<a href="javascript:fnUploadForm('<?php echo($product->sku)?>')">upload form</a>
+
+		  :<br>
 		  <input type="text" name="image_url" size="100" maxlength="254" value="<?=$product->image_url?>" /><br><br>
+		  <?php }?>
 		  
 		  description:<br>
 		  <textarea name="description" cols="77" rows="12"><?php echo $product->description;?></textarea><br><br>
@@ -172,6 +195,7 @@
 		  		<td>brand</td>
 		  		<td><?php echo $product->brand;?></td>
 		  	</tr>
+		  	<?php if ($product->is_my == 0){?>
 		  	<tr>
 		  		<td>colour</td>
 		  		<td><?php echo $product->colour;?></td>
@@ -204,14 +228,17 @@
 		  		<td>currency</td>
 		  		<td><?php echo $product->currency_code;?></td>
 		  	</tr>
+		  	<?php }?>
 		  </table><br>
 		  		  
 		  <input type="submit" value="save" class="button"><br><br><br>
 		  
-		  add new photo URL:<br>
+		  <?php if ($product->is_addnew == 0) {?>
+		  add new photo URL&nbsp;-&nbsp;<a href="javascript:fnUploadForm('<?php echo($product->sku)?>')">upload form</a>
+		  :<br>
 		  <input type="text" name="photoUrl" size="80">
 		  <input type="button" value="add new photo" class="button" onClick="fnAddNewPhoto()"><br><br><br><br>
-		  
+		  <?php }?>
 		</div>
 				
 		</form>

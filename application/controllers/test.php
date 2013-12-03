@@ -65,10 +65,8 @@ class Test extends MY_Controller {
     	$this->load->model('GlobalvalueModel');
     	
     	$param = array();
-    	$param['mid'] = '99';
-    	$param['product_name'] = 'micky mouse';
-    	$param['price'] = 23.99;
-    	$param['brand'] = 'afrofunk';
+    	$param['product_name'] = 'micky mouse 2';
+    	$param['price'] = 27.99;
     	
     	$sku = $this->ProductModel->addProductMy($param);
     	var_dump($sku);

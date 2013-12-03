@@ -53,11 +53,61 @@ class Product extends MY_Controller{
     	$this::loadViewProductBrowsing($data);
     }
     
+    /*
+     * initial empty form to add new my product (afrofunk)
+     */
+    public function addnew(){
+    	$data = array();
+
+    	//initial dummy empty product
+    	$product 				= new stdClass();
+    	$product->is_addnew		= 1;		//indicate this is add new
+    	$product->sku 			= '';
+    	$product->image_url 	= '';
+    	$product->product_name 	= '';
+    	$product->description 	= '';
+    	$product->price 		= '';
+    	$product->price_init 	= '';
+    	$product->price_now 	= '';
+    	$product->is_online 	= 0;
+    	$product->is_my 		= 1;
+    	$product->brand 		= $this->ProductModel->getMyBrand();
+    	$data['product'] 		= $product;    	
+    	 
+    	//initial dummy empty photos
+    	$photos = array();
+    	$data['photos']  = $photos;
+    	 
+    	//category
+    	$data['cat_main'] 	  	 = $this->CategoryModel->getCategoryTopLevel();
+    	$data['cat_clothing'] 	 = $this->CategoryModel->getClothingList();
+    	$data['cat_accessories'] = $this->CategoryModel->getAccessoriesList();
+    	 
+    	$this::loadViewProduct($data);
+    }
+    
+    /*
+     * add new my product to db and redirec to view page
+     */
+    public function add(){
+    	//update db
+    	$param = array();
+    	$param['product_name'] = $this->input->post('product_name');
+    	$param['description']  = $this->input->post('description');
+    	$param['price']   	   = $this->input->post('price_init');
+    	$param['cat_id']       = $this->input->post('cat_id');
+    	
+    	$sku = $this->ProductModel->addProductMy($param);
+    	
+    	redirect(base_url().'admin/product/view/'.$sku);	//use redirect to avoid accidently page refresh
+    }
+    
     //view product controller
     public function view($sku){
     	$data = array();
     	
     	$product = $this->ProductModel->getProduct($sku);
+    	$product->is_addnew = 0;
     	$data['product'] = $product;
     	
     	$photos = $this->PhotoModel->getPhotoList($sku, -1);
@@ -75,6 +125,8 @@ class Product extends MY_Controller{
     public function update(){
     	$sku = $this->input->post('sku');
     	
+    	$isMyProduct = $this->ProductModel->isMyProduct($sku);
+    	
     	//update db
     	$param = array();
     	$param['product_name'] = $this->input->post('product_name');
@@ -82,6 +134,19 @@ class Product extends MY_Controller{
     	$param['price_init']   = $this->input->post('price_init');
     	$param['image_url']    = $this->input->post('image_url');		//move image_url to product table, so need to be able to update in admin area 3-jan-2013
     	$param['cat_id']       = $this->input->post('cat_id');
+    	
+    	//update price (now)
+    	if ($isMyProduct){
+    		//in table product_my
+    		$param['price']    = $this->input->post('price');
+    	}
+    	else{
+    		//in table product_raw
+    		$param_raw = array();
+    		$param_raw['price'] = $this->input->post('price');
+    		$this->ProductModel->updateProductRaw($sku, $param_raw);
+    	}
+    	
     	$this->ProductModel->updateProduct($sku, $param);        
     	
     	//view page
@@ -189,7 +254,7 @@ class Product extends MY_Controller{
     	$result = "\n";
     	if (!is_array($merchants_selected)){$merchants_selected = array();}
     	foreach($merchants as $merchant){
-    		$result = $result.'<input class="chkBrand" type="checkbox" name="mid[]" value="'.rawurlencode($merchant['mid']).'"'.((in_array($merchant['mid'], $merchants_selected))?(' checked="true"'):('')).'> '.$merchant['merchant_name'].'<br>'."\n";
+    		$result = $result.'<input class="chkMerchant" type="checkbox" name="mid[]" value="'.rawurlencode($merchant['mid']).'"'.((in_array($merchant['mid'], $merchants_selected))?(' checked="true"'):('')).'> '.$merchant['merchant_name'].'<br>'."\n";
     	}
     	return $result;
     }

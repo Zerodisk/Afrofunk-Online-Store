@@ -25,6 +25,8 @@ class ProductModel extends CI_Model{
 							where 0 = 0 ';
 	
 	var $default_page_size = 150;
+	var $my_mid   = 99;				//this is mid (merchant ID) for Afro Funk my own product.
+	var $my_brand = 'Afro Funk';	//this is my own brand (afro funk);
 	
     function __construct(){
         // Call the Model constructor
@@ -36,6 +38,10 @@ class ProductModel extends CI_Model{
     
     public function getDefaultPageSize(){
     	return $this->default_page_size;
+    }
+    
+    public function getMyBrand(){
+    	return $this->my_brand;
     }
 
 	/*
@@ -71,8 +77,9 @@ class ProductModel extends CI_Model{
 	 */
 	public function addProductRaw($param){
 		//add to product_raw table
-		$param['date_created']  = date('Y-m-d H:i:s');
-		$param['date_modified'] = date('Y-m-d H:i:s');
+		$date_now				= date('Y-m-d H:i:s');
+		$param['date_created']  = $date_now;
+		$param['date_modified'] = $date_now;
 		$this->db->insert('product_raw', $param);
 		
 		//add to product table
@@ -85,19 +92,17 @@ class ProductModel extends CI_Model{
 		$product['price_init']   	= $param['price'];
 		$product['image_url']   	= $param['image_url'];		//move image_url to product table 3-jan-2013
 		$product['is_online']	 	= 0;
-		$product['date_modified']   = date('Y-m-d H:i:s');
+		$product['date_modified']   = $date_now;
 		$this->db->insert('product', $product);
 
-    	return $this->db->insert_id();
+    	return $param['sku'];
 	}
 	
 	/*
 	 * add my own product
 	 *   mandatory requirement fields
-	 *   - mid
 	 *   - product_name
 	 *   - price
-	 *   - brand
 	 *   
 	 *   optional
 	 *   - description
@@ -111,18 +116,19 @@ class ProductModel extends CI_Model{
 		//get the next product id
 		$id = $this->GlobalvalueModel->getGlobalValue('product_my_id')->value;	
 		
-		$param['sku'] 		    = $param['mid'].'-'.$id;
+		$param['sku'] 		    = $this->my_mid.'-'.$id;
+		$param['mid']			= $this->my_mid;
+		$param['brand']			= $this->my_brand;
 		$param['price_init']    = $param['price'];		
 		$param['date_created']  = date('Y-m-d H:i:s');
 		$param['date_modified'] = date('Y-m-d H:i:s');		
 		
 		$this->db->insert('product_my', $param);
-		$sku = $this->db->insert_id();
 		
 		//update new product id + 1 (plus 1)
 		$this->GlobalvalueModel->updateGlobalValue('product_my_id', ($id + 1));
 		
-		return $sku; 
+		return $param['sku']; 
 	}
 	
 	/*
@@ -139,16 +145,28 @@ class ProductModel extends CI_Model{
 	 */
 	public function updateProduct($sku, $param = array()){
 		$param['date_modified'] = date('Y-m-d H:i:s');
+		$table_subfix = '';
+		
+		if ($this::isMyProduct($sku)){
+			$table_subfix = '_my';
+		}
+		
 		$this->db->where('sku', $sku);
-		$this->db->update('product', $param);
+		$this->db->update('product'.$table_subfix, $param);
 	}
 	
 	/* 
 	 * return product (object) matched with input $sku
+	 * note: avoid using UNION as per better performance
 	 */
 	public function getProduct($sku){
 		$result = NULL;	
-		$sql = $this->baseProductSql.' and p.sku = ? ';
+		if ($this->isMyProduct($sku)){
+			$sql = $this->myProductSql.' and pm.sku = ?';
+		}
+		else{
+			$sql = $this->baseProductSql.' and p.sku = ?';
+		}					
 	
 		$query = $this->db->query($sql, array($sku));
 		if ($query->num_rows() > 0){
@@ -196,7 +214,7 @@ class ProductModel extends CI_Model{
 	}
 	
 	/*
-	 * just return number of item from product table
+	 * just return number of item from product table (exclude my product)
 	*/
 	public function getNumberOfItem(){
 		$sql = 'select count(*) as num_items from product';
@@ -212,7 +230,7 @@ class ProductModel extends CI_Model{
 	}
 	
 	/*
-	 * just return number of item that are online
+	 * just return number of item that are online (exclude my product)
 	 */
 	public function getNumberOfOnlineItem(){
 		$sql = 'select count(*) as num_items from product where is_online = 1';
@@ -257,6 +275,18 @@ class ProductModel extends CI_Model{
 		$data = $query->result_array();
 		$query->free_result();
 		return $data;
+	}
+	
+	/*
+	 * my own product (afrofunk merchant), sku start with 99- (e.g. 99-1000, 99-1001)
+	*/
+	public function isMyProduct($sku){
+		if (substr($sku, 0, 3) == $this->my_mid.'-'){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
 	}
 
 	
@@ -375,5 +405,7 @@ class ProductModel extends CI_Model{
 		
 		return $sql;
 	}
+	
+
 	
 }
