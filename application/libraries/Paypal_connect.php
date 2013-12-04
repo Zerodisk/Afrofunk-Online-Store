@@ -10,31 +10,23 @@
 
 class Paypal_connect {
 	
-	var $ci;				//codeigniter reference object
-	var $param   = array();	//all variable to submit to paypal
-
-	// ******************** TEST TEST TEST **********************************************
-	var $paypal_url_nvp      = 'https://api-3t.sandbox.paypal.com/nvp';
-	var $paypal_url_redirect = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-	var $paypal_username  	 = 'apichart.tang-facilitator_api1.gmail.com';
-	var $paypal_password  	 = '1386115952';
-	var $paypal_signature 	 = 'An5ns1Kso7MWUdW4ErQKJJJ4qi4-A77S5jwNmhl4EZGW6MelTscV6vmw';				
-	var $my_url_success   	 = 'http://localhost:88/store/paypal/success';
-	var $my_url_cancel    	 = 'http://localhost:88/store/paypal/cancel';
-	
-	var $paypal_version   	 = '78';
-	var $my_currency      	 = 'AUD';
-	// ******************** TEST TEST TEST **********************************************
-	
+	var $ci;					//codeigniter reference object
+	var $param = array();		//all variable to submit to paypal
+	var $paypal_config;			//config object for paypal
+	var $mode = 'TEST';			//mode of config file (TEST or LIVE)
 	
 
 	public function __construct(){
 		$this->ci =& get_instance();
+		
+		//initial test and live mode here
+		$this->ci->load->library('paypal_config', array('mode' => $this->mode));
+		$this->paypal_config = $this->ci->paypal_config;
 			
-		$this->param['USER'] 		= $this->paypal_username;
-		$this->param['PWD'] 		= $this->paypal_password;
-		$this->param['SIGNATURE']   = $this->paypal_signature;
-		$this->param['VERSION']		= $this->paypal_version;
+		$this->param['USER'] 		= $this->paypal_config->paypal_username;
+		$this->param['PWD'] 		= $this->paypal_config->paypal_password;
+		$this->param['SIGNATURE']   = $this->paypal_config->paypal_signature;
+		$this->param['VERSION']		= $this->paypal_config->paypal_version;
 	}
 	
 	/*
@@ -46,11 +38,11 @@ class Paypal_connect {
 	public function send_SetExpressCheckout($param = array()){
 		$this->param['METHOD'] = 'SetExpressCheckout';
 		
-		$this->param['returnUrl'] = $this->my_url_success;
-		$this->param['cancelUrl'] = $this->my_url_cancel;
+		$this->param['returnUrl'] = $this->paypal_config->my_url_success;
+		$this->param['cancelUrl'] = $this->paypal_config->my_url_cancel;
 		
 		$this->param['PAYMENTREQUEST_0_PAYMENTACTION'] 	= 'SALE';
-		$this->param['PAYMENTREQUEST_0_CURRENCYCODE'] 	= $this->my_currency;
+		$this->param['PAYMENTREQUEST_0_CURRENCYCODE'] 	= $this->paypal_config->my_currency;
 		$this->param['PAYMENTREQUEST_0_AMT'] 			= $param['price'];		
 		$this->param['L_PAYMENTREQUEST_0_NAME0'] 		= $param['product_name'];
 		$this->param['L_PAYMENTREQUEST_0_AMT0'] 		= $param['price'];
@@ -69,7 +61,7 @@ class Paypal_connect {
 		$param['token'] = $token;		
 		
 		//get full url
-		$url = $this->paypal_url_redirect.'?'.http_build_query($param);
+		$url = $this->paypal_config->paypal_url_redirect.'?'.http_build_query($param);
 		
 		return $url;
 	}
@@ -99,7 +91,7 @@ class Paypal_connect {
 		$this->param['TOKEN'] 						  = $token;
 		$this->param['PAYERID'] 					  = $param['payer_id'];
 		$this->param['PAYMENTREQUEST_0_AMT'] 		  = $param['price'];
-		$this->param['PAYMENTREQUEST_0_CURRENCYCODE'] = $this->my_currency;
+		$this->param['PAYMENTREQUEST_0_CURRENCYCODE'] = $this->paypal_config->my_currency;
 		
 		$result = $this->send_paypal($this->param);
 		return $this->parse($result);
@@ -134,7 +126,7 @@ class Paypal_connect {
 		$this::add_value_toParam($param);
 	
 		//get full url
-		$url = $this->paypal_url_nvp.'?'.http_build_query($this->param);
+		$url = $this->paypal_config->paypal_url_nvp.'?'.http_build_query($this->param);
 	
 		//submit REST and get string return
 		$result = $this::curl_get_contents($url);

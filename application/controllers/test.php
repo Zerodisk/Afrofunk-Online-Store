@@ -105,6 +105,11 @@ class Test extends MY_Controller {
     	echo($url);
     }
     
+    public function paypalConfig(){
+    	$this->load->library('paypal_config', array('mode' => 'LIVE'));
+    	$config = $this->paypal_config;
+    	echo($config->paypal_url_nvp);
+    }
     
     
 }
