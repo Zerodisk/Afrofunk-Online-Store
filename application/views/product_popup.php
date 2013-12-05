@@ -91,13 +91,23 @@
 					<?php if ($product->mid == '103') {echo('free shipping within Australia');}	//mida?>
 					
 					<?php if ($product->mid == '104') {echo('free shipping within Australia');}	//galsson?>
+					
+					<?php if ($product->mid == '99' ) {echo('free shipping and ship only within Australia');}	//afrofunk?>
 				</div>
 				
-				<div class="shopbutton">
-					<a href="<?=base_url()?>redirect/<?=$product->sku?>">
-						<img src="<?=base_url()?>images/shopthislook.png" border="0" />
+				<?php if ($product->mid == '99') {?><br><br><br>
+					<a href="<?=base_url()?>paypal/redirect/<?=$product->sku?>">
+						<img src="https://www.paypal.com/en_AU/AU/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;">
 					</a>
-				</div>
+				<?php }
+					  else{
+				?>
+					<div class="shopbutton">
+						<a href="<?=base_url()?>redirect/<?=$product->sku?>">
+							<img src="<?=base_url()?>images/shopthislook.png" border="0" />
+						</a>
+					</div>
+				<?php }?>
 		
 			</div>
 			

@@ -108,16 +108,32 @@
 							</div>
 							
 							<div class="shipping">
-							    <?php if ($product->mid == '100') {echo('free shipping within Australia');}?>
+							    <?php if ($product->mid == '100') {echo('free shipping on $50 or more');}  	//theiconic?>
 			
-								<?php if ($product->mid == '101') {echo('free shipping within Australia');}?>
+								<?php if ($product->mid == '101') {echo('free shipping within Australia');}	//gosh?>
 															
-								<?php if ($product->mid == '102') {echo('free shipping on $50 or more');}?>
+								<?php if ($product->mid == '102') {echo('free shipping on $50 or more');}	//bb?>
+								
+								<?php if ($product->mid == '103') {echo('free shipping within Australia');}	//mida?>
+								
+								<?php if ($product->mid == '104') {echo('free shipping within Australia');}	//galsson?>
+								
+								<?php if ($product->mid == '99' ) {echo('free shipping and ship only within Australia');}	//afrofunk?>
 							</div>
 							
-							<a class="shopbutton" href="<?=base_url()?>redirect/<?=$product->sku?>">
-								<img src="<?=base_url()?>images/shopthislook.png" border="0" />
-							</a>
+							<?php if ($product->mid == '99') {?><br><br><br>
+								<a href="<?=base_url()?>paypal/redirect/<?=$product->sku?>">
+									<img src="https://www.paypal.com/en_AU/AU/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;">
+								</a>
+							<?php }
+								  else{
+							?>
+								<div class="shopbutton">
+									<a href="<?=base_url()?>redirect/<?=$product->sku?>">
+										<img src="<?=base_url()?>images/shopthislook.png" border="0" />
+									</a>
+								</div>
+							<?php }?>
 					
 						</div>
 						
