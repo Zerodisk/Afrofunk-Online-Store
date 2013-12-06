@@ -111,6 +111,11 @@ class Test extends MY_Controller {
     	echo($config->paypal_url_nvp);
     }
     
+    public function getLogOrder($token){
+    	$this->load->library('paypal_log');
+    	var_dump($this->paypal_log->get_LogOrder($token));
+    }
+    
     
 }
 

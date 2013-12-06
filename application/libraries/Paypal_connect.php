@@ -13,6 +13,7 @@ class Paypal_connect {
 	var $ci;					//codeigniter reference object
 	var $param = array();		//all variable to submit to paypal
 	var $paypal_config;			//config object for paypal
+	var $paypal_log;			//log object for paypal
 	var $mode = 'TEST';			//mode of config file (TEST or LIVE)
 	
 
@@ -22,6 +23,10 @@ class Paypal_connect {
 		//initial test and live mode here
 		$this->ci->load->library('paypal_config', array('mode' => $this->mode));
 		$this->paypal_config = $this->ci->paypal_config;
+		
+		//initial paypal log object
+		$this->ci->load->library('paypal_log');
+		$this->paypal_log = $this->ci->paypal_log;
 			
 		$this->param['USER'] 		= $this->paypal_config->paypal_username;
 		$this->param['PWD'] 		= $this->paypal_config->paypal_password;
@@ -47,8 +52,17 @@ class Paypal_connect {
 		$this->param['L_PAYMENTREQUEST_0_NAME0'] 		= $param['product_name'];
 		$this->param['L_PAYMENTREQUEST_0_AMT0'] 		= $param['price'];
 				
-		$result = $this->send_paypal($this->param);		
-		return $this->parse($result);
+		$message_response = $this->send_paypal($this->param);	
+		$result 	      = $this->parse($message_response);	
+		
+		//log paypal
+		$this->paypal_log->log(array(
+								 'token' 		=> $result['TOKEN'],
+				                 'message' 		=> $message_response,
+				                 'request_type' => 'SetExpressCheckout',
+				               ));
+		
+		return $result;
 	}
 	
 	/*
@@ -63,6 +77,13 @@ class Paypal_connect {
 		//get full url
 		$url = $this->paypal_config->paypal_url_redirect.'?'.http_build_query($param);
 		
+		//log paypal
+		$this->paypal_log->log(array(
+				'token' 	   => $token,
+				'message' 	   => $url,
+				'request_type' => 'RedirectToPayPal',
+		));
+		
 		return $url;
 	}
 	
@@ -75,8 +96,17 @@ class Paypal_connect {
 		
 		$this->param['TOKEN']  = $token;
 		
-		$result = $this->send_paypal($this->param);		
-		return $this->parse($result);
+		$message_response = $this->send_paypal($this->param);	
+		$result 	      = $this->parse($message_response);	
+		
+		//log paypal
+		$this->paypal_log->log(array(
+								 'token' 		=> $result['TOKEN'],
+				                 'message' 		=> $message_response,
+				                 'request_type' => 'GetExpressCheckoutDetails',
+				               ));
+		
+		return $result;
 	}
 	
 	/*
@@ -93,8 +123,17 @@ class Paypal_connect {
 		$this->param['PAYMENTREQUEST_0_AMT'] 		  = $param['price'];
 		$this->param['PAYMENTREQUEST_0_CURRENCYCODE'] = $this->paypal_config->my_currency;
 		
-		$result = $this->send_paypal($this->param);
-		return $this->parse($result);
+		$message_response = $this->send_paypal($this->param);	
+		$result 	      = $this->parse($message_response);	
+		
+		//log paypal
+		$this->paypal_log->log(array(
+								 'token' 		=> $result['TOKEN'],
+				                 'message'		=> $message_response,
+				                 'request_type' => 'DoExpressCheckoutPayment',
+				               ));
+		
+		return $result;
 	}
 	
 	
