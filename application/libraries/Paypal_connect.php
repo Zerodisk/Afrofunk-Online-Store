@@ -136,6 +136,12 @@ class Paypal_connect {
 		return $result;
 	}
 	
+	/*
+	 * return default paypal currency from the paypal config
+	 */
+	public function get_currencyDefault(){
+		return $this->paypal_config->my_currency;
+	}
 	
 	
 	

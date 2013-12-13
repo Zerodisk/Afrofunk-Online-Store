@@ -9,7 +9,7 @@
 
 class Paypal_config {
 
-	var $config_live = array();		//live config array
+	var $config_live;				//live config array
 	var $config_test;				//test config array
 	var $mode = '';					//config mode, can be TEST or LIVE
 	

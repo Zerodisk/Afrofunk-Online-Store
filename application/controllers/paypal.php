@@ -47,6 +47,18 @@ class Paypal extends MY_Controller {
     	//record in db
     	$this->paypal_log->log_orderUpdate($token, array('payer_id' => $payer_id));
     	
+    	//do validation
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	
     	//send paypal GetExpressCheckoutDetails
     	$paypal = $this->paypal_connect->send_GetExpressCheckoutDetails($token);
     	
@@ -67,14 +79,69 @@ class Paypal extends MY_Controller {
 									    			'date_successed' 	=> date('Y-m-d H:i:s'),
     			                                   ));
     	
-    	echo('success page');
+    	//display page
+    	$data = array();
+		$data['head']     = $this->load->view('head', '', TRUE);
+		$header 		  = $this::getFrontendHeader(1, 2, TRUE);
+		$data['header']   = $this->load->view('header', $header, TRUE);
+		$data['footer']   = $this->load->view('footer', '', TRUE);
+		$data['token']    = $token;
+		$data['payer_id'] = $payer_id;
+		
+		$this->load->view('paypal_success', $data);
     }
     
     /*
      * paypal confirm payment
      */
     public function confirm(){
+    	$token    = $this->input->post('token');
+    	$payer_id = $this->input->post('payer_id');
+    	if (($token == '') || ($payer_id == '')){
+    		redirect(base_url());
+    	}
+    	    	
+    	//get order log transaction details
+    	$log = $this->paypal_log->get_LogOrder($token);
+    	if ($payer_id != $log->payer_id){
+    		redirect(base_url());
+    	}
+    	    	
+    	//paypal do confirm transaction
+    	$paypal = $this->paypal_connect->send_DoExpressCheckoutPayment($token, array(
+		    																     'price'    => $log->price,
+		    																     'payer_id' => $log->payer_id,
+		    			                                                       ));
+		    	
+    	//record in db
+    	$this->paypal_log->log_orderUpdate($token, array(
+    												'transaction_id' 	   => $this->remEmpty($paypal, 'PAYMENTINFO_0_TRANSACTIONID'),
+    											    'return_amt' 		   => $this->remEmpty($paypal, 'PAYMENTINFO_0_AMT'),
+    												'return_currency_code' => $this->remEmpty($paypal, 'PAYMENTINFO_0_CURRENCYCODE'),
+    											   ));
     	
+    	//validation
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//
+    	//	
+    	//
+    	
+    	
+    	//display page
+    	$data = array();
+    	$data['head']   = $this->load->view('head', '', TRUE);
+    	$header 		= $this::getFrontendHeader(1, 2, TRUE);
+    	$data['header'] = $this->load->view('header', $header, TRUE);
+    	$data['footer'] = $this->load->view('footer', '', TRUE);
+    	
+    	$this->load->view('paypal_confirm', $data);
     }
     
     /*
@@ -93,7 +160,18 @@ class Paypal extends MY_Controller {
     	//record in db
     	$this->paypal_log->log_orderUpdate($token, array('date_cancelled' 	=> date('Y-m-d H:i:s'),));
     	
-    	echo('cancel page with token: '.$token);
+    	//get product sku for redirection
+    	$paypal = $this->paypal_log->get_LogOrder($token);
+    	
+    	//redirecting to product page
+    	if ($paypal == NULL){
+    		// token is not found, redirec to home page
+    		redirect(base_url());
+    	}
+    	else{
+    		// found token, redirect to selected product page
+    		redirect(base_url().'product/view/'.$paypal->sku);
+    	}    	
     }
     
     

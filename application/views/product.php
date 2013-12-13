@@ -17,6 +17,15 @@
 	
 	<title><?=$product->brand?> | <?=$product->product_name?> | Afrofunk Clothing Sydney</title>
 	
+	<?php if ($product->mid == '99') {?> 
+	<style>
+		#containerPopup{background-color:#dddddd;}
+		.pricebox{color: #222222;}
+		.namebox {color: #222222;}
+		.brandbox{color: #222222;}
+	</style>
+	<?php  }?>
+	
 </head>
 <body>
 	<div id="container">

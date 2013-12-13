@@ -3,6 +3,14 @@
 </head>
 <body>
 
+<?php if ($product->mid == '99') {?> 
+<style>
+	#containerPopup{background-color:#dddddd;}
+	.pricebox{color: #222222;}
+	.namebox {color: #222222;}
+	.brandbox{color: #222222;}
+</style>
+<?php  }?>
  
 	<div id="containerPopup">
 		

@@ -116,6 +116,11 @@ class Test extends MY_Controller {
     	var_dump($this->paypal_log->get_LogOrder($token));
     }
     
+    public function paypalCurrency(){
+    	$this->load->library('paypal_connect');
+    	echo('default paypal currency code: '.$this->paypal_connect->get_currencyDefault());
+    }
+    
     
 }
 
