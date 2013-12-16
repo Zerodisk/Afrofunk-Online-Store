@@ -161,7 +161,7 @@
 		  </select><br><br>
 		  
 		  photo (main/default):<br>
-		  <input type="text" name="image_url" size="100" maxlength="254" value="<?=$product->image_url?>" /><br><br>
+		  <input type="text" name="image_url" size="100" maxlength="399" value="<?=$product->image_url?>" /><br><br>
 		  
 		  description:<br>
 		  <textarea name="description" cols="77" rows="12"><?php echo $product->description;?></textarea><br><br>
@@ -209,7 +209,7 @@
 		  <input type="submit" value="save" class="button"><br><br><br>
 		  
 		  add new photo URL:<br>
-		  <input type="text" name="photoUrl" size="80">
+		  <input type="text" name="photoUrl" size="399">
 		  <input type="button" value="add new photo" class="button" onClick="fnAddNewPhoto()"><br><br><br><br>
 		  
 		</div>
