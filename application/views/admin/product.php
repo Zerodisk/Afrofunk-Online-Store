@@ -183,7 +183,7 @@
 		  photo (main/default)&nbsp;-&nbsp;<a href="javascript:fnUploadForm('<?php echo($product->sku)?>')">upload form</a>
 
 		  :<br>
-		  <input type="text" name="image_url" size="100" maxlength="254" value="<?=$product->image_url?>" /><br><br>
+		  <input type="text" name="image_url" size="100" maxlength="399" value="<?=$product->image_url?>" /><br><br>
 		  <?php }?>
 		  
 		  description:<br>
@@ -236,7 +236,7 @@
 		  <?php if ($product->is_addnew == 0) {?>
 		  add new photo URL&nbsp;-&nbsp;<a href="javascript:fnUploadForm('<?php echo($product->sku)?>')">upload form</a>
 		  :<br>
-		  <input type="text" name="photoUrl" size="80">
+		  <input type="text" name="photoUrl" size="399">
 		  <input type="button" value="add new photo" class="button" onClick="fnAddNewPhoto()"><br><br><br><br>
 		  <?php }?>
 		</div>
